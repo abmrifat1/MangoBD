@@ -1487,22 +1487,13 @@
 
 @section('script')
     <!-- js -->
-    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="{{asset('front/home/js/jquery-2.1.4.min.js')}}"></script>
     <!-- //js -->
     <script src="{{asset('front/home/js/modernizr.custom.js')}}"></script>
     <!-- Custom-JavaScript-File-Links -->
     <!-- cart-js -->
     <script src="{{asset('front/home/js/minicart.min.js')}}"></script>
-    <script>
-        // Mini Cart
-        paypal.minicart.render({
-            action: '#'
-        });
 
-        if (~window.location.search.indexOf('reset=true')) {
-            paypal.minicart.reset();
-        }
-    </script>
 
     <!-- //cart-js -->
     <!-- script for responsive tabs -->
@@ -1549,21 +1540,7 @@
         });
     </script>
     <!-- here stars scrolling icon -->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            /*
-                var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
-                scrollSpeed: 1200,
-                easingType: 'linear'
-                };
-            */
 
-            $().UItoTop({ easingType: 'easeOutQuart' });
-
-        });
-    </script>
     <!-- //here ends scrolling icon -->
 
 

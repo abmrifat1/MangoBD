@@ -261,7 +261,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav menu__list">
 								<li class="active">
-									<a class="nav-stylehead" href="shop.blade.php">HOME
+									<a class="nav-stylehead" href="{{url('/')}}">HOME
 										<span class="sr-only">(current)</span>
 									</a>
 								</li>
