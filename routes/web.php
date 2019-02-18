@@ -14,20 +14,9 @@
 Route::get('/', 'MangoBD@index');
 Route::get('/shop', 'MangoBD@shop');
 
-Route::get('/admin-panel', function () {
-    return view('dashboard.home');
+Route::get('/category', function () {
+    return view('dashboard.category.category');
 });
-Route::get('/master', function () {
-    return view('dashboard.master');
-});
-
-Route::get('/about', function () {
-    return view('front.about');
-});
-Route::get('/faqs', function () {
-    return view('front.faqs');
-});
-
 
 Auth::routes();
 
