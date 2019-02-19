@@ -14,7 +14,7 @@
                 </div>
                 <div class="profile_info">
                     <span>Welcome,</span>
-                    <h2>{{ Auth::user()->name }}</h2>
+                    <h2>@if(!empty(Auth::user()->name)){{ Auth::user()->name }}@endif</h2>
                 </div>
             </div>
             <!-- /menu profile quick info -->
@@ -25,67 +25,67 @@
                 <div class="menu_section">
                     <h3>General</h3>
                     <ul class="nav side-menu">
-                        <li><a href="{{url('/admin-panel')}}"><i class="fa fa-home"></i> Dashboard </a>
+                        <li><a href="{{url('/admin-panel')}}"><i class="fa fa-home"></i> admin </a>
                         </li>
                         <li><a><i class="fa fa-address-book"></i> Administrator  <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('/dashboard/administrator/manage')}}">Manage</a></li>
-                                <li><a href="{{url('/dashboard/administrator/create')}}">Add New</a></li>
+                                <li><a href="{{url('/admin/administrator/manage')}}">Manage</a></li>
+                                <li><a href="{{url('/admin/administrator/create')}}">Add New</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-sitemap" aria-hidden="true"></i> Our Team <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('/dashboard/team/manage')}}">Manage</a></li>
-                                <li><a href="{{url('/dashboard/team/create')}}">Add New</a></li>
+                                <li><a href="{{url('/admin/team/manage')}}">Manage</a></li>
+                                <li><a href="{{url('/admin/team/create')}}">Add New</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-desktop"></i> Testimonial <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('/dashboard/testimonial/manage')}}">Manage</a></li>
-                                <li><a href="{{url('/dashboard/testimonial/create')}}">Add New</a></li>
+                                <li><a href="{{url('/admin/testimonial/manage')}}">Manage</a></li>
+                                <li><a href="{{url('/admin/testimonial/create')}}">Add New</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-database" aria-hidden="true"></i> Portfolio Category<span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('/dashboard/portfolio-category/manage')}}">Manage</a></li>
-                                <li><a href="{{url('/dashboard/portfolio-category/create')}}">Add New</a></li>
+                                <li><a href="{{url('/admin/portfolio-category/manage')}}">Manage</a></li>
+                                <li><a href="{{url('/admin/portfolio-category/create')}}">Add New</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-table"></i> Portfolio <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('/dashboard/portfolio/manage')}}">Manage</a></li>
-                                <li><a href="{{url('/dashboard/portfolio/create')}}">Add New</a></li>
+                                <li><a href="{{url('/admin/portfolio/manage')}}">Manage</a></li>
+                                <li><a href="{{url('/admin/portfolio/create')}}">Add New</a></li>
                             </ul>
                         </li>
 
-                        <li><a><i class="fa fa-bar-chart-o"></i> Education <span class="fa fa-chevron-down"></span></a>
+                        <li><a><i class="fa fa-bar-chart-o"></i> Category <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('/dashboard/education/manage')}}">Manage</a></li>
-                                <li><a href="{{url('/dashboard/education/create')}}">Add New</a></li>
+                                <li><a href="{{url('/admin/category/')}}">Manage</a></li>
+                                <li><a href="{{url('/admin/category/create')}}">Add New</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-clone"></i>Experience <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('/dashboard/experience/manage')}}">Manage</a></li>
-                                <li><a href="{{url('/dashboard/experience/create')}}">Add New</a></li>
+                                <li><a href="{{url('/admin/experience/manage')}}">Manage</a></li>
+                                <li><a href="{{url('/admin/experience/create')}}">Add New</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-retweet" aria-hidden="true"></i> Skill <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('/dashboard/skill/manage')}}">Manage Skill</a></li>
-                                <li><a href="{{url('/dashboard/skill/create')}}">Add New</a></li>
+                                <li><a href="{{url('/admin/skill/manage')}}">Manage Skill</a></li>
+                                <li><a href="{{url('/admin/skill/create')}}">Add New</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-windows"></i> Blog Post Category<span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('/dashboard/blog-post-category/manage')}}">Manage Skill</a></li>
-                                <li><a href="{{url('/dashboard/blog-post-category/create')}}">Add New</a></li>
+                                <li><a href="{{url('/admin/blog-post-category/manage')}}">Manage Skill</a></li>
+                                <li><a href="{{url('/admin/blog-post-category/create')}}">Add New</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-server" aria-hidden="true"></i> Blog <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('/dashboard/blog-post/manage')}}">Manage Skill</a></li>
-                                <li><a href="{{url('/dashboard/blog-post/create')}}">Add New</a></li>
+                                <li><a href="{{url('/admin/blog-post/manage')}}">Manage Skill</a></li>
+                                <li><a href="{{url('/admin/blog-post/create')}}">Add New</a></li>
                             </ul>
                         </li>
 
@@ -161,7 +161,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="">
                         <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            <img src="images/img.jpg" alt="">{{ Auth::user()->name }}
+                            <img src="images/img.jpg" alt="">@if(!empty(Auth::user()->name)){{ Auth::user()->name }}@endif
                             <span class=" fa fa-angle-down"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -182,12 +182,13 @@
                     <li role="presentation" class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-envelope-o"></i>
-                            <span class="badge bg-green">{{$total_messages}}</span>
+                            <span class="badge bg-green">@if(!empty($total_message)){{$total_messages}}@endif</span>
                         </a>
                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                            @if(!empty($messages))
                            @foreach($messages as $message)
                             <li>
-                                <a href="{{url('/dashboard/contact/view/'.$message->unique_id)}}">
+                                <a href="{{url('/admin/contact/view/'.$message->unique_id)}}">
                                     {{--<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>--}}
                                     <span>
                                       <span>{{$message->name}}</span>
@@ -199,9 +200,11 @@
                                 </a>
                             </li>
                             @endforeach
+                            @endif
+
                             <li>
                                 <div class="text-center">
-                                    <a href="{{url('/dashboard/contact/manage')}}">
+                                    <a href="{{url('/admin/contact/manage')}}">
                                         <strong>See All Alerts</strong>
                                         <i class="fa fa-angle-right"></i>
                                     </a>
