@@ -14,9 +14,9 @@
 Route::get('/', 'MangoBD@index');
 Route::get('/shop', 'MangoBD@shop');
 
-Route::get('/category', function () {
-    return view('dashboard.category.category');
-});
+Route::resource('admin/category','CategoryController');
+Route::get('/admin/category/publish/{unique_id}','CategoryController@publish');
+Route::get('/admin/category/unpublish/{unique_id}','CategoryController@unPublish');
 
 Auth::routes();
 
