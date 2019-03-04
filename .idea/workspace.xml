@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="3ae52562-8d74-47f2-a0a1-a75cbe3e1407" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/dashboard/login/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/login/login.blade.php" afterDir="false" />
@@ -4305,6 +4306,10 @@
       <change beforePath="$PROJECT_DIR$/resources/views/admin/education/manage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/category/manage.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/includes/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/includes/sidebar.blade.php" afterDir="false" />
 >>>>>>> 7ad6d39b8957ee2acf6cf1499f835b925d6da2b1
+=======
+    <list default="true" id="0d4d2d7c-6544-4059-8047-f1da1e1e5ad0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -4320,6 +4325,10 @@
     <session id="-1473000703">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+<<<<<<< HEAD
+=======
+          <entry key="project.closed" value="1" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.44" value="1" />
           <entry key="project.opened" value="2" />
@@ -4327,30 +4336,47 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+<<<<<<< HEAD
           <entry key="php" value="11" />
+=======
+          <entry key="php" value="12" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Blade" value="7" />
+<<<<<<< HEAD
           <entry key="PHP" value="4" />
+=======
+          <entry key="PHP" value="5" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+<<<<<<< HEAD
           <entry key="php" value="752" />
+=======
+          <entry key="php" value="777" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Blade" value="479" />
+<<<<<<< HEAD
           <entry key="PHP" value="273" />
+=======
+          <entry key="PHP" value="298" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
 <<<<<<< HEAD
       <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
@@ -4402,6 +4428,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
               <caret line="24" selection-start-line="24" selection-end-line="24" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
             </state>
           </provider>
 >>>>>>> 7ad6d39b8957ee2acf6cf1499f835b925d6da2b1
@@ -4426,6 +4459,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <option value="$PROJECT_DIR$/resources/views/dashboard/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/front/index.php" />
@@ -4458,6 +4492,16 @@
         <option value="$PROJECT_DIR$/resources/views/admin/category/manage.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/includes/sidebar.blade.php" />
 >>>>>>> 7ad6d39b8957ee2acf6cf1499f835b925d6da2b1
+=======
+        <option value="$PROJECT_DIR$/database/migrations/2019_02_18_150625_create_categories_table.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/category/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/category/edit.blade.php" />
+        <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/category/manage.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/includes/sidebar.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
       </list>
     </option>
   </component>
@@ -4648,14 +4692,19 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
 <<<<<<< HEAD
+<<<<<<< HEAD
               <item name="dashboard" type="462c0819:PsiDirectoryNode" />
 =======
               <item name="admin" type="462c0819:PsiDirectoryNode" />
 >>>>>>> 7ad6d39b8957ee2acf6cf1499f835b925d6da2b1
+=======
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
             </path>
             <path>
               <item name="MangoBD" type="b2602c69:ProjectViewProjectNode" />
               <item name="MangoBD" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
 <<<<<<< HEAD
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -4725,11 +4774,16 @@
               <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
               <item name="Routing" type="462c0819:PsiDirectoryNode" />
 =======
+=======
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
               <item name="includes" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
 >>>>>>> 7ad6d39b8957ee2acf6cf1499f835b925d6da2b1
+=======
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
             </path>
           </expand>
           <select />
@@ -4767,6 +4821,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <updated>1549026625603</updated>
       <workItem from="1549026627260" duration="21562000" />
       <workItem from="1549297842376" duration="1059000" />
@@ -4777,10 +4832,16 @@
       <workItem from="1550504060946" duration="1596000" />
       <workItem from="1550506911042" duration="7880000" />
 >>>>>>> 7ad6d39b8957ee2acf6cf1499f835b925d6da2b1
+=======
+      <updated>1550504055672</updated>
+      <workItem from="1550504060946" duration="1596000" />
+      <workItem from="1550506911042" duration="8963000" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="50160000" />
   </component>
@@ -4792,6 +4853,12 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
 >>>>>>> 7ad6d39b8957ee2acf6cf1499f835b925d6da2b1
+=======
+    <option name="totallyTimeSpent" value="10559000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
@@ -4845,6 +4912,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_18_150625_create_categories_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -4856,11 +4924,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-112">
           <caret line="81" column="129" selection-start-line="81" selection-start-column="129" selection-end-line="81" selection-end-column="129" />
+=======
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/category/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-112">
+          <caret line="81" column="129" selection-start-line="81" selection-start-column="129" selection-end-line="81" selection-end-column="129" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/config/app.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1529">
+          <caret line="82" column="21" lean-forward="true" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/home/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1195" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/category/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="79" column="95" selection-start-line="79" selection-start-column="87" selection-end-line="79" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_18_150625_create_categories_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="57" lean-forward="true" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CategoryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="255">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
@@ -4885,12 +4986,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="79" column="95" selection-start-line="79" selection-start-column="87" selection-end-line="79" selection-end-column="95" />
+=======
+        <state relative-caret-position="157">
+          <caret line="109" column="43" lean-forward="true" selection-start-line="109" selection-start-column="43" selection-end-line="109" selection-end-column="43" />
+          <folding>
+            <element signature="e#39#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/category/manage.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="74" column="59" selection-start-line="74" selection-start-column="59" selection-end-line="74" selection-end-column="59" />
+          <folding>
+            <element signature="e#284#428#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/includes/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="60" column="73" selection-start-line="60" selection-start-column="73" selection-end-line="60" selection-end-column="73" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CategoryController.php">
 >>>>>>> 7ad6d39b8957ee2acf6cf1499f835b925d6da2b1
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="361">
           <caret line="142" column="35" selection-start-line="142" selection-start-column="29" selection-end-line="142" selection-end-column="35" />
           <folding>
@@ -4977,6 +5103,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+=======
+        <state relative-caret-position="102">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
         </state>
       </provider>
     </entry>

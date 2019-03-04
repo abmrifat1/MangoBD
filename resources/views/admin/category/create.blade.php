@@ -35,8 +35,11 @@
 
 
                         <div class="item form-group">
+<<<<<<< HEAD
 
                             <input type="text" id="name" name="name" class="form-control">
+=======
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
                             {!! Form::label('name','Category Name *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 {!! Form::text('name',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'name','required'=>'required']) !!}
@@ -50,7 +53,11 @@
                         <div class="item form-group">
                             {!! Form::label('image','Image *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
+<<<<<<< HEAD
                                 {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'designation']) !!}
+=======
+                                {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image']) !!}
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
                                 <span>Image will be 400x300</span>
                                 @if ($errors->has('image'))
                                     <span class="help-block error">

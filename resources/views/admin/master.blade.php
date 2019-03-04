@@ -113,6 +113,10 @@
     <script src="{{asset('/admin')}}/vendors/jszip/dist/jszip.min.js"></script>
     <script src="{{asset('/admin')}}/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="{{asset('/admin')}}/vendors/pdfmake/build/vfs_fonts.js"></script>
+<<<<<<< HEAD
+=======
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
 <!-- Custom Theme Scripts -->
 <script src="{{asset('/admin')}}/build/js/custom.min.js"></script>
 <script>
@@ -122,5 +126,9 @@
         });
     });
 </script>
+<<<<<<< HEAD
+=======
+@yield('script')
+>>>>>>> 81448412e48209969e00a14af4e028a421413f6b
 </body>
 </html>

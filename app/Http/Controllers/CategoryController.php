@@ -41,15 +41,15 @@ class CategoryController extends Controller
             'name'=>'required|string',
             'image'=>'image'
         ]);
-
-        $image = $request->file('image');
-        $directory = 'images/category-images/';
-        $imageName = substr(md5(time()),2, 10).rand(10000,999999).time().'.'.$image->getClientOriginalExtension();
-        $imageUrl = $directory.$imageName;
-        $image->move($directory,$imageName);
-
+		$imageUrl = '';
+		if($request->hasFile('image')){
+			$imageFile = $request->file('image');
+			$directory = 'images/category-images/';
+			$imageName = substr(md5(time()),2, 10).rand(10000,999999).time().'.'.$imageFile->getClientOriginalExtension();
+			$imageUrl = $directory.$imageName;
+			$imageFile->move($directory,$imageName);
+		}
         $unique_id = time().md5(rand(100000,10000000));
-
         DB::table('categories')->insert([
             'unique_id'=>$unique_id,
             'name'=>$request->name,
@@ -93,20 +93,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $unique_id)
     {
+		$category = Category::where('unique_id',$unique_id)->first();
         $this->validate($request,[
             'name'=>'required',
-            'image'=>'image'
+            'pic'=>'image'
         ]);
-        $imageUrl = $request->previousImageUrl;
+		$imageUrl = $category->image;
         if($request->hasFile('image')){
-            unlink($imageUrl);
-            $image = $request->file('image');
-            $directory = 'images/Category-images/';
-            $imageName = substr(md5(time()),2, 10).rand(10000,999999).time().'.'.$image->getClientOriginalExtension();
+			if(file_exists($category->image)){
+                @unlink($category->image);
+            }
+            $imageFile = $request->file('image');
+            $directory = 'images/category-images/';
+            $imageName = substr(md5(time()),2, 10).rand(10000,999999).time().'.'.$imageFile->getClientOriginalExtension();
             $imageUrl = $directory.$imageName;
-            $image->move($directory,$imageName);
+			$request->merge(['image' => $imageUrl]);
+            $imageFile->move($directory,$imageName);
         }
-        DB::table('categories')
+		DB::table('categories')
             ->where('unique_id',$unique_id)
             ->update([
                 'name'=>$request->name,
@@ -127,8 +131,10 @@ class CategoryController extends Controller
     {
         Category::where('unique_id',$unique_id)
             ->delete();
-        unlink($request->image);
-        return redirect('/admin/category')->with('message','Category information deleted successfully!');
+        if(file_exists($request->image)){
+            @unlink($request->image);
+        }
+        return redirect()->back();
     }
     public function unPublish($unique_id){
         Category::where('unique_id',$unique_id)
