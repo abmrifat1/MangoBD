@@ -31,11 +31,11 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        {!! Form::open(['url' => 'admin/store'.$category->unique_id,'method'=>'PATCH','files' => true,'class'=>'form-horizontal form-label-left']) !!}
+                        {!! Form::open(['url' => 'admin/category/'.$category->unique_id,'method'=>'PUT','files' => true,'class'=>'form-horizontal form-label-left']) !!}
 
 
                         <div class="item form-group">
-                            {!! Form::label('degree_name','Degree Name *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            {!! Form::label('name','Category Name *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 {!! Form::text('name',$category->name,['class'=>'form-control col-md-7 col-xs-12','id'=>'name','required'=>'required']) !!}
                                 @if ($errors->has('name'))
@@ -49,8 +49,8 @@
                         <div class="item form-group">
                             {!! Form::label('image','Image *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{Form::hidden('previousImageUrl',$category->image)}}
-                                {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image','required'=>'required']) !!}
+                                
+                                {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image']) !!}
                                 <span>Image will be 400x300(optional)</span>
                                 @if ($errors->has('image'))
                                     <span class="help-block error">
@@ -65,7 +65,7 @@
                         <div class="item form-group">
                             {!! Form::label('description','Description *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!! Form::textarea('description',$category->description,['class'=>'form-control col-md-7 col-xs-12','id'=>'description','required'=>'required']) !!}
+                                {!! Form::textarea('description',$category->description,['class'=>'form-control col-md-7 col-xs-12','id'=>'description']) !!}
                                 @if ($errors->has('description'))
                                     <span class="help-block error">
                                         <strong>{{ $errors->first('description') }}</strong>
@@ -92,7 +92,6 @@
                                 {{--<button id="send" type="submit" class="btn btn-success">Submit</button>--}}
                             </div>
                         </div>
-                        </form>
                         {!! Form::close() !!}
 
                     </div>

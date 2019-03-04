@@ -13,6 +13,7 @@
 
 Route::get('/', 'MangoBD@index');
 Route::get('/shop', 'MangoBD@shop');
+//Routes for category
 Route::resource('admin/category','CategoryController');
 Route::get('/admin/category/publish/{unique_id}','CategoryController@publish');
 Route::get('/admin/category/unpublish/{unique_id}','CategoryController@unPublish');
