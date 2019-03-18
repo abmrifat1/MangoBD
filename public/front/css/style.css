@@ -342,8 +342,8 @@ ul.multi-column-dropdown li a:hover{
     width: 20%;
 }
 .box_1 {
-    text-align: center;
-    margin-top: 14px;
+    margin-top: 15px;
+    margin-left: 84px;
 }
 a.simpleCart_empty {
     color: #fff;
@@ -500,15 +500,10 @@ button.w3view-cart {
     color: #fff;
     background: #1accfd;
     text-decoration: none;
-    position: relative;
-    border: none;
-    border-radius: 0;
+    border-radius: 3px;
     width: 100%;
     text-transform: uppercase;
-    padding: 13px;
-    outline: none;
-    letter-spacing: 1px;
-    font-weight: 600;
+    padding: 10px;
 }
 .snipcart-details input.button:hover{
     background: #000;
@@ -2751,7 +2746,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     .agileits_search input[type="search"] {
         width: 87%;
-    }    
+    }
     .logo_agile h1 a {
         font-size: 34px;
         margin-top: 13px;
@@ -2825,7 +2820,7 @@ input[type="radio"], input[type="checkbox"] {
     .item-info-product h4 a {
         color: #000;
         font-size: 16px;
-    }    
+    }
     .w3l-specilamk {
         margin: 0 5px;
     }
@@ -2840,7 +2835,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     .product-name-w3l h4 a {
         font-size: 18px;
-    }  
+    }
     .footer-top h2 {
         font-size: 28px;
         letter-spacing: 0px;
@@ -2848,7 +2843,7 @@ input[type="radio"], input[type="checkbox"] {
     .footer-top input[type="email"] {
         padding: 12px;
         font-size: 16px;
-    }  
+    }
     .footer-top input[type="submit"] {
         padding: 13px;
         font-size: 16px;
@@ -2885,7 +2880,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     .faq-w3agile .faq > li > a {
         font-size: 16px;
-    }    
+    }
     .contact-agile img {
         width: 100%;
     }
@@ -2904,13 +2899,13 @@ input[type="radio"], input[type="checkbox"] {
     }
     .map iframe {
         min-height: 350px;
-    } 
+    }
     .agile-right-help img {
         width: 100%;
     }
     h3.w3-head {
         font-size: 28px;
-        margin: 0 0 20px 0;    
+        margin: 0 0 20px 0;
     }
     .wthree-help form input[type="submit"] {
         font-size: 15px;
@@ -3156,7 +3151,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     .checkout-right h4 {
         font-size: 24px;
-    }    
+    }
     .timetable_sub th {
         font-size: 14px;
         padding: 12px 5px;
@@ -3703,7 +3698,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     td.invert-image a img {
         width: 62%;
-    }    
+    }
     label.anim {
         font-size: 13px;
     }
@@ -4107,7 +4102,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     .single-right-left {
         width: 100%;
-    }    
+    }
 }
 @media(max-width: 440px){
     .agileits_search .btn-default {
@@ -4620,7 +4615,7 @@ input[type="radio"], input[type="checkbox"] {
         font-size: 9px;
         height: 30px;
         right: 0px;
-    }    
+    }
     .inner-men-cart-pro .link-product-add-cart {
         width: 60%;
         left: 19%;
@@ -4872,7 +4867,7 @@ input[type="radio"], input[type="checkbox"] {
     .vertical_post form input[type="submit"], .number-paymk input[type="submit"] {
         margin-top: 20px;
     }
-    
+
 }
 
 /*--//responsive--*/

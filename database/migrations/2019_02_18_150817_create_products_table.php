@@ -15,6 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uniue_id', 50);
             $table->string('name', 300);
             $table->string('sku', 50);
             $table->string('vendorId', 50);
@@ -23,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('regPrice', 100);
             $table->string('sellPrice', 100);
             $table->string('quantity', 100);
+            $table->string('uniue_id', 50);
             $table->string('productAvailable', 100);
             $table->string('discount', 100)->nullable();
             $table->string('picture_1', 100)->default('default.jpg');

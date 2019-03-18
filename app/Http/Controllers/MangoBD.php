@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MangoBD extends Controller
 {
@@ -13,11 +16,8 @@ class MangoBD extends Controller
      */
     public function index()
     {
-        return view('front.home');
-    }
-    public function shop()
-    {
-        return view('front.shop');
+        $categories = Category::orderby('id','desc')->get();
+        return view('admin.category.manage',compact('categories'));
     }
 
     /**
@@ -47,9 +47,18 @@ class MangoBD extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($unique_id)
     {
-        //
+
+        $product = Product::where('unique_id',$unique_id)->first();
+        if($product){
+
+                Product::increment('view');
+                $products =Product::where('categoryId',$product->categoryId)->latest()->take(8)->get();
+
+            return view('front.singlePage.single',['product'=>$product,'products'=>$products]);
+        }
+
     }
 
     /**
@@ -85,4 +94,30 @@ class MangoBD extends Controller
     {
         //
     }
+
+    public function homepage(){
+        $products = Product::latest()->take(8)->get();
+        return view('front.home.home',['products'=>$products]);
+    }
+    public function shop()
+    {
+        return view('front.shop.shop');
+    }
+    public function about()
+    {
+        return view('front.about.about');
+    }
+    public function single($unique_id)
+    {
+
+    }
+    public function checkout()
+    {
+        return view('front.checkout.checkout');
+    }
+    public function payment()
+    {
+        return view('front.payment.payment');
+    }
+
 }

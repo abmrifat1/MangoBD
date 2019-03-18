@@ -1,5 +1,5 @@
 {{-- * Created by PhpStorm.
- * User: Mahbubul Alam
+ * User: Md Emamul Murshalin
  * Date: 10/30/2017
  * Time: 7:10 AM--}}
         <!DOCTYPE html>
@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @yield('style')
 
     <title>Dashboard</title>
 
@@ -48,7 +49,7 @@
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">{{ Auth::user()->name }}</a>
+                    Admin Template by <a href="https://colorlib.com">{{ Auth::user()->name }}</a>
                 </div>
                 <div class="clearfix"></div>
             </footer>
@@ -113,10 +114,9 @@
     <script src="{{asset('/admin')}}/vendors/jszip/dist/jszip.min.js"></script>
     <script src="{{asset('/admin')}}/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="{{asset('/admin')}}/vendors/pdfmake/build/vfs_fonts.js"></script>
-<<<<<<< HEAD
-=======
+
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
->>>>>>> 81448412e48209969e00a14af4e028a421413f6b
+
 <!-- Custom Theme Scripts -->
 <script src="{{asset('/admin')}}/build/js/custom.min.js"></script>
 <script>
@@ -126,9 +126,7 @@
         });
     });
 </script>
-<<<<<<< HEAD
-=======
 @yield('script')
->>>>>>> 81448412e48209969e00a14af4e028a421413f6b
+
 </body>
 </html>

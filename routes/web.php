@@ -11,11 +11,22 @@
 |
 */
 
-Route::get('/', 'MangoBD@index');
+Route::get('/', 'MangoBD@homepage');
 Route::get('/shop', 'MangoBD@shop');
-Route::resource('admin/category','CategoryController');
+Route::get('/about', 'MangoBD@about');
+Route::get('/products/{unique_id}', 'MangoBD@show');
+Route::get('/checkout', 'MangoBD@checkout');
+Route::get('/payment', 'MangoBD@payment');
+
+
+Route::resource('/admin/category','CategoryController');
 Route::get('/admin/category/publish/{unique_id}','CategoryController@publish');
 Route::get('/admin/category/unpublish/{unique_id}','CategoryController@unPublish');
+
+Route::resource('/admin/product','ProductController');
+Route::resource('/admin/user','UserController');
+Route::post('/website/user','UserController@store1');
+
 
 Auth::routes();
 

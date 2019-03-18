@@ -2,7 +2,7 @@
     <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-                <a href="{{url('/admin-panel')}}" class="site_title"><i class="fa fa-paw"></i> <span>Mahbubul Soft</span></a>
+                <a href="{{url('/admin-panel')}}" class="site_title"><i class="fa fa-paw"></i> <span>Emamul Murshalin</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -10,7 +10,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
                 <div class="profile_pic">
-                    <img src="{{asset('/admin')}}/production/images/img.jpg" alt="..." class="img-circle profile_img">
+                    <img src="{{asset('/admin')}}/production/images/img.jpg" style="height: 70px; width: 70px" alt="..." class="img-circle profile_img">
                 </div>
                 <div class="profile_info">
                     <span>Welcome,</span>
@@ -64,6 +64,12 @@
                                 <li><a href="{{url('/admin/category/create')}}">Add New</a></li>
                             </ul>
                         </li>
+                        <li><a><i class="fa fa-bar-chart-o"></i> Product <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('/admin/product/')}}">Manage</a></li>
+                                <li><a href="{{url('/admin/product/create')}}">Add New</a></li>
+                            </ul>
+                        </li>
                         <li><a><i class="fa fa-clone"></i>Experience <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{url('/admin/experience/manage')}}">Manage</a></li>
@@ -91,8 +97,8 @@
 
                         <li><a><i class="fa fa-industry" aria-hidden="true"></i> User <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('/user/manage')}}">Manage-Administrator</a></li>
-                                <li><a href="{{url('/user/create')}}">Add New</a></li>
+                                <li><a href="{{url('admin/user')}}">Manage-Administrator</a></li>
+                                <li><a href="{{url('/admin/user/create')}}">Add New</a></li>
                             </ul>
                         </li>
 

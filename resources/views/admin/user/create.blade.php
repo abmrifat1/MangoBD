@@ -3,7 +3,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Administrator Registration Form</h3>
+                <h3>Administration Registration Form</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -12,7 +12,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Personal Information</h2>
+                        <h2>Administration Information</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -31,103 +31,140 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        {!! Form::open(['url' => 'admin/user','method'=>'POST','files' => true,'class'=>'form-horizontal form-label-left']) !!}
 
-                        <form action="{{ route('register') }}" method="POST" class="form-horizontal form-label-left">
-                            {{ csrf_field() }}
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
-                                    @if ($errors->has('name'))
-                                        <span class="help-block">
+
+                        <div class="item form-group">
+                            {!! Form::label('name','User Name *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!! Form::text('name',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'name','required'=>'required']) !!}
+                                @if ($errors->has('name'))
+                                    <span class="help-block error">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
-                                    @endif
-                                </div>
+                                @endif
                             </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                             <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
+                        </div>
+
+                        '""
+                        <div class="item form-group">
+                            {!! Form::label('email','Email *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!! Form::email('email',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'email','required'=>'required']) !!}
+                                @if ($errors->has('email'))
+                                    <span class="help-block error">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            {{--<div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Confirm Email <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" id="email2" name="confirm_email" data-validate-linked="email" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
+                        </div>
+
+                        <div class="item form-group">
+                            {!! Form::label('phone','Phone Number *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!! Form::text('phone',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'phone','required'=>'required']) !!}
+                                @if ($errors->has('phone'))
+                                    <span class="help-block error">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Number <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
-                                </div>
+                        </div>
+
+                        <div class="item form-group">
+                            {!! Form::label('address','Address *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!! Form::textarea('address',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'address','required'=>'required']) !!}
+                                @if ($errors->has('address'))
+                                    <span class="help-block error">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Website URL <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="url" id="website" name="website" required="required" placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
-                                </div>
+                        </div>
+
+                        <div class="item form-group">
+                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
+                            </label>--}}
+                            {!! Form::label('city','City ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!!  Form::select('city', ['1' => 'Rajshahi', '2' => 'Dhaka'], 1, ['class'=>'form-control','id'=>'isActive'])!!}
                             </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Occupation <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>--}}
-                            <div class="item form-group">
-                                <label for="password" class="control-label col-md-3">Password</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="password" type="password" name="password" {{--data-validate-length="6"--}} class="form-control col-md-7 col-xs-12" required="required">
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
+                        </div>
+
+                        <div class="item form-group">
+                            {!! Form::label('image','Image *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image']) !!}
+
+                                <span>Image will be 400x300</span>
+                                @if ($errors->has('image'))
+                                    <span class="help-block error">
+                                        <strong>{{ $errors->first('image') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
+                            </label>--}}
+                            {!! Form::label('isApprove','Approval Status ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!!  Form::select('isApprove', ['Active' => 'Approve', 'DeActive' => 'Not_Approve'], 1, ['class'=>'form-control','id'=>'isActive'])!!}
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
+                            </label>--}}
+                            {!! Form::label('userType','Accout Type ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!!  Form::select('userType', ['1' => 'Admin', '2' => 'Customer'], 1, ['class'=>'form-control','id'=>'isActive'])!!}
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            {!! Form::label('password','Password *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!! Form::password('password',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'password','required'=>'required']) !!}
+                                @if ($errors->has('password'))
+                                    <span class="help-block error">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                    @endif
-                                </div>
+                                @endif
                             </div>
-                            <div class="item form-group">
-                                <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Repeat Password</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="password2" type="password" name="password_confirmation" data-validate-linked="password" class="form-control col-md-7 col-xs-12" required="required">
-                                </div>
+                        </div>
+
+                        <div class="item form-group">
+                            {!! Form::label('con_password','Confirm Password *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!! Form::password('con_password',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'con_password','required'=>'required']) !!}
+                                @if ($errors->has('con_password'))
+                                    <span class="help-block error">
+                                        <strong>{{ $errors->first('con_password') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            {{--<div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telephone <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
-                                </div>
+                        </div>
+
+
+                        <div class="ln_solid"></div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                {!! Form::submit('Submit',['class'=>'btn btn-success','id'=>'send']) !!}
+
+                                {{--<button id="send" type="submit" class="btn btn-success">Submit</button>--}}
                             </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Textarea <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <textarea id="textarea" required="required" name="textarea" class="form-control col-md-7 col-xs-12"></textarea>
-                                </div>
-                            </div>--}}
-                            <div class="ln_solid"></div>
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-3">
-                                    <button type="submit" class="btn btn-primary">Cancel</button>
-                                    <button id="send" type="submit" class="btn btn-success">Submit</button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
+
+                        {!! Form::close() !!}
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @endsection
+@endsection

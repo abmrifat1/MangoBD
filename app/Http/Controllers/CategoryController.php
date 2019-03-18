@@ -129,10 +129,11 @@ class CategoryController extends Controller
      */
     public function destroy(Request $request,$unique_id)
     {
+        $category = Category::where('unique_id',$unique_id)->first();
         Category::where('unique_id',$unique_id)
             ->delete();
-        if(file_exists($request->image)){
-            @unlink($request->image);
+        if(file_exists($category->image)){
+            @unlink($category->image);
         }
         return redirect()->back();
     }

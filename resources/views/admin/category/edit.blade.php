@@ -84,7 +84,7 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                {!! Form::submit('Submit',['class'=>'btn btn-success','id'=>'send']) !!}
+                                {!! Form::submit('Update',['class'=>'btn btn-success','id'=>'send']) !!}
 
                                 {{--<button id="send" type="submit" class="btn btn-success">Submit</button>--}}
                             </div>

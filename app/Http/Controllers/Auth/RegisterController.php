@@ -37,8 +37,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
     }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -68,5 +69,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function add_user(){
+        return view('admin.user.create');
     }
 }
