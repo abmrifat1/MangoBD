@@ -1,9 +1,4 @@
-/*--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
+
 html, body{
 	margin:0;
 	font-size: 100%;
@@ -27,6 +22,38 @@ input[type="button"],input[type="submit"]{
 	-moz-transition:0.5s all;
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
+    text-transform: uppercase;
+    font-weight: bolder;
+    padding: 5px 25px;
+    text-align: center;
+    background: #179ad8;
+    color: white;
+    border-radius: 5px;
+}
+
+input[type="button"],input[type="submit"]:hover{
+    transition:0.5s all;
+    -webkit-transition:0.5s all;
+    -moz-transition:0.5s all;
+    -o-transition:0.5s all;
+    -ms-transition:0.5s all;
+    text-transform: uppercase;
+    font-weight: bolder;
+    padding: 5px 25px;
+    text-align: center;
+    background: #0a0b1a;
+    color: white;
+    border-radius: 5px;
+}
+.inputqty{
+    background: white;
+    height: 32px;
+    width: 90px;
+}
+.inputqty:hover{
+    background: white;
+    height: 32px;
+    width: 90px;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -360,6 +387,7 @@ button.w3view-cart {
     height: 43px;
     font-size: 24px;
     color: #fff;
+    /*margin-left: 9px;*/
 }
 /*-- //cart details--*/
 /*-- //header-bottom --*/
@@ -993,7 +1021,7 @@ h3.w3l-nut-middle {
 }
 /*-- //nuts --*/
 .ads-grid, footer, .contact-w3l, .w3_wthree_agileits_icons, .typo, .faqs-w3l, .terms-of-use, .welcome, .about, .banner-bootom-w3-agileits, .privacy {
-    padding: 5em 0;
+    padding: 2em 0;
 }
 /*-- tittle heading --*/
 h3.tittle-w3l {

@@ -64,6 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $unique_id = time().md5(rand(100000,10000000));
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

@@ -51,8 +51,6 @@
                             {!! Form::label('image','Image *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'designation']) !!}
-
                                 {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image']) !!}
 
                                 <span>Image will be 400x300</span>

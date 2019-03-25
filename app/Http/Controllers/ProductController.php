@@ -12,6 +12,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $products = Product::orderby('id','desc')->get();
@@ -154,13 +155,13 @@ class ProductController extends Controller
             ->update([
                 'isApprove'=>'Not_Approved'
             ]);
-        return redirect('/admin/product')->with('message','Product information UnPublished!');
+        return redirect('/admin/product')->with('message','Category information UnPublished!');
     }
     public function publish($unique_id){
         Product::where('unique_id',$unique_id)
             ->update([
                 'isApprove'=>'Approve'
             ]);
-        return redirect('/admin/product')->with('message','Product information Published!');
+        return redirect('/admin/product')->with('message','Category information Published!');
     }
 }

@@ -42,6 +42,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        @if((Auth::user()->type) == 'Author' || ((Auth::user()->type) == 'Admin'))
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
@@ -51,7 +52,7 @@
                                 <th>Phone Number</th>
                                 <th>Address</th>
                                 <th>Profile_image</th>
-                                <th>Status</th>
+                                <th>Role As</th>
                                 <th>Created at</th>
                                 <th>Action</th>
                             </tr>
@@ -59,33 +60,34 @@
                             <tbody>
                             @php($i=0)
                             @foreach($users as $user)
-                                <tr>
+                                @if((Auth::user()->id) == $user->id || Auth::user()->type == 'Author')
+                                    <tr>
                                     <td>{{++$i}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone}}</td>
                                     <td>{{$user->address}}</td>
                                     <td><img src="{{asset($user->image)}}" height="100" width="100"/></td>
-                                    <td>{{$user->isApprove}}</td>
+                                    <td>{{$user->type}}</td>
                                     <td>{{$user->created_at}}</td>
+
                                     <td class="center">
-                                        @if($user->isApprove=='Active')
-                                            <a href="{{ url('/admin/user/unpublish/'.$user->unique_id) }}" title="Un Publish" class="btn btn-success"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
-                                        @else
-                                            <a href="{{ url('/admin/user/publish/'.$user->unique_id) }}" title="Publish" class="btn btn-warning"><i class="fa fa-long-arrow-down" aria-hidden="true"></i></a>
-                                        @endif
+
                                         <a href="{{ url('/admin/user/'.$user->unique_id.'/edit') }}" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
                                         {!! Form::open(['url' => '/admin/user/'.$user->unique_id,'method'=>'DELETE','style'=>'display:inline','id'=>'deleteForm']) !!}
                                         {!! Form::hidden('image',$user->picture_1) !!}
 
                                         {!! Form::close() !!}
+
                                         <button class="btn btn-danger" title="Delete" id="deleteFormSubmit"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
+                                    @endif
                             @endforeach
                             </tbody>
                         </table>
+                            @endif
                     </div>
                 </div>
             </div>

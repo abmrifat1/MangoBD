@@ -84,15 +84,6 @@
                         </div>
 
                         <div class="item form-group">
-                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
-                            </label>--}}
-                            {!! Form::label('city','City ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!!  Form::select('city', ['1' => 'Rajshahi', '2' => 'Dhaka'], 1, ['class'=>'form-control','id'=>'isActive'])!!}
-                            </div>
-                        </div>
-
-                        <div class="item form-group">
                             {!! Form::label('image','Image *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
@@ -104,24 +95,6 @@
                                         <strong>{{ $errors->first('image') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="item form-group">
-                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
-                            </label>--}}
-                            {!! Form::label('isApprove','Approval Status ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!!  Form::select('isApprove', ['Active' => 'Approve', 'DeActive' => 'Not_Approve'], 1, ['class'=>'form-control','id'=>'isActive'])!!}
-                            </div>
-                        </div>
-
-                        <div class="item form-group">
-                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
-                            </label>--}}
-                            {!! Form::label('userType','Accout Type ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!!  Form::select('userType', ['1' => 'Admin', '2' => 'Customer'], 1, ['class'=>'form-control','id'=>'isActive'])!!}
                             </div>
                         </div>
 

@@ -53,7 +53,7 @@ class MangoBD extends Controller
         $product = Product::where('unique_id',$unique_id)->first();
         if($product){
 
-                Product::increment('view');
+                $product->increment('view');
                 $products =Product::where('categoryId',$product->categoryId)->latest()->take(8)->get();
 
             return view('front.singlePage.single',['product'=>$product,'products'=>$products]);
@@ -96,28 +96,35 @@ class MangoBD extends Controller
     }
 
     public function homepage(){
-        $products = Product::latest()->take(8)->get();
-        return view('front.home.home',['products'=>$products]);
+        $products = Product::where('quantity', '>', '0')->latest()->take(8)->get();
+        //return view('front.home.home',['products'=>$products]);
+
+        $mostViewProducts = Product::orderby('view','desc')->take(8)->get();
+        //return $mostViewProducts;
+        return view('front.home.home',['products'=>$products],['mostViewProducts'=>$mostViewProducts]);
     }
+
+    public function categoryProducts($unique_id){
+        $category = Category::where('unique_id',$unique_id)->first();
+            $products = Product::where('categoryId',$category->id)->latest()->paginate(10);
+            //return $products;
+            return view('front.category.categoryView',['products'=>$products]);
+    }
+
     public function shop()
     {
-        return view('front.shop.shop');
+        $products = Product::orderby('view','desc')->paginate(12);
+        $products1 = Product::orderby('view','desc')->take(9)->get();
+        //return $products;
+        return view('front.shop.shop',['products'=>$products],['products1'=>$products1]);
     }
     public function about()
     {
         return view('front.about.about');
     }
-    public function single($unique_id)
+    public function contact()
     {
-
-    }
-    public function checkout()
-    {
-        return view('front.checkout.checkout');
-    }
-    public function payment()
-    {
-        return view('front.payment.payment');
+        return view('front.contact.contact');
     }
 
 }

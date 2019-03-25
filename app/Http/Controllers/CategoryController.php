@@ -12,6 +12,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
     public function index()
     {
         $categories = Category::orderby('id','desc')->get();
@@ -49,6 +50,7 @@ class CategoryController extends Controller
 			$imageUrl = $directory.$imageName;
 			$imageFile->move($directory,$imageName);
 		}
+
         $unique_id = time().md5(rand(100000,10000000));
         DB::table('categories')->insert([
             'unique_id'=>$unique_id,

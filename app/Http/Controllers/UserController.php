@@ -16,6 +16,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $users = User::orderby('id','desc')->get();
@@ -59,10 +60,7 @@ class UserController extends Controller
             'email'=>$request->email,
             'phone'=>$request->phone,
             'address'=>$request->address,
-            'city'=>$request->city,
             'image'=>$imageUrl,
-            'isApprove'=>$request->isApprove,
-            'userType'=>$request->userType,
             'password' => Hash::make($request['password'])
         ]);
         return redirect('/admin/user/')->with('message','New User information saved successfully!');
@@ -124,7 +122,7 @@ class UserController extends Controller
             'phone'=>$request->phone,
             'address'=>$request->address,
             'image'=>$imageUrl,
-            'isApprove'=>$request->isApprove,
+            'type'=>$request->userRole,
             'password' => Hash::make($request['password'])
         ]);
         return redirect('/admin/user/')->with('message','Update User information saved successfully!');
@@ -145,21 +143,6 @@ class UserController extends Controller
             @unlink($user->image);
         }
         return redirect()->back();
-    }
-
-    public function unPublish($unique_id){
-        Category::where('unique_id',$unique_id)
-            ->update([
-                'isApprove'=>'DeActive'
-            ]);
-        return redirect('/admin/user')->with('message','User information UnPublished!');
-    }
-    public function publish($unique_id){
-        Category::where('unique_id',$unique_id)
-            ->update([
-                'isApprove'=>'Active'
-            ]);
-        return redirect('/admin/user')->with('message','User information Published!');
     }
 
     public function store1(Request $request){

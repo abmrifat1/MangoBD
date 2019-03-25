@@ -82,15 +82,6 @@
                         </div>
 
                         <div class="item form-group">
-                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
-                            </label>--}}
-                            {!! Form::label('city','City ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!!  Form::select('city', ['1' => 'Rajshahi', '2' => 'Dhaka'], 1, ['class'=>'form-control','id'=>'isActive'])!!}
-                            </div>
-                        </div>
-
-                        <div class="item form-group">
                             {!! Form::label('image','Image *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
@@ -108,18 +99,9 @@
                         <div class="item form-group">
                             {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
                             </label>--}}
-                            {!! Form::label('isApprove','Approval Status ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            {!! Form::label('userRole','User Role ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!!  Form::select('isApprove', ['Active' => 'Approve', 'DeActive' => 'Not_Approve'], 1, ['class'=>'form-control','id'=>'isActive'])!!}
-                            </div>
-                        </div>
-
-                        <div class="item form-group">
-                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
-                            </label>--}}
-                            {!! Form::label('userType','Accout Type ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!!  Form::select('userType', ['1' => 'Admin', '2' => 'Customer'], 1, ['class'=>'form-control','id'=>'isActive'])!!}
+                                {!!  Form::select('userRole', ['Normal_User' => 'Normal_User', 'Admin' => 'Admin', 'Author' => 'Author', 'Editor' => 'Editor'], 0, ['class'=>'form-control','id'=>'isActive'])!!}
                             </div>
                         </div>
 
@@ -152,7 +134,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                {!! Form::submit('Submit',['class'=>'btn btn-success','id'=>'send']) !!}
+                                {!! Form::submit('Update',['class'=>'btn btn-success','id'=>'send']) !!}
 
                                 {{--<button id="send" type="submit" class="btn btn-success">Submit</button>--}}
                             </div>

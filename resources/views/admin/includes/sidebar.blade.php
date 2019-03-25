@@ -25,8 +25,11 @@
                 <div class="menu_section">
                     <h3>General</h3>
                     <ul class="nav side-menu">
-                        <li><a href="{{url('/admin-panel')}}"><i class="fa fa-home"></i> admin </a>
+
+                        @if((Auth::user()->type) == 'Admin' || (Auth::user()->type) == 'Author')
+                        <li><a href="{{url('/home')}}"><i class="fa fa-home"></i> admin </a>
                         </li>
+                        <!--
                         <li><a><i class="fa fa-address-book"></i> Administrator  <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{url('/admin/administrator/manage')}}">Manage</a></li>
@@ -56,7 +59,7 @@
                                 <li><a href="{{url('/admin/portfolio/manage')}}">Manage</a></li>
                                 <li><a href="{{url('/admin/portfolio/create')}}">Add New</a></li>
                             </ul>
-                        </li>
+                        </li>-->
 
                         <li><a><i class="fa fa-bar-chart-o"></i> Category <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
@@ -64,13 +67,18 @@
                                 <li><a href="{{url('/admin/category/create')}}">Add New</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="{{ url('/order-info') }}"><i class="fa fa-bar-chart-o"></i> Orders</a>
+                        </li>
                         <li><a><i class="fa fa-bar-chart-o"></i> Product <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{url('/admin/product/')}}">Manage</a></li>
                                 <li><a href="{{url('/admin/product/create')}}">Add New</a></li>
                             </ul>
                         </li>
-                        <li><a><i class="fa fa-clone"></i>Experience <span class="fa fa-chevron-down"></span></a>
+
+
+                        <!--<li><a><i class="fa fa-clone"></i>Experience <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{url('/admin/experience/manage')}}">Manage</a></li>
                                 <li><a href="{{url('/admin/experience/create')}}">Add New</a></li>
@@ -93,13 +101,18 @@
                                 <li><a href="{{url('/admin/blog-post/manage')}}">Manage Skill</a></li>
                                 <li><a href="{{url('/admin/blog-post/create')}}">Add New</a></li>
                             </ul>
-                        </li>
+                        </li>-->
 
                         <li><a><i class="fa fa-industry" aria-hidden="true"></i> User <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{url('admin/user')}}">Manage-Administrator</a></li>
                                 <li><a href="{{url('/admin/user/create')}}">Add New</a></li>
                             </ul>
+                        </li>
+                        @endif
+
+                        <li>
+                            <a href="{{ url('/admin/profile') }}"><i class="fa fa-bar-chart-o"></i> Profile</a>
                         </li>
 
                     </ul>

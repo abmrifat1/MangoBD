@@ -137,8 +137,6 @@
 
                                 {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image']) !!}
 
-                                {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image']) !!}
-
                                 <span>Image will be 400x300</span>
                                 @if ($errors->has('image'))
                                     <span class="help-block error">

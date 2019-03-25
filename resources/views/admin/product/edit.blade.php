@@ -123,8 +123,6 @@
 
                                 {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image']) !!}
 
-                                {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image']) !!}
-
                                 <span>Image will be 400x300</span>
                                 @if ($errors->has('image'))
                                     <span class="help-block error">
@@ -151,7 +149,7 @@
                             </label>--}}
                             {!! Form::label('isApprove','Approve Status ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!!  Form::select('isApprove', ['Approve' => 'Yes', 'Not Approved' => 'No'], 1, ['class'=>'form-control','id'=>'isApprove'])!!}
+                                {!!  Form::select('isApprove', ['Approve' => 'Yes', 'Not_Approved' => 'No'], 1, ['class'=>'form-control','id'=>'isApprove'])!!}
                             </div>
                         </div>
 

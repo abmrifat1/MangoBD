@@ -46,14 +46,6 @@
             <!-- page content -->
             @yield('content')
 
-            <!-- footer content -->
-            <footer>
-                <div class="pull-right">
-                    Admin Template by <a href="https://colorlib.com">{{ Auth::user()->name }}</a>
-                </div>
-                <div class="clearfix"></div>
-            </footer>
-            <!-- /footer content -->
          </div>
     </div>
 

@@ -10,8 +10,7 @@
         <div class="col-md-4 logo_agile">
             <h1>
                 <a href="{{url('/')}}">
-                    <span>M</span>ango
-                    <span>BD</span>
+                    <span>M</span>angoBD
                     <img style="height: 100px; width: 100px;" src="{{asset('front/images/logo2.png')}}" alt=" ">
                 </a>
             </h1>
@@ -31,20 +30,35 @@
                 <li>
                     <span class="fa fa-phone" aria-hidden="true"></span> +01777-822162
                 </li>
+
+                @if(Session::get('customerId'))
                 <li>
-                    <a href="#" data-toggle="modal" data-target="#myModal1">
-                        <span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In </a>
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('customerLogoutForm').submit();"><span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign Out </a>
                 </li>
+                    <form action="{{ url('/customer-sign-out') }}" method="POST" id="customerLogoutForm">
+                        {{ csrf_field() }}
+                    </form>
+                @else
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#myModal1">
+                            <span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In </a>
+                    </li>
+                @endif
+
+                @if(Session::get('customerId'))
+
+                @else
                 <li>
                     <a href="#" data-toggle="modal" data-target="#myModal2">
                         <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up </a>
                 </li>
+                @endif
             </ul>
             <!-- //header lists -->
             <!-- search -->
             <div class="agileits_search">
-                <form action="#" method="post">
-                    <input name="Search" type="search" placeholder="How can we help you today?" required="">
+                <form action="{{ url('/search-mango') }}" method="get">
+                    <input value="{{ request()->input('query') }}" name="search" type="search" placeholder="How can we help you today?" required="">
                     <button type="submit" class="btn btn-default" aria-label="Left Align">
                         <span class="fa fa-search" aria-hidden="true"> </span>
                     </button>
@@ -52,9 +66,21 @@
             </div>
             <!-- //search -->
             <!-- cart details -->
+
             <div class="top_nav_right">
                 <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                    <form action="#" method="post" class="last">
+                    <a href="{{ url('/show-cart') }}">
+                        <button class="w3view-cart" type="submit" name="submit" value="">
+                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <!--
+            <div class="top_nav_right">
+                <div class="wthreecartaits wthreecartaits2 cart cart box_1">
+                    <form action="{{ url('/show-cart') }}" method="post" class="last">
                         <input type="hidden" name="cmd" value="_cart">
                         <input type="hidden" name="display" value="1">
                         <button class="w3view-cart" type="submit" name="submit" value="">
@@ -63,6 +89,7 @@
                     </form>
                 </div>
             </div>
+            -->
             <!-- //cart details -->
             <div class="clearfix"></div>
         </div>
@@ -84,19 +111,13 @@
                 <option>Barishal</option>
                 <option>Noyakhali</option>
             </optgroup>
-            <optgroup label="Alabama">
-                <option>Birmingham</option>
-                <option>Montgomery</option>
-                <option>Mobile</option>
-                <option>Huntsville</option>
-                <option>Tuscaloosa</option>
-            </optgroup>
         </select>
         <div class="clearfix"></div>
     </div>
 </div>
 <!-- //shop locator (popup) -->
 <!-- signin Model -->
+
 <!-- Modal1 -->
 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
     <div class="modal-dialog">
@@ -110,21 +131,27 @@
                     <span class="fa fa-envelope-o" aria-hidden="true"></span>
                 </div>
                 <div class="modal_body_left modal_body_left1">
-                    <h3 class="agileinfo_sign">Sign In </h3>
+                    <a href="{{ url('/login') }}"><h3 class="agileinfo_sign">Sign In Form </h3></a>
                     <p>
-                        Sign In now, Let's start your Grocery Shopping. Don't have an account?
+                        Sign In now, Let's start your Mango Shopping. Don't have an account?
                         <a href="#" data-toggle="modal" data-target="#myModal2">
                             Sign Up Now</a>
                     </p>
-                    <form action="#" method="post">
+
+                    <form action="{{ url('/customer-login') }}" method="post">
+                        {{ csrf_field() }}
                         <div class="styled-input agile-styled-input-top">
-                            <input type="text" placeholder="User Name" name="Name" required="">
+                            <input type="email" placeholder="Email" name="email" required>
+                            {{ $errors->has('email') ? $errors->first('email') : ''}}
                         </div>
                         <div class="styled-input">
-                            <input type="password" placeholder="Password" name="password" required="">
+                            <input type="password" placeholder="Password" name="password" required>
+                            {{ $errors->has('passord') ? $errors->first('passord') : ''}}
                         </div>
                         <input type="submit" value="Sign In">
                     </form>
+
+
                     <div class="clearfix"></div>
                 </div>
                 <div class="clearfix"></div>
@@ -153,59 +180,91 @@
                     <p>
                         Come join the MangoBD! Let's set up your Account.
                     </p>
-                    <form action="{{ url('website/user') }}" method="post" id="add_post">
+
+
+                    <form action="{{ url('/new-customer') }}" method="post" id="add_post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                         <div class="styled-input agile-styled-input-top">
-                            <input type="text" placeholder="Name" name="name" required="">
+                            <input type="text" placeholder="First Name" name="first_name" value="{{old('first_name')}}" class="form-control" required/>
+                            {{ $errors->has('first_name') ? $errors->first('first_name') : ' ' }}
+                            <span class="error">
+                                    <strong style="color: red;" id="nameErrorMsg"></strong>
+                            </span>
+                        </div>
+
+                        <div class="styled-input agile-styled-input-top">
+                            <input type="text" placeholder="Last Name" name="last_name" value="{{old('last_name')}}" class="form-control" required/>
+                            {{ $errors->has('last_name') ? $errors->first('last_name') : ' ' }}
                             <span class="error">
                                     <strong style="color: red;" id="nameErrorMsg"></strong>
                             </span>
                         </div>
 
                         <div class="styled-input">
-                            <input type="email" placeholder="E-mail" name="email" required="">
+                            <input type="email" value="{{old('email')}}" placeholder="E-mail" name="email" required="">
+                            {{ $errors->has('email') ? $errors->first('email') : ' ' }}
                             <span class="error">
                                     <strong style="color: red;" id="nameErrorMsg"></strong>
                             </span>
-                        </div>
-                        <div class="styled-input">
-                            <input type="text" placeholder="Phone" name="phone" required="">
-                            <span class="error">
-                                    <strong style="color: red;" id="nameErrorMsg"></strong>
-                            </span>
-                        </div>
-                        <div class="styled-input">
-                            <input type="text" placeholder="Address" name="address" required="">
-                            <span class="error">
-                                    <strong style="color: red;" id="nameErrorMsg"></strong>
-                            </span>
-                        </div>
-                        <div class="selet-account-mode">
-                            <select class="list_of_cities">
-                                <option selected style="display:none;color:#eee;">Select Account Mode</option>
-                                <option>Buying</option>
-                                <option>Selling</option>
-                            </select>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="styled-input">
-                            <input type="password" placeholder="Password" name="password" id="password1" required="">
-                        </div>
-                        <div class="styled-input">
-                            <input type="password" placeholder="Confirm Password" name="Confirm Password" id="password2" required="">
                         </div>
 
-                        <div class="selet-account-mode">
+                        <div class="styled-input">
+                            <input type="number" value="{{old('phone')}}" placeholder="Mobile" name="phone" required="">
+                            {{ $errors->has('phone') ? $errors->first('phone') : ' ' }}
+                            <span class="error">
+                                    <strong style="color: red;" id="nameErrorMsg"></strong>
+                            </span>
+                        </div>
+                        <div class="styled-input">
+                            <input type="text" value="{{old('address')}}" placeholder="Address" name="address" required="">
+                            {{ $errors->has('address') ? $errors->first('address') : ' ' }}
+                            <span class="error">
+                                    <strong style="color: red;" id="nameErrorMsg"></strong>
+                            </span>
+                        </div>
+
+                        <div>
+                            <label>Profile Pic</label>
+                        </div>
+                        <div class="styled-input">
+                            <input type="file" name="image" accept="image/*">
+                            {{ $errors->has('image') ? $errors->first('image') : ' ' }}
+                            <span class="error">
+                                    <strong style="color: red;" id="nameErrorMsg"></strong>
+                            </span>
+                        </div>
+
+                        <!--<div class="selet-account-mode">
                             <select class="list_of_cities">
                                 <option selected style="display:none;color:#eee;">Select Account Mode</option>
                                 <option>Buying</option>
                                 <option>Selling</option>
                             </select>
                             <div class="clearfix"></div>
+                        </div>-->
+                        <div class="styled-input">
+                            <input type="password" value="{{old('password')}}" placeholder="Password" name="password" id="myInput" value="{{old('password')}}" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required="">
+                            {{ $errors->has('password') ? $errors->first('password') : ' ' }}
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Show</label>
+                            <div class="col-sm-3">
+                                <input type="checkbox" onclick="myFunction()">
+                            </div>
+                        </div>
+
+                        <div class="styled-input">
+                            <input type="password" placeholder="Confirm Password" name="password_confirmation" value="{{old('password')}}" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required="">
+                            {{ $errors->has('password') ? $errors->first('password') : ' ' }}
+                        </div>
+
                         <input type="submit" value="Sign Up">
                     </form>
+
+
                     <p>
-                        <a href="#">By clicking register, I agree to your terms</a>
+                        <a href="#">By clicking register, I agree to your terms and conditions.</a>
                     </p>
                 </div>
             </div>
@@ -220,15 +279,21 @@
 <div class="ban-top">
     <div class="container-fluid">
         <div class="agileits-navi_search">
-            <form action="#" method="post">
-                <select id="agileinfo-nav_search" name="agileinfo_search" required="">
-                    <option value="">All Categories</option>
-                    @foreach($categories as $category)
-                    <option value="{{$category->name}}">{{$category->name}}</option>
-                    @endforeach
-                </select>
-            </form>
-        </div>
+            <ul class="nav navbar-nav menu__list">
+                <li class="dropdown">
+                    <a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">All Categories
+                        <b class="caret"></b>
+                    </a>
+                        <ul class="dropdown-menu agile_short_dropdown">
+                            @foreach($categories as $category)
+                                <li>
+                                    <a href="{{ url('category-products/'.$category->unique_id) }}">{{$category->name}}</a>
+                                </li>
+                            @endforeach
+                    </ul>
+                </li>
+            </ul>
+            </div>
         <div class="top_nav_left">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -251,143 +316,27 @@
                                 </a>
                             </li>
                             <li class="">
+                                <a class="nav-stylehead" href="{{ url('/shop') }}">SHOP</a>
+                            </li>
+                            <li class="">
                                 <a class="nav-stylehead" href="{{ url('/about') }}">ABOUT US</a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SHOP
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <div class="agile_inner_drop_nav_info">
-                                        <div class="col-sm-4 multi-gd-img">
-                                            <ul class="multi-column-dropdown">
-                                                <li>
-                                                    <a href="shop1.blade.php">Fajli</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Asina</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Himsagor</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Langra</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Amropali</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Rupali</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4 multi-gd-img">
-                                            <ul class="multi-column-dropdown">
-                                                <li>
-                                                    <a href="shop1.blade.php">Fajli</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Asina</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Himsagor</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Langra</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Amropali</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Rupali</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4 multi-gd-img">
-                                            <img src="images/nav.jng" alt="">
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">RECIPES
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <div class="agile_inner_drop_nav_info">
-                                        <div class="col-sm-6 multi-gd-img">
-                                            <ul class="multi-column-dropdown">
-                                                <li>
-                                                    <a href="shop1.blade.php">Fajli</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Asina</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Himsagor</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Langra</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Amropali</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Rupali</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4 multi-gd-img">
-                                            <ul class="multi-column-dropdown">
-                                                <li>
-                                                    <a href="shop1.blade.php">Fajli</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Asina</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Himsagor</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Langra</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Amropali</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop1.blade.php">Rupali</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </ul>
-                            </li>
+
                             <li class="">
                                 <a class="nav-stylehead" href="faqs.blade.php">FAQS</a>
                             </li>
-                            <li class="dropdown">
-                                <a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">BLOGS
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu agile_short_dropdown">
-                                    <li>
-                                        <a href="icons.php">Web Icons</a>
-                                    </li>
-                                    <li>
-                                        <a href="typography.php">Typography</a>
-                                    </li>
-                                </ul>
+                            <li class="">
+                                    <a class="nav-stylehead" href="{{ url('/blog') }}">BLOGS</a>
                             </li>
                             <li class="">
-                                <a class="nav-stylehead" href="contact.php">CONTACT</a>
+                                <a class="nav-stylehead" href="{{ url('/contact') }}">CONTACT</a>
                             </li>
 
                             <!-- Profile -->
+                            @if(Session::get('customerId'))
                             <li class="">
                             <li class="dropdown">
-                                <a href="#" style="padding: 0px;" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{asset('front/images/profile.png')}}" style="border-radius: 50%; padding-top: 5px;" alt="">
+                                <a href="#" style="padding: 0px;" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/{{Session::get('image')}}" style="border-radius: 50%; padding-top: 5px;" height="50px"; width="50px"; alt="">
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -425,6 +374,10 @@
 
                             </a>
                             </li>
+
+                            @else
+
+                            @endif
                             <!-- Profile -->
 
                         </ul>

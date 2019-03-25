@@ -62,77 +62,39 @@
         <!-- footer third section -->
         <div class="footer-info w3-agileits-info">
             <!-- footer categories -->
-            <div class="col-sm-5 address-right">
+            <div class="col-sm-3 address-right">
                 <div class="col-xs-6 footer-grids">
                     <h3>Categories</h3>
                     <ul>
-                        <li>
-                            <a href="product.html">Category1</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Category2</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Category3</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Category4</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Category5</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Category6</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-xs-6 footer-grids agile-secomk">
-                    <ul>
-                        <li>
-                            <a href="product.html">Category1</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Category2</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Category3</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Category4</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Category5</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Category6</a>
-                        </li>
+                        @foreach($categories as $category)
+                            <li>
+                                <a href="{{ url('category-products/'.$category->unique_id) }}">{{$category->name}}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <!-- //footer categories -->
             <!-- quick links -->
-            <div class="col-sm-5 address-right">
+            <div class="col-sm-6 address-right">
                 <div class="col-xs-6 footer-grids">
                     <h3>Quick Links</h3>
                     <ul>
                         <li>
-                            <a href="about.html">About Us</a>
+                            <a href="{{ url('/shop') }}">Shop</a>
                         </li>
                         <li>
-                            <a href="contact.html">Contact Us</a>
+                            <a href="{{ url('/about') }}">About Us</a>
                         </li>
                         <li>
-                            <a href="help.html">Help</a>
+                            <a href="{{ url('/faqs') }}">Faqs</a>
                         </li>
                         <li>
-                            <a href="faqs.html">Faqs</a>
+                            <a href="{{ url('/blog') }}">Blog</a>
                         </li>
                         <li>
-                            <a href="terms.html">Terms of use</a>
-                        </li>
-                        <li>
-                            <a href="privacy.html">Privacy Policy</a>
+                            <a href="{{ url('/contact') }}">Contact Us</a>
                         </li>
                     </ul>
                 </div>
@@ -154,7 +116,7 @@
             </div>
             <!-- //quick links -->
             <!-- social icons -->
-            <div class="col-sm-2 footer-grids  w3l-socialmk">
+            <div class="col-sm-3 footer-grids  w3l-socialmk">
                 <h3>Follow Us on</h3>
                 <div class="social">
                     <ul>
@@ -192,117 +154,10 @@
         <!-- //footer third section -->
         <!-- footer fourth section (text) -->
         <div class="agile-sometext">
-            <div class="sub-some">
-                <h5>Best Online Shop For Fruits</h5>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-            </div>
-            <div class="sub-some">
-                <h5>Shop online with the best deals & offers</h5>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-            </div>
             <!-- brands -->
             <div class="sub-some">
                 <h5>Popular Mango</h5>
                 <ul>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html"> Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product2.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product2.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product2.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product2.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product2.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product2.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product2.html"> Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html"> Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product2.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product2.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product2.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product2.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Sample1</a>
-                    </li>
                     <li>
                         <a href="product2.html"> Sample1</a>
                     </li>

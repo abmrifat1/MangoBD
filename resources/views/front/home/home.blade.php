@@ -1,81 +1,13 @@
 @extends('front.master')
 @section('title')Home page::MangoBD
+    {{ Session::put('page', 'home') }}
 @endsection
 @section('css')
     <link href="{{ asset('front/css/style2.css') }}" rel="stylesheet" type="text/css" media="all" />
 @endsection
 
 @section('main-content')
-    <!-- banner -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators-->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="3" class=""></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h3>Big
-                            <span>Save</span>
-                        </h3>
-                        <p>Get flat
-                            <span>10%</span> Cashback</p>
-                        <a class="button2" href="shop1.blade.php">Shop Now </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item item2">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h3>Healthy
-                            <span>Saving</span>
-                        </h3>
-                        <p>Get Upto
-                            <span>30%</span> Off</p>
-                        <a class="button2" href="shop1.blade.php">Shop Now </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item item3">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h3>Big
-                            <span>Deal</span>
-                        </h3>
-                        <p>Get Best Offer Upto
-                            <span>20%</span>
-                        </p>
-                        <a class="button2" href="shop1.blade.php">Shop Now </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item item4">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h3>Today
-                            <span>Discount</span>
-                        </h3>
-                        <p>Get Now
-                            <span>40%</span> Discount</p>
-                        <a class="button2" href="shop1.blade.php">Shop Now </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-    <!-- //banner -->
+@include('front.includes.banner');
 
     <!-- banner -->
     <div class="banner_bottom_agile_info">
@@ -183,11 +115,11 @@
     <!--/grids-->
     <div class="agile_last_double_sectionw3ls">
         <div class="col-md-6 multi-gd-img multi-gd-text ">
-            <a href="womens.html"><img src="{{asset('front/images/bot_1.jpg')}}" alt=" "><h4>Flat <span>50%</span> offer</h4></a>
+            <a href="womens.html"><img src="{{asset('front/images/bot_1.jpg')}}" alt=" "><h4>We Give You <span>50%</span> offer</h4></a>
 
         </div>
         <div class="col-md-6 multi-gd-img multi-gd-text ">
-            <a href="womens.html"><img src="{{asset('front/images/bot_2.jpg')}}" alt=" "><h4>Flat <span>50%</span> offer</h4></a>
+            <a href="womens.html"><img src="{{asset('front/images/bot_2.jpg')}}" alt=" "><h4>We Give You <span>50%</span> offer</h4></a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -204,7 +136,7 @@
                 <div class="col-md-3 product-men">
                     <div class="men-pro-item simpleCart_shelfItem">
                         <div class="men-thumb-item">
-                            <img src="{{ $product->picture_1 }}" alt="">
+                            <img src="{{ $product->picture_1 }}" alt="" style="height: 200px;">
                             <div class="men-cart-pro">
                                 <div class="inner-men-cart-pro">
                                     <a href="{{ url('/products/'.$product->unique_id) }}" class="link-product-add-cart">Quick View</a>
@@ -214,28 +146,26 @@
                         </div>
                         <div class="item-info-product ">
                             <h4>
-                                <a href="single.php">{{$product->name}}, {{ $product->quantity }}kg</a>
+                                <a href="{{ url('/products/'.$product->unique_id) }}">{{$product->name}}, {{ $product->quantity }}kg</a>
                             </h4>
                             <div class="info-product-price">
                                 <span class="item_price">{{ $product->sellPrice }}tk</span>
                                 <del>{{ $product->regPrice }}tk</del>
                             </div>
-                            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                <form action="{{ url('/checkout') }}" method="post">
-                                    <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart" />
-                                        <input type="hidden" name="add" value="1" />
-                                        <input type="hidden" name="business" value=" " />
-                                        <input type="hidden" name="item_name" value="Almonds, 100g" />
-                                        <input type="hidden" name="amount" value="149.00" />
-                                        <input type="hidden" name="discount_amount" value="1.00" />
-                                        <input type="hidden" name="currency_code" value="USD" />
-                                        <input type="hidden" name="return" value=" " />
-                                        <input type="hidden" name="cancel_return" value=" " />
-                                        <input type="submit" name="submit" value="Add to cart" class="button" />
-                                    </fieldset>
+
+                            <div>
+                                <form action="{{ url('/add-to-cart') }}" method="post">
+                                    {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <input type="hidden" name="qty" value="1" min="1">
+                                        <input type="hidden" name="id" value="{{ $product->id }}">
+                                    </div>
+                                    <div>
+                                        <input type="submit" name="btn" value="Add To Cart" class="my-cart-btn item_add button">
+                                    </div>
                                 </form>
                             </div>
+
 
                         </div>
                     </div>
@@ -246,71 +176,72 @@
                 <div class="clearfix"></div>
             </div>
             <!--//tab_one-->
+        </div>
+    </div>
+    <!-- //new_arrivals -->
 
-            <!--/tab_two-->
-            <h3 class="wthree_text_info1">Our Top Views<span>Products</span></h3>
-            <div class="tab2">
 
+<!-- /new_arrivals -->
+<div class="new_arrivals_agile_w3ls_info" style="padding:0 0 4cm 0;">
+    <div class="container">
+        <h3 class="wthree_text_info">Our Top Views <span>Products</span></h3>
 
+        <!--/tab_Two-->
+        <div class="tab2">
+            @foreach($mostViewProducts as $mvProducts)
                 <div class="col-md-3 product-men">
                     <div class="men-pro-item simpleCart_shelfItem">
                         <div class="men-thumb-item">
-                            <img src="{{ asset('front/images/m1.jpg') }}" alt="">
+                            <img src="{{ $mvProducts->picture_1 }}" alt="" style="height: 200px;">
                             <div class="men-cart-pro">
                                 <div class="inner-men-cart-pro">
-                                    <a href="{{ url('/product/'.$product->unique_id) }}" class="link-product-add-cart">Quick View</a>
+                                    <a href="{{ url('/products/'.$mvProducts->unique_id) }}" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
                             <span class="product-new-top">Fresh</span>
                         </div>
                         <div class="item-info-product ">
                             <h4>
-                                <a href="single.php">Fajli, 1kg</a>
+                                <a href="{{ url('/products/'.$mvProducts->unique_id) }}">{{$mvProducts->name}}, {{ $mvProducts->quantity }}kg</a>
                             </h4>
                             <div class="info-product-price">
-                                <span class="item_price">$149.00</span>
-                                <del>$280.00</del>
+                                <span class="item_price">{{ $mvProducts->sellPrice }}tk</span>
+                                <del>{{ $mvProducts->regPrice }}tk</del>
                             </div>
-                            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                <form action="{{ url('/checkout') }}" method="post">
-                                    <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart" />
-                                        <input type="hidden" name="add" value="1" />
-                                        <input type="hidden" name="business" value=" " />
-                                        <input type="hidden" name="item_name" value="Almonds, 100g" />
-                                        <input type="hidden" name="amount" value="149.00" />
-                                        <input type="hidden" name="discount_amount" value="1.00" />
-                                        <input type="hidden" name="currency_code" value="USD" />
-                                        <input type="hidden" name="return" value=" " />
-                                        <input type="hidden" name="cancel_return" value=" " />
-                                        <input type="submit" name="submit" value="Add to cart" class="button" />
-                                    </fieldset>
+
+                            <div>
+                                <form action="{{ url('/add-to-cart') }}" method="post">
+                                    {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <input type="hidden" name="qty" value="1" min="1">
+                                        <input type="hidden" name="id" value="{{ $mvProducts->id }}">
+                                    </div>
+                                    <div>
+                                        <input type="submit" name="btn" value="Add To Cart" class="my-cart-btn item_add button">
+                                    </div>
                                 </form>
                             </div>
+
 
                         </div>
                     </div>
                 </div>
+            @endforeach()
 
-
-                <div class="clearfix"></div>
-            </div>
-            <!--//tab_two-->
 
             <div class="clearfix"></div>
         </div>
+        <!--//tab_one-->
     </div>
-    </div>
-    </div>
-    </div>
-    <!-- //new_arrivals -->
+</div>
+<!-- //new_arrivals -->
 
     <!-- /we-offer -->
     <div class="sale-w3ls">
         <div class="container">
-            <h6>We Offer Flat <span>40%</span> Discount</h6>
+            <h6>We Ensure  {{--<span>100%</span>--}} Pure Mango</h6>
 
-            <a class="hvr-outline-out button2" href="single.html">Shop Now </a>
+            <a class="hvr-outline-out button2" href="{{ url('/shop') }}">Shop Now </a>
         </div>
     </div>
     <!-- //we-offer -->

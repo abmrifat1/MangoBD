@@ -1,86 +1,18 @@
 @extends('front.master')
-@section('title')Shop page::MangoBD
+@section('title')Shop Page::MangoBD
+{{ Session::put('page', 'shop') }}
 @endsection
 @section('css')
 
 @endsection
 @section('main-content')
-<!-- banner -->
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators-->
-		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="3" class=""></li>
-		</ol>
-		<div class="carousel-inner" role="listbox">
-			<div class="item active">
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Big
-							<span>Save</span>
-						</h3>
-						<p>Get flat
-							<span>10%</span> Cashback</p>
-						<a class="button2" href="shop1.blade.php">Shop Now </a>
-					</div>
-				</div>
-			</div>
-			<div class="item item2">
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Healthy
-							<span>Saving</span>
-						</h3>
-						<p>Get Upto
-							<span>30%</span> Off</p>
-						<a class="button2" href="shop1.blade.php">Shop Now </a>
-					</div>
-				</div>
-			</div>
-			<div class="item item3">
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Big
-							<span>Deal</span>
-						</h3>
-						<p>Get Best Offer Upto
-							<span>20%</span>
-						</p>
-						<a class="button2" href="shop1.blade.php">Shop Now </a>
-					</div>
-				</div>
-			</div>
-			<div class="item item4">
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Today
-							<span>Discount</span>
-						</h3>
-						<p>Get Now
-							<span>40%</span> Discount</p>
-						<a class="button2" href="shop1.blade.php">Shop Now </a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-	</div>
-	<!-- //banner -->
+@include('front.includes.banner');
 
 	<!-- top Products -->
 	<div class="ads-grid">
 		<div class="container">
 			<!-- tittle heading -->
-			<h3 class="tittle-w3l">Our Top Products
+			<h3 class="tittle-w3l">Our Products
 				<span class="heading-style">
 					<i></i>
 					<i></i>
@@ -220,42 +152,6 @@
 							<input type="checkbox" class="checked">
 							<span class="span">South American</span>
 						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">French</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Greek</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Chinese</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Japanese</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Italian</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Mexican</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Thai</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Indian</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span"> Spanish </span>
-						</li>
 					</ul>
 				</div>
 				<!-- //cuisine -->
@@ -323,140 +219,60 @@
 					<div class="product-sec1">
 						<h3 class="heading-tittle">Mango</h3>
 
-						<div class="col-md-4 product-men">
-							<div class="men-pro-item simpleCart_shelfItem">
-								<div class="men-thumb-item">
-									<img src="{{ asset('front/images/m1.jpg') }}" alt="">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="single.php" class="link-product-add-cart">Quick View</a>
-										</div>
-									</div>
-									<span class="product-new-top">Fresh</span>
-								</div>
-								<div class="item-info-product ">
-									<h4>
-										<a href="single.php">Fajli, 1kg</a>
-									</h4>
-									<div class="info-product-price">
-										<span class="item_price">$149.00</span>
-										<del>$280.00</del>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="{{ url('/checkout') }}" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Almonds, 100g" />
-												<input type="hidden" name="amount" value="149.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
+                        @foreach($products as $product)
+                            <div class="col-md-4 product-men">
+                                <div class="men-pro-item simpleCart_shelfItem">
+                                    <div class="men-thumb-item">
+                                        <img src="{{ $product->picture_1 }}" alt="" style="height: 118px; width: 150px;">
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                <a href="{{ url('/products/'.$product->unique_id) }}" class="link-product-add-cart">Quick View</a>
+                                            </div>
+                                        </div>
+                                        <span class="product-new-top">Fresh</span>
+                                    </div>
+                                    <div class="item-info-product ">
+                                        <h4>
+                                            <a href="{{ url('/products/'.$product->unique_id) }}">{{$product->name}}, {{ $product->quantity }}kg</a>
+                                        </h4>
+                                        <div class="info-product-price">
+                                            <span class="item_price">{{ $product->sellPrice }}tk</span>
+                                            <del>{{ $product->regPrice }}tk</del>
+                                        </div>
 
-								</div>
-							</div>
+                                        <div>
+                                            <form action="{{ url('/add-to-cart') }}" method="post">
+                                                {{ csrf_field() }}
+                                                <div class="form-group">
+                                                    <input type="hidden" name="qty" value="1" min="1">
+                                                    <input type="hidden" name="id" value="{{ $product->id }}">
+                                                </div>
+                                                <div>
+                                                    <input type="submit" name="btn" value="Add To Cart" class="my-cart-btn item_add button">
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach()
+						<div style="float: left; margin-left: 50px;">
+							{{ $products->links() }}
 						</div>
-
-						<div class="col-md-4 product-men">
-							<div class="men-pro-item simpleCart_shelfItem">
-								<div class="men-thumb-item">
-									<img src="{{ asset('front/images/m1.jpg') }}" alt="">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="single.php" class="link-product-add-cart">Quick View</a>
-										</div>
-									</div>
-									<span class="product-new-top">Fresh</span>
-
-								</div>
-								<div class="item-info-product ">
-									<h4>
-										<a href="single.php">Himsagor, 1kg</a>
-									</h4>
-									<div class="info-product-price">
-										<span class="item_price">$200.00</span>
-										<del>$420.00</del>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Cashew Nuts, 100g" />
-												<input type="hidden" name="amount" value="200.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-4 product-men">
-							<div class="men-pro-item simpleCart_shelfItem">
-								<div class="men-thumb-item">
-									<img src="{{ asset('front/images/m1.jpg') }}" alt="">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="single.php" class="link-product-add-cart">Quick View</a>
-										</div>
-									</div>
-									<span class="product-new-top">Fresh</span>
-
-								</div>
-								<div class="item-info-product ">
-									<h4>
-										<a href="single.php">Langra, 1kg</a>
-									</h4>
-									<div class="info-product-price">
-										<span class="item_price">$520.99</span>
-										<del>$600.99</del>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Pista, 250g" />
-												<input type="hidden" name="amount" value="520.99" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
 
 						<div class="clearfix"></div>
 					</div>
 					<!-- //first section (nuts) -->
 					<!-- second section (nuts special) -->
-					<div class="product-sec1 product-sec2">
+				<!--<div class="product-sec1 product-sec2">
 						<div class="col-xs-7 effect-bg">
 							<h3 class="">Pure Energy</h3>
 							<h6>Enjoy our all healthy Fruits</h6>
 							<p>Get Extra 10% Off</p>
 						</div>
-						<h3 class="w3l-nut-middle">Mango & Litchi</h3>
+						<h3 class="w3l-nut-middle">Mango</h3>
 						<div class="col-xs-1 effect-bg">
 					
 						</div>
@@ -464,269 +280,57 @@
 							<img src="images/mangolitchi.jpg" alt="">
 						</div>
 						<div class="clearfix"></div>
-					</div>
+					</div>-->
 					<!-- //second section (nuts special) -->
-					<!-- third section (oils) -->
+					<!-- third section (oils)
 					<div class="product-sec1">
 						<h3 class="heading-tittle">Mango</h3>
 
-						<div class="col-md-4 product-men">
-							<div class="men-pro-item simpleCart_shelfItem">
-								<div class="men-thumb-item">
-									<img src="{{ asset('front/images/m1.jpg') }}" alt="">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="single.php" class="link-product-add-cart">Quick View</a>
-										</div>
-									</div>
-									<span class="product-new-top">Fresh</span>
-								</div>
-								<div class="item-info-product ">
-									<h4>
-										<a href="single.php">Asina, 1kg</a>
-									</h4>
-									<div class="info-product-price">
-										<span class="item_price">$78.00</span>
-										<del>$110.00</del>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Freedom Sunflower Oil, 1L" />
-												<input type="hidden" name="amount" value="78.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
 
-								</div>
-							</div>
-						</div>
+                        @foreach($products1 as $product)
+                            <div class="col-md-4 product-men">
+                                <div class="men-pro-item simpleCart_shelfItem">
+                                    <div class="men-thumb-item">
+                                        <img src="{{ $product->picture_1 }}" alt="" style="height: 150px; width: 150px;">
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                <a href="{{ url('/products/'.$product->unique_id) }}" class="link-product-add-cart">Quick View</a>
+                                            </div>
+                                        </div>
+                                        <span class="product-new-top">Fresh</span>
+                                    </div>
+                                    <div class="item-info-product ">
+                                        <h4>
+                                            <a href="{{ url('/products/'.$product->unique_id) }}">{{$product->name}}, {{ $product->quantity }}kg</a>
+                                        </h4>
+                                        <div class="info-product-price">
+                                            <span class="item_price">{{ $product->sellPrice }}tk</span>
+                                            <del>{{ $product->regPrice }}tk</del>
+                                        </div>
+
+                                        <div>
+                                            <form action="{{ url('/add-to-cart') }}" method="post">
+                                                {{ csrf_field() }}
+                                                <div class="form-group">
+                                                    <input type="hidden" name="qty" value="1" min="1">
+                                                    <input type="hidden" name="id" value="{{ $product->id }}">
+                                                </div>
+                                                <div>
+                                                    <input type="submit" name="btn" value="Add To Cart" class="my-cart-btn item_add button">
+                                                </div>
+                                            </form>
+                                        </div>
 
 
-						<div class="col-md-4 product-men">
-							<div class="men-pro-item simpleCart_shelfItem">
-								<div class="men-thumb-item">
-									<img src="{{ asset('front/images/m1.jpg') }}" alt="">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="single.php" class="link-product-add-cart">Quick View</a>
-										</div>
-									</div>
-									<span class="product-new-top">Fresh</span>
-
-								</div>
-								<div class="item-info-product ">
-									<h4>
-										<a href="single.php">Ampropali, 1kg</a>
-									</h4>
-									<div class="info-product-price">
-										<span class="item_price">$130.00</span>
-										<del>$150.00</del>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Saffola Gold, 1L" />
-												<input type="hidden" name="amount" value="130.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-md-4 product-men">
-							<div class="men-pro-item simpleCart_shelfItem">
-								<div class="men-thumb-item">
-									<img src="{{ asset('front/images/m1.jpg') }}" alt="">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="single.php" class="link-product-add-cart">Quick View</a>
-										</div>
-									</div>
-									<span class="product-new-top">Fresh</span>
-
-								</div>
-								<div class="item-info-product ">
-									<h4>
-										<a href="single.php">Rupali, 1kg</a>
-									</h4>
-									<div class="info-product-price">
-										<span class="item_price">$399.99</span>
-										<del>$500.00</del>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Fortune Oil, 5L" />
-												<input type="hidden" name="amount" value="399.99" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
-
-								</div>
-							</div>
-						</div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach()
 
 						<div class="clearfix"></div>
 					</div>
-					<!-- //third section (oils) -->
-					<!-- fourth section (noodles) -->
-					<div class="product-sec1">
-						<h3 class="heading-tittle">Litchi</h3>
+					third section (oils) -->
 
-						<div class="col-md-4 product-men">
-							<div class="men-pro-item simpleCart_shelfItem">
-								<div class="men-thumb-item">
-									<img src="{{ asset('front/images/m1.jpg') }}" alt="">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="single.php" class="link-product-add-cart">Quick View</a>
-										</div>
-									</div>
-									<span class="product-new-top">Fresh</span>
-								</div>
-								<div class="item-info-product ">
-									<h4>
-										<a href="single.php">Quality1, 100piece</a>
-									</h4>
-									<div class="info-product-price">
-										<span class="item_price">$15.00</span>
-										<del>$25.00</del>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="YiPPee Noodles, 65g" />
-												<input type="hidden" name="amount" value="15.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-md-4 product-men">
-							<div class="men-pro-item simpleCart_shelfItem">
-								<div class="men-thumb-item">
-									<img src="{{ asset('front/images/m1.jpg') }}" alt="">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="single.php" class="link-product-add-cart">Quick View</a>
-										</div>
-									</div>
-									<span class="product-new-top">Fresh</span>
-
-								</div>
-								<div class="item-info-product ">
-									<h4>
-										<a href="single.php">Quality2, 100piece</a>
-									</h4>
-									<div class="info-product-price">
-										<span class="item_price">$98.00</span>
-										<del>$120.00</del>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Wheat Pasta, 500g" />
-												<input type="hidden" name="amount" value="98.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-md-4 product-men">
-							<div class="men-pro-item simpleCart_shelfItem">
-								<div class="men-thumb-item">
-									<img src="{{ asset('front/images/m1.jpg') }}" alt="">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="single.php" class="link-product-add-cart">Quick View</a>
-										</div>
-									</div>
-									<span class="product-new-top">Fresh</span>
-
-								</div>
-								<div class="item-info-product ">
-									<h4>
-										<a href="single.php">Quality3, 100piece</a>
-									</h4>
-									<div class="info-product-price">
-										<span class="item_price">$11.99</span>
-										<del>$15.00</del>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Chinese Noodles, 68g" />
-												<input type="hidden" name="amount" value="11.99" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-						<div class="clearfix"></div>
-					</div>
 				</div>
 			</div>
 			<!-- //product right -->
