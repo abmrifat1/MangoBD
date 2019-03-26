@@ -72,3 +72,5 @@ Route::get('user/home', 'VendorController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('MangoBDMiddleWare');;
+
+Route::get('{path}',"HomeController@error")->where( 'path', '([A-z\d-\/_.]+)?' );

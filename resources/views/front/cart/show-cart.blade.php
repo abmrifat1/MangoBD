@@ -1,5 +1,5 @@
 @extends('front.master')
-@section('title')Cart Show page::MangoBD
+@section('title')Cart Show page :: MangoBD
 {{ Session::put('page', 'showcart') }}
 @endsection
 
@@ -41,6 +41,9 @@
                     @php
                         $i = 0
                     @endphp
+                    @php
+                        $discount = 0
+                    @endphp
                     @foreach($cartProducts as $count)
                         @php
                             $i += $count->qty
@@ -62,6 +65,7 @@
                             <th>Product Quantity</th>
                             <th>Total Price</th>
                             <th>Remove</th>
+                            <th>Discount</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -105,6 +109,11 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
+
+
+                            <td class="invert">TK.{{ $cartProduct->options->discountProduct }}</td>
+
+
                         </tr>
                             @php($sum = $sum+$total)
                             @endforeach()

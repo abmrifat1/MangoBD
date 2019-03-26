@@ -1,5 +1,5 @@
 @extends('front.master')
-@section('title')Home page::MangoBD
+@section('title')Home page :: MangoBD
     {{ Session::put('page', 'home') }}
 @endsection
 @section('css')
@@ -145,8 +145,15 @@
                             <span class="product-new-top">Fresh</span>
                         </div>
                         <div class="item-info-product ">
-                            <h4>
+                            <h4 style="margin-bottom: 5px;">
                                 <a href="{{ url('/products/'.$product->unique_id) }}">{{$product->name}}, {{ $product->quantity }}kg</a>
+                            </h4>
+                            <h4>
+                                @if($product->discount < 1)
+                                    <a href="{{ url('/products/'.$product->unique_id) }}" style="font-size: 14px; background-color: #ffffff; color: white; padding: 0 2px; border-radius: 2px;"></a>
+                                @else
+                                    <a href="{{ url('/products/'.$product->unique_id) }}" style="font-size: 14px; background-color: #b2a50b; color: white; padding: 0 2px; border-radius: 2px;">{{$product->discount}}% Discount</a>
+                                @endif
                             </h4>
                             <div class="info-product-price">
                                 <span class="item_price">{{ $product->sellPrice }}tk</span>
@@ -201,8 +208,15 @@
                             <span class="product-new-top">Fresh</span>
                         </div>
                         <div class="item-info-product ">
-                            <h4>
+                            <h4 style="margin-bottom: 5px;">
                                 <a href="{{ url('/products/'.$mvProducts->unique_id) }}">{{$mvProducts->name}}, {{ $mvProducts->quantity }}kg</a>
+                            </h4>
+                            <h4>
+                                @if($mvProducts->discount < 1)
+                                    <a href="{{ url('/products/'.$mvProducts->unique_id) }}" style="font-size: 14px; background-color: #ffffff; color: white; padding: 0 2px; border-radius: 2px;"></a>
+                                @else
+                                    <a href="{{ url('/products/'.$mvProducts->unique_id) }}" style="font-size: 14px; background-color: #b2a50b; color: white; padding: 0 2px; border-radius: 2px;">{{$mvProducts->discount}}% Discount</a>
+                                @endif
                             </h4>
                             <div class="info-product-price">
                                 <span class="item_price">{{ $mvProducts->sellPrice }}tk</span>

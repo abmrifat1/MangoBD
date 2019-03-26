@@ -1480,6 +1480,7 @@ ul.w3_short li a {
     padding: 0;
     background: #eee;
     text-align: center;
+    margin-top: -21px;
 }
 .services-breadcrumb ul li i {
     padding: 0 1em;

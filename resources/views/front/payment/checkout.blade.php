@@ -76,8 +76,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- Form Design -->
 
     <script>
-        function myFunction() {
-            var x = document.getElementById("myInput");
+        function myFunction1() {
+            var x = document.getElementById("myInput1");
             if (x.type === "password") {
                 x.type = "text";
             } else {
@@ -185,7 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="panel-body">
                         <h1 class="text-success text-center">Registration Form</h1>
                         <hr>
-                        <form class="form-horizontal" action="{{ url('/new-customer') }}" method="POST">
+                        <form class="form-horizontal" action="{{ url('/new-customer') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label class="control-label col-sm-3">First Name</label>
@@ -223,10 +223,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                             </div>
 
+                            <div class="styled-input">
+                                <label class="control-label col-sm-3" style="margin-right: 5px;">Profile Pic</label>
+                                <input type="file" name="image" accept="image/*" style="width: 385px; margin-bottom: 10px;">
+                                {{ $errors->has('image') ? $errors->first('image') : ' ' }}
+                                <span class="error">
+                                    <strong style="color: red;" id="nameErrorMsg"></strong>
+                            </span>
+                            </div>
+
                             <div class="form-group">
                                 <label class="control-label col-sm-3">Password</label>
                                 <div class="col-sm-9">
-                                    <input type="password" id="myInput" name="password_confirmation" value="{{old('password')}}" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+                                    <input type="password" id="myInput1" name="password" value="{{old('password')}}" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
                                     {{ $errors->has('password') ? $errors->first('password') : ' ' }}
                                 </div>
                             </div>
@@ -234,14 +243,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="form-group">
                                 <label class="control-label col-sm-3">Show</label>
                                 <div class="col-sm-3">
-                                    <input type="checkbox" onclick="myFunction()">
+                                    <input type="checkbox" onclick="myFunction1()">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label col-sm-3">Confirm Password</label>
                                 <div class="col-sm-9">
-                                    <input type="password" name="confirm_password" value="{{old('confirm_password')}}" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+                                    <input type="password" name="password_confirmation" value="{{old('confirm_password')}}" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
                                     {{ $errors->has('confirm_password') ? $errors->first('confirm_password') : ' ' }}
                                 </div>
                             </div>

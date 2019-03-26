@@ -39,7 +39,9 @@ class ProductController extends Controller
     {
         $this->validate($request,[
             'name'=>'required|string',
-            'image'=>'image'
+            'image'=>'image',
+            'image1'=>'image',
+            'image2'=>'image'
         ]);
         $imageUrl = '';
         if($request->hasFile('image')){
@@ -49,19 +51,38 @@ class ProductController extends Controller
             $imageUrl = $directory.$imageName;
             $imageFile->move($directory,$imageName);
         }
+        $imageUrl1 = '';
+        if($request->hasFile('image1')){
+            $imageFile = $request->file('image1');
+            $directory = 'images/product-images/';
+            $imageName = substr(md5(time()),2, 10).rand(10000,999999).time().'.'.$imageFile->getClientOriginalExtension();
+            $imageUrl1 = $directory.$imageName;
+            $imageFile->move($directory,$imageName);
+        }
+        $imageUrl2 = '';
+        if($request->hasFile('image2')){
+            $imageFile = $request->file('image2');
+            $directory = 'images/product-images/';
+            $imageName = substr(md5(time()),2, 10).rand(10000,999999).time().'.'.$imageFile->getClientOriginalExtension();
+            $imageUrl2 = $directory.$imageName;
+            $imageFile->move($directory,$imageName);
+        }
         $unique_id = time().md5(rand(100000,10000000));
         DB::table('products')->insert([
             'unique_id'=>$unique_id,
             'name'=>$request->name,
             'sku'=>$request->sku,
             'regPrice'=>$request->regPrice,
+            'discount'=>$request->discount,
             'sellPrice'=>$request->sellPrice,
             'quantity'=>$request->quantity,
             'isStock'=>$request->isStock,
             'categoryId'=>$request->categoryId,
-            'isAvailable'=>$request->isAvailable,
             'picture_1'=>$imageUrl,
+            'picture_2'=>$imageUrl1,
+            'picture_3'=>$imageUrl2,
             'description'=>$request->description,
+            'type'=>$request->type,
             'isApprove'=>$request->isApprove
         ]);
         return redirect('/admin/product/')->with('message','New Product information saved successfully!');
@@ -103,7 +124,9 @@ class ProductController extends Controller
         $product = Product::where('unique_id',$unique_id)->first();
         $this->validate($request,[
             'name'=>'required|string',
-            'image'=>'image'
+            'image'=>'image',
+            'image1'=>'image',
+            'image2'=>'image'
         ]);
         $imageUrl = '';
         if($request->hasFile('image')){
@@ -115,18 +138,39 @@ class ProductController extends Controller
             $imageUrl = $directory.$imageName;
             $imageFile->move($directory,$imageName);
         }
+
+        $imageUrl1 = '';
+        if($request->hasFile('image1')){
+            $imageFile = $request->file('image1');
+            $directory = 'images/product-images/';
+            $imageName = substr(md5(time()),2, 10).rand(10000,999999).time().'.'.$imageFile->getClientOriginalExtension();
+            $imageUrl1 = $directory.$imageName;
+            $imageFile->move($directory,$imageName);
+        }
+        $imageUrl2 = '';
+        if($request->hasFile('image2')){
+            $imageFile = $request->file('image2');
+            $directory = 'images/product-images/';
+            $imageName = substr(md5(time()),2, 10).rand(10000,999999).time().'.'.$imageFile->getClientOriginalExtension();
+            $imageUrl2 = $directory.$imageName;
+            $imageFile->move($directory,$imageName);
+        }
+
         DB::table('products')
             ->where('unique_id',$unique_id)
             ->update([
             'name'=>$request->name,
             'sku'=>$request->sku,
             'regPrice'=>$request->regPrice,
+            'discount'=>$request->discount,
             'sellPrice'=>$request->sellPrice,
             'quantity'=>$request->quantity,
             'isStock'=>$request->isStock,
-            'isAvailable'=>$request->isAvailable,
             'picture_1'=>$imageUrl,
+            'picture_2'=>$imageUrl1,
+            'picture_3'=>$imageUrl2,
             'description'=>$request->description,
+            'type'=>$request->type,
             'isApprove'=>$request->isApprove
         ]);
         return redirect('/admin/product/')->with('message','Update Product information saved successfully!');

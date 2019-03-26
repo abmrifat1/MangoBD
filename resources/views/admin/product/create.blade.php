@@ -72,6 +72,21 @@
                             </div>
                         </div>
 
+                        <div class="item form-group" style="width: 80%; margin-left: 50px;">
+                            {!! Form::label('discount','Discount *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!! Form::number('discount',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'discount','required'=>'required']) !!}
+                                @if ($errors->has('discount'))
+                                    <span class="help-block error">
+                                        <strong>{{ $errors->first('discount') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div>
+                            <p style="font-size: 28px; font-weight: bolder;">%</p>
+                            </div>
+                        </div>
+
                         <div class="item form-group">
                             {!! Form::label('sellPrice','Sell Price *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -119,28 +134,27 @@
                         </div>
 
                         <div class="item form-group">
-                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
-                            </label>--}}
-                            {!! Form::label('isAvailable','Product Available ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!!  Form::select('isAvailable', ['Available' => 'Yes', 'Not_Available' => 'No'], 1, ['class'=>'form-control','id'=>'isAvailable'])!!}
-                            </div>
-                        </div>
-
-                        <div class="item form-group">
                             {!! Form::label('image','Image *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
                                 {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image']) !!}
 
-                                {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image']) !!}
+                                {!! Form::file('image1',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image1']) !!}
 
-                                {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image']) !!}
+                                {!! Form::file('image2',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image2']) !!}
 
                                 <span>Image will be 400x300</span>
                                 @if ($errors->has('image'))
                                     <span class="help-block error">
                                         <strong>{{ $errors->first('image') }}</strong>
+                                    </span>
+                                @elseif ($errors->has('image1'))
+                                    <span class="help-block error">
+                                        <strong>{{ $errors->first('image1') }}</strong>
+                                    </span>
+                                @elseif ($errors->has('image2'))
+                                    <span class="help-block error">
+                                        <strong>{{ $errors->first('image2') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -155,6 +169,15 @@
                                         <strong>{{ $errors->first('description') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
+                            </label>--}}
+                            {!! Form::label('type','Product Type ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!!  Form::select('type', ['Select Type', 'raw' => 'Raw', 'ripe' => 'Ripe'], 1, ['class'=>'form-control','id'=>'type'])!!}
                             </div>
                         </div>
 

@@ -8,11 +8,27 @@
 @section('main-content')
 @include('front.includes.banner');
 
+<!-- page -->
+<div class="services-breadcrumb">
+	<div class="agile_inner_breadcrumb">
+		<div class="container">
+			<ul class="w3_short">
+				<li>
+					<a href="{{ url('/') }}">Home</a>
+					<i>|</i>
+				</li>
+				<li>Shop Page</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- //page -->
+
 	<!-- top Products -->
 	<div class="ads-grid">
 		<div class="container">
 			<!-- tittle heading -->
-			<h3 class="tittle-w3l">Our Products
+			<h3 class="tittle-w3l" style="margin-left: 50px;">Our Products
 				<span class="heading-style">
 					<i></i>
 					<i></i>
@@ -22,19 +38,24 @@
 			<!-- //tittle heading -->
 			<!-- product left -->
 			<div class="side-bar col-md-3">
+
 				<div class="search-hotel">
 					<h3 class="agileits-sear-head">Search Here..</h3>
-					<form action="#" method="post">
-						<input type="search" placeholder="Mango or Seller name..." name="search" required="">
-						<input type="submit" value=" ">
+					<form action="{{ url('/search-mango') }}" method="get">
+						<input value="{{ request()->input('query') }}" type="search" placeholder="Mango or Seller name..." name="search" required="">
+						<button style="height: 40px;" type="submit" class="btn btn-default" aria-label="Left Align">
+							<span class="fa fa-search" aria-hidden="true"> </span>
+						</button>
 					</form>
 				</div>
+
+
+
 				<!-- price range -->
 				<div class="range">
 					<h3 class="agileits-sear-head">Price range</h3>
 					<ul class="dropdown-menu6">
 						<li>
-
 							<div id="slider-range"></div>
 							<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
 						</li>
@@ -43,7 +64,7 @@
 				<!-- //price range -->
 				<!-- food preference -->
 				<div class="left-side">
-					<h3 class="agileits-sear-head">Raw | Ripe</h3>
+					<h3 class="agileits-sear-head">Mango | Type</h3>
 					<ul>
 						<li>
 							<input type="checkbox" class="checked">
@@ -60,30 +81,12 @@
 				<div class="left-side">
 					<h3 class="agileits-sear-head">Discount</h3>
 					<ul>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">5% or More</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">10% or More</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">20% or More</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">30% or More</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">50% or More</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">60% or More</span>
-						</li>
+						@foreach($productsDiscounts->unique('discount') as $productsDiscount)
+							<li>
+								<input type="checkbox" class="checked">
+								<span class="span">{{ $productsDiscount->discount }}% or More</span>
+							</li>
+						@endforeach
 					</ul>
 				</div>
 				<!-- //discounts -->
@@ -118,7 +121,7 @@
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star-half-o" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
-								<span>3.5</span>
+								<span>3.0</span>
 							</a>
 						</li>
 						<li>
@@ -128,7 +131,7 @@
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
-								<span>3.0</span>
+								<span>2.0</span>
 							</a>
 						</li>
 						<li>
@@ -138,7 +141,7 @@
 								<i class="fa fa-star-half-o" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
-								<span>2.5</span>
+								<span>1.0</span>
 							</a>
 						</li>
 					</ul>
@@ -155,7 +158,7 @@
 					</ul>
 				</div>
 				<!-- //cuisine -->
-				<!-- deals -->
+				{{--<!-- deals -->
 				<div class="deal-leftmk left-side">
 					<h3 class="agileits-sear-head">Special Deals</h3>
 					<div class="special-sec1">
@@ -209,7 +212,7 @@
 						<div class="clearfix"></div>
 					</div>
 				</div>
-				<!-- //deals -->
+				<!-- //deals -->--}}
 			</div>
 			<!-- //product left -->
 			<!-- product right -->
@@ -221,7 +224,7 @@
 
                         @foreach($products as $product)
                             <div class="col-md-4 product-men">
-                                <div class="men-pro-item simpleCart_shelfItem">
+                                <div class="men-pro-item simpleCart_shelfItem" style="height: 350px;">
                                     <div class="men-thumb-item">
                                         <img src="{{ $product->picture_1 }}" alt="" style="height: 118px; width: 150px;">
                                         <div class="men-cart-pro">
@@ -232,9 +235,16 @@
                                         <span class="product-new-top">Fresh</span>
                                     </div>
                                     <div class="item-info-product ">
-                                        <h4>
+                                        <h4 style="margin-bottom: 5px;">
                                             <a href="{{ url('/products/'.$product->unique_id) }}">{{$product->name}}, {{ $product->quantity }}kg</a>
-                                        </h4>
+										</h4>
+										<h4>
+											@if($product->discount < 1)
+												<a href="{{ url('/products/'.$product->unique_id) }}" style="font-size: 14px; background-color: #ffffff; color: white; padding: 0 2px; border-radius: 2px;"></a>
+											@else
+												<a href="{{ url('/products/'.$product->unique_id) }}" style="font-size: 14px; background-color: #b2a50b; color: white; padding: 0 2px; border-radius: 2px;">{{$product->discount}}% Discount</a>
+											@endif
+										</h4>
                                         <div class="info-product-price">
                                             <span class="item_price">{{ $product->sellPrice }}tk</span>
                                             <del>{{ $product->regPrice }}tk</del>
@@ -252,7 +262,6 @@
                                                 </div>
                                             </form>
                                         </div>
-
 
                                     </div>
                                 </div>

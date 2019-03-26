@@ -16,12 +16,12 @@ class SearchController extends Controller
     public function searchMango(Request $request){
         //return $request;
 
-        $products = Product::select('*')->where('name', 'like', $request->search)->latest()->paginate(9);
+        $products = Product::select('*')->where('name', 'like', $request->search)->orderBy('view', 'desc')->paginate(9);
 
         //return $products;
 
 
-        return view('front.search.search', ['products'=>$products]);
+        return view('front.search.search-result', ['products'=>$products, 'searchName'=>$request->search]);
     }
 
     public function index()

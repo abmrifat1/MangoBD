@@ -22,9 +22,12 @@ class CartController extends Controller
             'price' => $product->sellPrice,
             'qty' => $request->qty,
             'options' => [
-                'image' => $product->picture_1
+                'image' => $product->picture_1,
+                'discountProduct' => $product->discount
             ]
         ]);
+
+        //return $product->discount;
         return redirect('/show-cart');
     }
 

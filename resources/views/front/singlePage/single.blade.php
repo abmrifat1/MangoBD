@@ -92,6 +92,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="col-md-7 single-right-left simpleCart_shelfItem">
             <h3>{{ $product->name }}  {{ $product->quantity }} KG</h3>
+
+            @if($product->discount < 1)
+            @else
+                <a href="{{ url('/products/'.$product->unique_id) }}" style="font-size: 14px; background-color: firebrick; color: white; padding: 0 2px; border-radius: 2px;">{{$product->discount}}% Discount</a>
+            @endif
             <div class="rating1">
 					<span class="starRating">
 						<input id="rating5" type="radio" name="rating" value="5">

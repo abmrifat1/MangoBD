@@ -100,6 +100,7 @@ class MangoBD extends Controller
         //return view('front.home.home',['products'=>$products]);
 
         $mostViewProducts = Product::orderby('view','desc')->take(8)->get();
+
         //return $mostViewProducts;
         return view('front.home.home',['products'=>$products],['mostViewProducts'=>$mostViewProducts]);
     }
@@ -116,7 +117,10 @@ class MangoBD extends Controller
         $products = Product::orderby('view','desc')->paginate(12);
         $products1 = Product::orderby('view','desc')->take(9)->get();
         //return $products;
-        return view('front.shop.shop',['products'=>$products],['products1'=>$products1]);
+        $productsDiscounts = Product::where('discount', '>', '0')->orderby('discount', 'desc')->take(8)->get();
+        //return $productsDiscounts;
+
+        return view('front.shop.shop',['products'=>$products],['products1'=>$products1, 'productsDiscounts'=>$productsDiscounts]);
     }
     public function about()
     {

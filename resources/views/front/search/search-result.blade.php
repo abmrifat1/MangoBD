@@ -12,7 +12,7 @@
     <div class="ads-grid">
         <div class="container">
             <!-- tittle heading -->
-            <h3 class="tittle-w3l">Our Products
+            <h3 class="tittle-w3l">Mango : {{ $searchName }}
                 <span class="heading-style">
 					<i></i>
 					<i></i>
@@ -22,13 +22,18 @@
             <!-- //tittle heading -->
             <!-- product left -->
             <div class="side-bar col-md-3">
+
                 <div class="search-hotel">
                     <h3 class="agileits-sear-head">Search Here..</h3>
-                    <form action="#" method="post">
-                        <input type="search" placeholder="Mango or Seller name..." name="search" required="">
-                        <input type="submit" value=" ">
+                    <form action="{{ url('/search-mango') }}" method="get">
+                        <input value="{{ request()->input('query') }}" type="search" placeholder="Mango or Seller name..." name="search" required="">
+                        <button style="height: 40px;" type="submit" class="btn btn-default" aria-label="Left Align">
+                            <span class="fa fa-search" aria-hidden="true"> </span>
+                        </button>
                     </form>
                 </div>
+
+
                 <!-- price range -->
                 <div class="range">
                     <h3 class="agileits-sear-head">Price range</h3>
@@ -218,7 +223,9 @@
                     <!-- first section (nuts) -->
                     <div class="product-sec1">
                         <h3 class="heading-tittle">Mango</h3>
-
+                        @if($products == '')
+                            <h1>No Products Founds</h1>
+                        @endif
                         @foreach($products as $product)
                             <div class="col-md-4 product-men">
                                 <div class="men-pro-item simpleCart_shelfItem">
@@ -258,6 +265,7 @@
                                 </div>
                             </div>
                         @endforeach()
+                        {{ $products->links() }}
                         <div style="float: left; margin-left: 50px;">
 
                         </div>

@@ -72,6 +72,21 @@
                         </div>
 
                         <div class="item form-group">
+                            {!! Form::label('discount','Discount *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!! Form::number('discount',$product->discount,['class'=>'form-control col-md-7 col-xs-12','id'=>'discount','required'=>'required']) !!}
+                                @if ($errors->has('discount'))
+                                    <span class="help-block error">
+                                        <strong>{{ $errors->first('discount') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div>
+                                <p style="font-size: 28px; font-weight: bolder;">%</p>
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
                             {!! Form::label('sellPrice','Sell Price *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 {!! Form::text('sellPrice',$product->sellPrice,['class'=>'form-control col-md-7 col-xs-12','id'=>'sellPrice','required'=>'required']) !!}
@@ -101,15 +116,6 @@
                             {!! Form::label('isStock','Stock Status ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 {!!  Form::select('isStock',['Stock' => 'Yes', 'Empty' => 'No'], 1, ['class'=>'form-control','id'=>'isStock'])!!}
-                            </div>
-                        </div>
-
-                        <div class="item form-group">
-                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
-                            </label>--}}
-                            {!! Form::label('isAvailable','Product Available ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!!  Form::select('isAvailable',['Available' => 'Yes', 'Not_Available' => 'No'], 1, ['class'=>'form-control','id'=>'isAvailable'])!!}
                             </div>
                         </div>
 
@@ -150,6 +156,15 @@
                             {!! Form::label('isApprove','Approve Status ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 {!!  Form::select('isApprove', ['Approve' => 'Yes', 'Not_Approved' => 'No'], 1, ['class'=>'form-control','id'=>'isApprove'])!!}
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
+                            </label>--}}
+                            {!! Form::label('type','Product Type ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!!  Form::select('type', ['Selete Type', 'raw' => 'Raw', 'ripe' => 'Ripe'], 1, ['class'=>'form-control','id'=>'type'])!!}
                             </div>
                         </div>
 

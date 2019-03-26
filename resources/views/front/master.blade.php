@@ -274,6 +274,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }
 </script>
 
+
+<!--Ajax -->
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('#postCreate').on('submit',function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        var url = $(this).attr('action');
+        $.ajax({
+            type:'post',
+            url:url,
+            data:data,
+            dataTy:'json',
+            success:function (data) {
+                $('#postCreate').trigger('reset');
+                swal({
+                    title: "Good job!",
+                    text: "You have successfully added you question, we will review it quickly and after then we will publish it in public and send you a confirmation email!, Thank you.",
+                    icon: "success",
+                });
+                $('#questionModal').modal('hide');
+            },
+            error:function (errorData) {
+                var error = errorData.responseJSON.message;
+                $('#firstNameErrorMsg').html('');
+                $('#lastNameErrorMsg').html('');
+                $('#emailErrorMsg').html('');
+                $('#phoneErrorMsg').html('');
+                $('#addressErrorMsg').html('');
+                $('#imageErrorMsg').html('');
+                $('#passwordErrorMsg').html('');
+                $('#confirmpassErrorMsg').html('');
+
+                $('#firstNameErrorMsg').append(error['first_name']);
+                $('#lastNameErrorMsg').append(error['last_name']);
+                $('#emailErrorMsg').append(error['email']);
+                $('#phoneErrorMsg').append(error['phone']);
+                $('#addressErrorMsg').append(error['address']);
+                $('#imageErrorMsg').append(error['image']);
+                $('#passwordErrorMsg').append(error['password']);
+                $('#confirmpassErrorMsg').append(error['password_confirmation']);
+            }
+        });
+    });
+</script>
+
 </body>
 
 </html>
