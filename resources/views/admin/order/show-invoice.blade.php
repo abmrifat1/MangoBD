@@ -182,9 +182,27 @@
             </tr>
                 @php($grandTotal= $grandTotal + $total)
             @endforeach
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th style="text-align: center;">Total Discount</th>
+                    <th style="text-align: center;">Total Tax</th>
+                    <th style="text-align: center;">Grand Total</th>
+                </tr>
+
+                <tr>
+                    <th style="text-align: center;">Tk.{{ Session::get('discount') }}</th>
+                    <th style="text-align: center;">Tk.{{ Session::get('tax') }}</th>
+                    <th style="text-align: center;">Tk.{{ Session::get('grant_total') }}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+
             <tr>
-                <td colspan="2"></td>
-                <td colspan="2" style="float:right;"><h3>Grand Total: Tk.{{ $grandTotal }}</h3></td>
+                <th style="margin-left: 200px;"><h3>Grand Total: Tk.{{ Session::get('grant_total') }}</h3></th>
             </tr>
         </table>
     </div>

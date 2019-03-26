@@ -120,7 +120,6 @@
                                 <th>Product Price</th>
                                 <th>Product Quantity</th>
                                 <th>Total Price</th>
-                                <th>Grand Total</th>
                             </tr>
                             @php($i=1)
                             @foreach($products as $product)
@@ -133,6 +132,25 @@
                                 <th>Tk.{{ $product->product_price * $product->product_quantity }}</th>
                             </tr>
                             @endforeach
+                            </thead>
+
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th style="text-align: center;">Total Discount</th>
+                                <th style="text-align: center;">Total Tax</th>
+                                <th style="text-align: center;">Grand Total</th>
+                            </tr>
+
+                                <tr>
+                                   <th style="text-align: center;">Tk.{{ Session::get('discount') }}</th>
+                                   <th style="text-align: center;">Tk.{{ Session::get('tax') }}</th>
+                                   <th style="text-align: center;">Tk.{{ Session::get('grant_total') }}</th>
+                                </tr>
                             </thead>
 
                             <tbody>

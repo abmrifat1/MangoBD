@@ -41,9 +41,6 @@
                     @php
                         $i = 0
                     @endphp
-                    @php
-                        $discount = 0
-                    @endphp
                     @foreach($cartProducts as $count)
                         @php
                             $i += $count->qty
@@ -71,6 +68,7 @@
                         <tbody>
 
                         @php($sum=0)
+                        @php($discount=0)
                         @foreach($cartProducts as $cartProduct)
                         <tr class="rem1">
                             <td class="invert">1</td>
@@ -111,10 +109,11 @@
                             </td>
 
 
-                            <td class="invert">TK.{{ $cartProduct->options->discountProduct }}</td>
+                            <td class="invert">TK.{{ $totalDiscount = ($cartProduct->options->discountProduct /100) * $total }}</td>
 
 
                         </tr>
+                            @php($discount=$discount+$totalDiscount)
                             @php($sum = $sum+$total)
                             @endforeach()
 
@@ -130,16 +129,18 @@
                         </tr>
                         <tr class="rem1">
                                 <td class="invert" style="text-transform: uppercase; font-weight: bold;">Discount</td>
-                                <td class="invert" style="text-transform: uppercase; font-weight: bold;">BDT {{ $discount=0 }}</td>
+                                <td class="invert" style="text-transform: uppercase; font-weight: bold;">BDT {{ $discount }}</td>
                         </tr>
                         <tr class="rem1">
                             <td class="invert" style="text-transform: uppercase; font-weight: bold;">Tax</td>
-                            <td class="invert" style="text-transform: uppercase; font-weight: bold;">BDT {{ $tax=0 }}</td>
+                            <td class="invert" style="text-transform: uppercase; font-weight: bold;">BDT {{ $tax=(5/100)*$sum }}</td>
                         </tr>
                         <tr class="rem1">
                             <td class="invert" style="text-transform: uppercase; font-weight: bold;">Grand Total</td>
                             <td class="invert" style="text-transform: uppercase; font-weight: bold;">BDT {{ $grantTotal=($sum-$discount+$tax) }}</td>
                             {{ Session::put('grant_total', $grantTotal) }}
+                            {{ Session::put('tax', $tax) }}
+                            {{ Session::put('discount', $discount) }}
                         </tr>
                     </table>
                     </div>

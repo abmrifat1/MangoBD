@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Http\Request;
 use DB;
 use PDF;
+use Cart;
 
 class OrderController extends Controller
 {
@@ -44,12 +45,15 @@ class OrderController extends Controller
         $shipping = Shipping::find($order->shipping_id);
         $payment = Payment::find($order->id);
         $products = OrderDetail::where('order_id', $id)->get();
+
         return view('admin.order.view-order-detail',[
             'customer'=>$customer,
             'shipping'=>$shipping,
             'products'=>$products,
             'payments'=>$payment
         ]);
+
+
     }
 
     public function viewOrderInvoice($id){
@@ -110,6 +114,7 @@ class OrderController extends Controller
         $payments = Payment::select('payment_status', 'id')->where('id',$request->id)->first();
         //return $orders;
 
+
         DB::table('orders')
             ->where('id',$request->id)
             ->update([
@@ -121,7 +126,6 @@ class OrderController extends Controller
                 'payment_status'=>$request->paymentStatus,
             ]);
 
-
         $orderDetails = OrderDetail::select('product_id', 'product_quantity')->where('order_id',$request->id)->get();
         //return $orderDetails;
 
@@ -132,6 +136,17 @@ class OrderController extends Controller
                 ->update([
                     'quantity'=>$ordersProducts->quantity-$orderDetail->product_quantity,
                 ]);
+        }
+
+        if ($request->orderStatus == 'success' && $request->paymentStatus){
+            foreach ($orderDetails as $orderDetail){
+                $ordersProducts = Product::where('id', $orderDetail->product_id)->first();
+                DB::table('products')
+                    ->where('id',$ordersProducts->id)
+                    ->update([
+                        'sell'=>$ordersProducts->increment('sell'),
+                    ]);
+            }
         }
 
 

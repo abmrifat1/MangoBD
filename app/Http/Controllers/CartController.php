@@ -16,6 +16,9 @@ class CartController extends Controller
 
     public function addToCart(Request $request){
         $product = Product::find($request->id);
+
+        $product->increment('view');
+
         Cart::add([
             'id' => $product->id,
             'name' => $product->name,
