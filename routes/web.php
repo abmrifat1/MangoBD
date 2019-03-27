@@ -18,6 +18,7 @@ Route::get('/shop', 'MangoBD@shop');
 Route::get('/about', 'MangoBD@about');
 
 Route::get('/contact', 'MangoBD@contact');
+Route::post('/contact-info-save', 'MangoBD@saveContactInfo');
 
 Route::get('/products/{unique_id}', 'MangoBD@show');
 Route::get('category-products/{unique_id}', 'MangoBD@categoryProducts');
@@ -29,12 +30,26 @@ Route::get('/delete-cart-product/{id}', 'CartController@deleteCartProduct');
 
 Route::get('/checkout', 'CheckoutController@index');
 Route::post('/customer-login', 'CheckoutController@customerLogin');
-Route::post('/customer-login', 'CheckoutController@customerLogin');
+
 
 Route::post('/customer-sign-out', 'CheckoutController@customerLogout');
 
 Route::get('/search-mango', 'SearchController@searchMango');
+Route::post('/filter-products', 'MangoBD@filterProducts');
 
+/* Customer Login */
+Route::get('/customer-signin', 'CheckoutController@customerSignIn');
+Route::post('/customer-login-home', 'CheckoutController@customerSignInHome');
+Route::get('/customer-signup', 'CheckoutController@customerSignUp');
+Route::post('/customer-signup-home', 'CheckoutController@customerSignUpHome');
+/* Customer Login */
+
+/* Customer Dashboard Login */
+Route::get('/user/home', 'VendorController@userDashboard');
+Route::post('/customer-login-dashboard', 'VendorController@customerDashboardLogin');
+Route::get('/customer-order-info','VendorController@showCustomerOrderInfo');
+Route::get('/customer-sign-out-dashboard','VendorController@customerDashboardLogout');
+/* Customer Dashboard Login */
 
 Route::post('/new-customer', 'CheckoutController@saveCustomerInfo');
 Route::get('/shipping-info', 'CheckoutController@showShippingInfo');
@@ -53,24 +68,31 @@ Route::get('/admin/product/unpublish/{unique_id}','ProductController@unPublish')
 
 Route::resource('/admin/user','UserController');
 
-Route::get('/order-info','OrderController@showOrderInfo')->middleware('MangoBDMiddleWare');;
-Route::get('/view-order-details/{id}','OrderController@viewOrderDetails')->middleware('MangoBDMiddleWare');;
-Route::get('/view-order-invoice/{id}','OrderController@viewOrderInvoice')->middleware('MangoBDMiddleWare');;
+Route::get('/order-info','OrderController@showOrderInfo')->middleware('MangoBDMiddleWare');
+Route::get('/view-order-details/{id}','OrderController@viewOrderDetails')->middleware('MangoBDMiddleWare');
+Route::get('/view-order-invoice/{id}','OrderController@viewOrderInvoice')->middleware('MangoBDMiddleWare');
 Route::get('/edit-order-info/{id}','OrderController@editOrderInfo');
 Route::post('/update-order-info','OrderController@updateOrderInfo');
 
 /* PDF */
-Route::get('/pdf','OrderController@myPdf')->middleware('MangoBDMiddleWare');;
-Route::get('/download-invoice/{id}','OrderController@downloadOrderInvoice')->middleware('MangoBDMiddleWare');;
+Route::get('/pdf','OrderController@myPdf')->middleware('MangoBDMiddleWare');
+Route::get('/download-invoice/{id}','OrderController@downloadOrderInvoice')->middleware('MangoBDMiddleWare');
 /* PDF */
 
 Route::post('/website/user','UserController@store1')->middleware('MangoBDMiddleWare');;
 
-
-Route::get('user/home', 'VendorController@index');
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('MangoBDMiddleWare');;
+/* Email Verify*/
+Auth::routes(['verify' => true]);
+
+/* Dashboard Url*/
+Route::get('/admin/contact/manage','DashboardController@showContactMessage');
+Route::get('/dashboard/contact/view/{id}','DashboardController@viewContactMessage');
+Route::get('/admin/contact/replay/{id}','DashboardController@replyContactMessage');
+
+/* Dashboard Url*/
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 Route::get('{path}',"HomeController@error")->where( 'path', '([A-z\d-\/_.]+)?' );

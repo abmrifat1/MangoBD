@@ -45,26 +45,27 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>S.L</th>
-                                <th>Product Name</th>
-                                <th>Description</th>
-                                <th>image</th>
-                                <th>Status</th>
-                                <th>Created at</th>
-                                <th>Action</th>
+                                <th colspan="1">S.L</th>
+                                <th colspan="2">Product Name</th>
+                                <th colspan="3">Description</th>
+                                <th colspan="1">image</th>
+                                <th colspan="1">Status</th>
+                                <th colspan="2">Created at</th>
+                                <th colspan="2">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @php($i=0)
                             @foreach($products as $product)
+                                @if((Auth::user()->id) == $product->user_id || Auth::user()->type == 'Author' || Auth::user()->type == 'Admin')
                                 <tr>
-                                    <td>{{++$i}}</td>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->description}}</td>
-                                    <td><img src="{{asset($product->picture_1)}}" height="100" width="100"/></td>
-                                    <td>{{$product->isApprove}}</td>
-                                    <td>{{$product->created_at}}</td>
-                                    <td class="center">
+                                    <td colspan="1">{{++$i}}</td>
+                                    <td colspan="2">{{$product->name}}</td>
+                                    <td colspan="3">{{$product->description}}</td>
+                                    <td colspan="1"><img src="{{asset($product->picture_1)}}" height="100" width="100"/></td>
+                                    <td colspan="1">{{$product->isApprove}}</td>
+                                    <td colspan="2">{{$product->created_at}}</td>
+                                    <td class="center" colspan="2">
                                         @if($product->isApprove=='Approve')
                                             <a href="{{ url('/admin/product/unpublish/'.$product->unique_id) }}" title="Un Publish" class="btn btn-success"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
                                         @else
@@ -79,6 +80,7 @@
                                         <button class="btn btn-danger" title="Delete" id="deleteFormSubmit"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
+                                @endif
                             @endforeach
                             </tbody>
                         </table>

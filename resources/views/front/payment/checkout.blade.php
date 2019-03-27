@@ -236,6 +236,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <label class="control-label col-sm-3">Password</label>
                                 <div class="col-sm-9">
                                     <input type="password" id="myInput1" name="password" value="{{old('password')}}" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+                                    <span>at least one number and one uppercase and lowercase letter, and at least 8 or more characters (aA1bcdef)</span>
                                     {{ $errors->has('password') ? $errors->first('password') : ' ' }}
                                 </div>
                             </div>

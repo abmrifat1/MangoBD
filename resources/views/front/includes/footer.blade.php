@@ -1,3 +1,4 @@
+{{--
 <!-- newsletter -->
 <div class="footer-top">
     <div class="container-fluid">
@@ -19,15 +20,16 @@
     </div>
 </div>
 <!-- //newsletter -->
+--}}
 
 <!-- //Footer -->
 <footer>
     <div class="container">
         <!-- footer first section -->
-        <p class="footer-main">
+        <p class="footer-main" style="background: #eeeeee;">
             <span>"MangoBD"</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
         <!-- //footer first section -->
-        <!-- footer second section -->
+        {{--<!-- footer second section -->
         <div class="w3l-grids-footer">
             <div class="col-xs-4 offer-footer">
                 <div class="col-xs-4 icon-fot">
@@ -58,11 +60,11 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <!-- //footer second section -->
+        <!-- //footer second section -->--}}
         <!-- footer third section -->
         <div class="footer-info w3-agileits-info">
             <!-- footer categories -->
-            <div class="col-sm-3 address-right">
+            <div class="col-sm-5 address-right">
                 <div class="col-xs-6 footer-grids">
                     <h3>Categories</h3>
                     <ul>
@@ -77,7 +79,7 @@
             </div>
             <!-- //footer categories -->
             <!-- quick links -->
-            <div class="col-sm-6 address-right">
+            <div class="col-sm-7 address-right">
                 <div class="col-xs-6 footer-grids">
                     <h3>Quick Links</h3>
                     <ul>
@@ -109,14 +111,14 @@
                             <i class="fa fa-phone"></i> +111 11 1111 </li>
                         <li>
                             <i class="fa fa-envelope-o"></i>
-                            <a href="mailto:example@mail.com"> murshalinsofteng.com</a>
+                            <a href="{{ url('/') }}"> themangobd.com</a>
                         </li>
                     </ul>
                 </div>
             </div>
             <!-- //quick links -->
             <!-- social icons -->
-            <div class="col-sm-3 footer-grids  w3l-socialmk">
+            {{--<div class="col-sm-2 footer-grids  w3l-socialmk" style="float: right;">
                 <h3>Follow Us on</h3>
                 <div class="social">
                     <ul>
@@ -148,27 +150,55 @@
                     <div class="clearfix"> </div>
                 </div>
             </div>
-            <!-- //social icons -->
+            <!-- //social icons -->--}}
             <div class="clearfix"></div>
         </div>
         <!-- //footer third section -->
         <!-- footer fourth section (text) -->
-        <div class="agile-sometext">
+        {{--<div class="agile-sometext">
             <!-- brands -->
             <div class="sub-some">
                 <h5>Popular Mango</h5>
-                <ul>
+                --}}{{--<ul style="font-size: 25px;">
                     <li>
-                        <a href="product2.html"> Sample1</a>
+                        <a href="product2.html">Langra</a>
                     </li>
-                </ul>
-            </div>
+                    <li>
+                        <a href="product2.html">Himsagor</a>
+                    </li>
+                    <li>
+                        <a href="product2.html">Amropali</a>
+                    </li>
+                    <li>
+                        <a href="product2.html">Fazli</a>
+                    </li>
+                    <li>
+                        <a href="product2.html">Gopalvog</a>
+                    </li>
+                    <li>
+                        <a href="product2.html">Asina</a>
+                    </li>
+                </ul>--}}{{--
+                --}}{{--<ul>
+                    @foreach($categories as $category)
+                        <li style="font-size: 45px;">
+                            <a href="{{ url('category-products/'.$category->unique_id) }}">{{$category->name}}</a>
+                        </li>
+                    @endforeach
+                </ul>--}}{{--
+            </div>--}}
             <!-- //brands -->
             <!-- payment -->
             <div class="sub-some child-momu">
                 <h5>Payment Method</h5>
                 <ul>
                     <li>
+                        <img src="{{ asset('front/images/cash.jpg') }}" style="width: 50px; height: 50px;" alt="">
+                    </li>
+                    <li>
+                        <img src="{{ asset('front/images/bkash.jpg') }}" style="width: 50px; height: 50px;" alt="">
+                    </li>
+                    {{--<li>
                         <img src="{{ asset('front/shop/images/pay2.png') }}" alt="">
                     </li>
                     <li>
@@ -194,7 +224,7 @@
                     </li>
                     <li>
                         <img src="{{ asset('front/shop/images/pay9.png') }}" alt="">
-                    </li>
+                    </li>--}}
                 </ul>
             </div>
             <!-- //payment -->

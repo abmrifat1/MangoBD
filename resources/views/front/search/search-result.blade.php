@@ -6,7 +6,23 @@
 
 @endsection
 @section('main-content')
-    @include('front.includes.banner');
+@include('front.includes.banner');
+
+<!-- page -->
+<div class="services-breadcrumb">
+    <div class="agile_inner_breadcrumb">
+        <div class="container">
+            <ul class="w3_short">
+                <li>
+                    <a href="{{ url('/') }}">Home</a>
+                    <i>|</i>
+                </li>
+                <li>Search Result Page</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //page -->
 
     <!-- top Products -->
     <div class="ads-grid">
@@ -35,64 +51,81 @@
 
 
                 <!-- price range -->
-                <div class="range">
-                    <h3 class="agileits-sear-head">Price range</h3>
-                    <ul class="dropdown-menu6">
-                        <li>
-
-                            <div id="slider-range"></div>
-                            <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
-                        </li>
-                    </ul>
-                </div>
-                <!-- //price range -->
-                <!-- food preference -->
-                <div class="left-side">
-                    <h3 class="agileits-sear-head">Raw | Ripe</h3>
-                    <ul>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">Raw Mango</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">Ripe Mango</span>
-                        </li>
-                    </ul>
-                </div>
-                <!-- //food preference -->
-                <!-- discounts -->
-                <div class="left-side">
-                    <h3 class="agileits-sear-head">Discount</h3>
-                    <ul>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">5% or More</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">10% or More</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">20% or More</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">30% or More</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">50% or More</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">60% or More</span>
-                        </li>
-                    </ul>
-                </div>
+                <form action="{{ url('/filter-products') }}" method="post">
+                {{ csrf_field()  }}
+                <!-- price range -->
+                    <div class="range">
+                        <h3 class="agileits-sear-head">Price range</h3>
+                        <ul class="dropdown-menu6">
+                            <li>
+                                <div id="slider-range"></div>
+                                <input type="text" name="priceRange" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //price range -->
+                    <!-- food preference -->
+                    <div class="left-side">
+                        <h3 class="agileits-sear-head">Mango | Type</h3>
+                        <ul>
+                            <li>
+                                <input type="checkbox" name="mangoType" value="raw" class="checked">
+                                <span class="span">Raw Mango</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="mangoType" value="ripe" class="checked">
+                                <span class="span">Ripe Mango</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //food preference -->
+                    <!-- discounts -->
+                    <div class="left-side">
+                        <h3 class="agileits-sear-head">Discount</h3>
+                        {{--<ul>
+                            @foreach($productsDiscounts as $productsDiscount)
+                                <li>
+                                    <input type="checkbox" name="productDiscount" class="checked discountId" value="{{ $productsDiscount->discount }}">
+                                    <span class="span">{{ $productsDiscount->discount }}% Discount</span>
+                                </li>
+                            @endforeach
+                        </ul>--}}
+                        <ul>
+                            <li>
+                                <input name="productDiscount" type="checkbox" class="checked" value="1">
+                                <span class="span">1% or More</span>
+                            </li>
+                            <li>
+                                <input name="productDiscount" type="checkbox" class="checked" value="5">
+                                <span class="span">5% or More</span>
+                            </li>
+                            <li>
+                                <input name="productDiscount" type="checkbox" class="checked" value="10">
+                                <span class="span">10% or More</span>
+                            </li>
+                            <li>
+                                <input name="productDiscount" type="checkbox" class="checked" value="15">
+                                <span class="span">15% or More</span>
+                            </li>
+                            <li>
+                                <input name="productDiscount" type="checkbox" class="checked" value="20">
+                                <span class="span">20% or More</span>
+                            </li>
+                            <li>
+                                <input name="productDiscount" type="checkbox" class="checked" value="25">
+                                <span class="span">25% or More</span>
+                            </li>
+                            <li>
+                                <input name="productDiscount" type="checkbox" class="checked" value="30">
+                                <span class="span">30% or More</span>
+                            </li>
+                        </ul>
+                        <button type="submit" class="btn btn-success">Filter Now</button>
+                    </div>
+                </form>
                 <!-- //discounts -->
-                <!-- reviews -->
+                <!-- //discounts -->
+              {{--  <!-- reviews -->
                 <div class="customer-rev left-side">
                     <h3 class="agileits-sear-head">Customer Review</h3>
                     <ul>
@@ -159,8 +192,8 @@
                         </li>
                     </ul>
                 </div>
-                <!-- //cuisine -->
-                <!-- deals -->
+                <!-- //cuisine -->--}}
+               {{-- <!-- deals -->
                 <div class="deal-leftmk left-side">
                     <h3 class="agileits-sear-head">Special Deals</h3>
                     <div class="special-sec1">
@@ -214,7 +247,7 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <!-- //deals -->
+                <!-- //deals -->--}}
             </div>
             <!-- //product left -->
             <!-- product right -->
@@ -265,10 +298,6 @@
                                 </div>
                             </div>
                         @endforeach()
-                        {{ $products->links() }}
-                        <div style="float: left; margin-left: 50px;">
-
-                        </div>
 
                         <div class="clearfix"></div>
                     </div>
@@ -349,7 +378,7 @@
     <div class="featured-section" id="projects">
         <div class="container">
             <!-- tittle heading -->
-            <h3 class="tittle-w3l">Special Offers
+            <h3 class="tittle-w3l">Most Selling Products
                 <span class="heading-style">
 					<i></i>
 					<i></i>
@@ -359,278 +388,51 @@
             <!-- //tittle heading -->
             <div class="content-bottom-in">
                 <ul id="flexiselDemo1">
-                    <li>
-                        <div class="w3l-specilamk">
-                            <div class="speioffer-agile">
-                                <a href="single.php">
-                                    <img src="{{ asset('front/images/m1.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="product-name-w3l">
-                                <h4>
-                                    <a href="single.php">Fajli, 5g</a>
-                                </h4>
-                                <div class="w3l-pricehkj">
-                                    <h6>$220.00</h6>
-                                    <p>Save $40.00</p>
+                    @foreach($productsMostSells as $productsMostSell)
+                        <div class="col-md-3 product-men" >
+                            <div class="men-pro-item simpleCart_shelfItem" style="height: 350px; width: 250px;">
+                                <div class="men-thumb-item">
+                                    <img src="{{ $productsMostSell->picture_1 }}" alt="" style="height: 150px; width: 200px;">
+                                    <div class="men-cart-pro">
+                                        <div class="inner-men-cart-pro">
+                                            <a href="{{ url('/products/'.$productsMostSell->unique_id) }}" class="link-product-add-cart">Quick View</a>
+                                        </div>
+                                    </div>
+                                    <span class="product-new-top">Fresh</span>
                                 </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Aashirvaad, 5g" />
-                                            <input type="hidden" name="amount" value="220.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Add to cart" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="w3l-specilamk">
-                            <div class="speioffer-agile">
-                                <a href="single.php">
-                                    <img src="{{ asset('front/images/m1.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="product-name-w3l">
-                                <h4>
-                                    <a href="single.php">Asina, 5kg</a>
-                                </h4>
-                                <div class="w3l-pricehkj">
-                                    <h6>$99.00</h6>
-                                    <p>Save $20.00</p>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Kissan Tomato Ketchup, 950g" />
-                                            <input type="hidden" name="amount" value="99.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Add to cart" class="button" />
-                                        </fieldset>
-                                    </form>
+                                <div class="item-info-product ">
+                                    <h4 style="margin-bottom: 5px;">
+                                        <a href="{{ url('/products/'.$productsMostSell->unique_id) }}">{{$productsMostSell->name}}, {{ $productsMostSell->quantity }}kg</a>
+                                    </h4>
+                                    <h4>
+                                        @if($productsMostSell->discount < 1)
+                                            <a href="{{ url('/products/'.$productsMostSell->unique_id) }}" style="font-size: 14px; background-color: #ffffff; color: white; padding: 0 2px; border-radius: 2px;"></a>
+                                        @else
+                                            <a href="{{ url('/products/'.$productsMostSell->unique_id) }}" style="font-size: 14px; background-color: #b2a50b; color: white; padding: 0 2px; border-radius: 2px;">{{$productsMostSell->discount}}% Discount</a>
+                                        @endif
+                                    </h4>
+                                    <div class="info-product-price">
+                                        <span class="item_price">{{ $productsMostSell->sellPrice }}tk Per Kg</span>
+                                        <del>{{ $productsMostSell->regPrice }}tk</del>
+                                    </div>
+
+                                    <div>
+                                        <form action="{{ url('/add-to-cart') }}" method="post">
+                                            {{ csrf_field() }}
+                                            <div class="form-group">
+                                                <input type="hidden" name="qty" value="1" min="1">
+                                                <input type="hidden" name="id" value="{{ $productsMostSell->id }}">
+                                            </div>
+                                            <div>
+                                                <input type="submit" name="btn" value="Add To Cart" class="my-cart-btn item_add button">
+                                            </div>
+                                        </form>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="w3l-specilamk">
-                            <div class="speioffer-agile">
-                                <a href="single.php">
-                                    <img src="{{ asset('front/images/m1.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="product-name-w3l">
-                                <h4>
-                                    <a href="single.php">Langra, 1g</a>
-                                </h4>
-                                <div class="w3l-pricehkj">
-                                    <h6>$69.00</h6>
-                                    <p>Save $20.00</p>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Madhur Pure Sugar, 1g" />
-                                            <input type="hidden" name="amount" value="69.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Add to cart" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="w3l-specilamk">
-                            <div class="speioffer-agile">
-                                <a href="single2.php">
-                                    <img src="{{ asset('front/images/m1.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="product-name-w3l">
-                                <h4>
-                                    <a href="single2.php">Himsagor, 5kg</a>
-                                </h4>
-                                <div class="w3l-pricehkj">
-                                    <h6>$187.00</h6>
-                                    <p>Save $30.00</p>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Surf Excel Liquid, 1.02L" />
-                                            <input type="hidden" name="amount" value="187.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Add to cart" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="w3l-specilamk">
-                            <div class="speioffer-agile">
-                                <a href="single.php">
-                                    <img src="{{ asset('front/images/m1.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="product-name-w3l">
-                                <h4>
-                                    <a href="single.php">Amropali, 5kg</a>
-                                </h4>
-                                <div class="w3l-pricehkj">
-                                    <h6>$160.00</h6>
-                                    <p>Save $60.00</p>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Cadbury Choclairs, 655.5g" />
-                                            <input type="hidden" name="amount" value="160.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Add to cart" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="w3l-specilamk">
-                            <div class="speioffer-agile">
-                                <a href="single2.php">
-                                    <img src="{{ asset('front/images/m1.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="product-name-w3l">
-                                <h4>
-                                    <a href="single2.php">Rupali, 5kg</a>
-                                </h4>
-                                <div class="w3l-pricehkj">
-                                    <h6>$121.60</h6>
-                                    <p>Save $30.00</p>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Fair & Lovely, 80 g" />
-                                            <input type="hidden" name="amount" value="121.60" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Add to cart" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="w3l-specilamk">
-                            <div class="speioffer-agile">
-                                <a href="single.php">
-                                    <img src="{{ asset('front/images/m1.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="product-name-w3l">
-                                <h4>
-                                    <a href="single.php">Fajli, 5kg</a>
-                                </h4>
-                                <div class="w3l-pricehkj">
-                                    <h6>$180.00</h6>
-                                    <p>Save $30.00</p>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Sprite, 2.25L (Pack of 2)" />
-                                            <input type="hidden" name="amount" value="180.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Add to cart" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="w3l-specilamk">
-                            <div class="speioffer-agile">
-                                <a href="single2.php">
-                                    <img src="{{ asset('front/images/m1.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="product-name-w3l">
-                                <h4>
-                                    <a href="single2.php">Amropali, 5kg</a>
-                                </h4>
-                                <div class="w3l-pricehkj">
-                                    <h6>$153.00</h6>
-                                    <p>Save $40.00</p>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Lakme Eyeconic Kajal, 0.35 g" />
-                                            <input type="hidden" name="amount" value="153.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Add to cart" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    @endforeach()
                 </ul>
             </div>
         </div>

@@ -78,6 +78,7 @@ class ProductController extends Controller
             'quantity'=>$request->quantity,
             'isStock'=>$request->isStock,
             'categoryId'=>$request->categoryId,
+            'user_id'=>$request->usrId,
             'picture_1'=>$imageUrl,
             'picture_2'=>$imageUrl1,
             'picture_3'=>$imageUrl2,

@@ -77,13 +77,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="thumb-image">
                                 <img src="/{{ $product->picture_1 }}" data-imagezoom="true" class="img-responsive" alt=""> </div>
                         </li>
-                        <li data-thumb="/{{ $product->picture_1 }}">
+                        <li data-thumb="/{{ $product->picture_2 }}">
                             <div class="thumb-image">
-                                <img src="/{{ $product->picture_1 }}" data-imagezoom="true" class="img-responsive" alt=""> </div>
+                                <img src="/{{ $product->picture_2 }}" data-imagezoom="true" class="img-responsive" alt=""> </div>
                         </li>
-                        <li data-thumb="/{{ $product->picture_1 }}">
+                        <li data-thumb="/{{ $product->picture_3 }}">
                             <div class="thumb-image">
-                                <img src="/{{ $product->picture_1 }}" data-imagezoom="true" class="img-responsive" alt=""> </div>
+                                <img src="/{{ $product->picture_3 }}" data-imagezoom="true" class="img-responsive" style="height: 200px;" alt=""> </div>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -205,7 +205,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="w3l-specilamk">
                         <div class="speioffer-agile">
                             <a href="single.html">
-                                <img src="/{{ $product->picture_1 }}" alt="" style="height: 255px;">
+                                <img src="/{{ $product->picture_1 }}" alt="" style="height: 200px; width: 150px;">
                             </a>
                         </div>
                         <div class="product-name-w3l">

@@ -32,10 +32,14 @@ class OrderController extends Controller
         $orders = DB::table('orders')
             ->join('customers', 'orders.customer_id', '=', 'customers.id')
             ->join('payments', 'orders.id', '=', 'payments.order_id')
-            ->select('orders.*', 'customers.first_name', 'customers.last_name', 'payments.payment_type', 'payments.payment_status')
+            ->join('order_details', 'order_details.order_id', '=', 'orders.id')
+            ->join('products', 'products.id', '=', 'order_details.product_id')
+            ->select('orders.*', 'customers.first_name', 'customers.last_name', 'payments.payment_type', 'payments.payment_status', 'products.user_id')
             ->orderBy('id', 'desc')
             ->get();
         //return $orders;
+
+
         return view('admin.order.show-order', ['orders'=>$orders]);
     }
 
@@ -45,12 +49,27 @@ class OrderController extends Controller
         $shipping = Shipping::find($order->shipping_id);
         $payment = Payment::find($order->id);
         $products = OrderDetail::where('order_id', $id)->get();
+        $cartProducts = Cart::content();
+
+        //return $cartProducts;
+/* Find Product Discount */
+        /*$orders = new Order();
+        $orders = DB::table('orders')
+            ->join('customers', 'orders.customer_id', '=', 'customers.id')
+            ->join('payments', 'orders.id', '=', 'payments.order_id')
+            ->join('order_details', 'order_details.order_id', '=', 'orders.id')
+            ->join('products', 'products.id', '=', 'order_details.product_id')
+            ->select('orders.*', 'customers.first_name', 'customers.last_name', 'payments.payment_type', 'payments.payment_status', 'products.user_id', 'products.discount')
+            ->orderBy('id', 'desc')
+            ->get();
+        return $orders;*/
+ /* Find Product Discount */
 
         return view('admin.order.view-order-detail',[
             'customer'=>$customer,
             'shipping'=>$shipping,
             'products'=>$products,
-            'payments'=>$payment
+            'payments'=>$payment,
         ]);
 
 

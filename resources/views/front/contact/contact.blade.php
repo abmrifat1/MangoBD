@@ -39,21 +39,29 @@
         <div class="contact agileits">
             <div class="contact-agileinfo">
                 <div class="contact-form wthree">
-                    <form action="#" method="post">
+
+                    <form action="{{ url('/contact-info-save') }}" method="post">
+                        {{ csrf_field() }}
                         <div class="">
                             <input type="text" name="name" placeholder="Name" required="">
+                            {{ $errors->has('name') ? $errors->first('name') : ''}}
                         </div>
                         <div class="">
                             <input class="text" type="text" name="subject" placeholder="Subject" required="">
+                            {{ $errors->has('subject') ? $errors->first('subject') : ''}}
                         </div>
                         <div class="">
                             <input class="email" type="email" name="email" placeholder="Email" required="">
+                            {{ $errors->has('email') ? $errors->first('email') : ''}}
                         </div>
                         <div class="">
                             <textarea placeholder="Message" name="message" required=""></textarea>
+                            {{ $errors->has('message') ? $errors->first('message') : ''}}
                         </div>
                         <input type="submit" value="Submit">
                     </form>
+
+
                 </div>
                 <div class="contact-right wthree">
                     <div class="col-xs-7 contact-text w3-agileits">
@@ -61,7 +69,7 @@
                         <p>
                             <i class="fa fa-map-marker"></i> kansat, Shibgoj, Chapai Nawabgoj, Rajshahi.</p>
                         <p>
-                            <i class="fa fa-phone"></i> Mobile : 01777-888888</p>
+                            <i class="fa fa-phone"></i> Mobile : 01777-822162</p>
                         <p>
                             <i class="fa fa-fax"></i> FAX : +1 888 888 4444</p>
                         <p>

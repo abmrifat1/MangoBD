@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Providers;
+use App\ContactInfo;
 use App\Product;
+use App\User;
 use View;
 use App\Category;
 use Illuminate\Support\ServiceProvider;
@@ -24,6 +26,17 @@ class AppServiceProvider extends ServiceProvider
         View::composer('front.includes.footer',function ($view){
             $view->with('categories',Category::orderby('name','asc')->latest()->take(5)->get());
         });
+        View::composer('admin.product.create',function ($view){
+            $view->with('users',User::orderby('name','asc')->get());
+        });
+
+        View::composer('admin.includes.sidebar',function ($view){
+            $view->with('messageContacts',ContactInfo::orderby('id','desc')->get());
+        });
+        View::composer('admin.includes.sidebar',function ($view){
+            $view->with('$messageCountss',ContactInfo::count());
+        });
+
 
 
 

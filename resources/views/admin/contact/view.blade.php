@@ -133,31 +133,31 @@
                                 <div class="mail_heading row">
                                     <div class="col-md-8">
                                         <div class="btn-group">
-                                            <a href="{{url('/dashboard/contact/replay/'.$contact->unique_id)}}" class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</a>
+                                            <a href="{{url('/admin/contact/replay/'.$messageContacts->id)}}" class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</a>
                                             {{--<button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i></button>
                                             <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Print"><i class="fa fa-print"></i></button>--}}
                                             <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash"><i class="fa fa-trash-o"></i></button>
                                         </div>
                                     </div>
                                     <div class="col-md-4 text-right">
-                                        <p class="date"> {{$contact->created_at}}</p>
+                                        <p class="date"> {{$messageContacts->created_at}}</p>
                                     </div>
                                     <div class="col-md-12">
-                                        <h4> {{$contact->subject}}</h4>
+                                        <h4> {{$messageContacts->subject}}</h4>
                                     </div>
                                 </div>
                                 <div class="sender-info">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <strong>{{$contact->name}}</strong>
-                                            <span>({{$contact->email}})</span> to
+                                            <strong>{{$messageContacts->name}}</strong>
+                                            <span>({{$messageContacts->email}})</span> to
                                             <strong>me</strong>
                                             <a class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="view-mail">
-                                    {{$contact->message}}
+                                    {{$messageContacts->message}}
                                 </div>
                             </div>
 
@@ -171,7 +171,7 @@
             </div>
         </div>
         <div class="text-center">
-            <a href="{{url('/dashboard/contact/manage')}}" class="btn btn-primary">All-messages</a>
+            <a href="{{url('/admin/contact/manage')}}" class="btn btn-primary">All-messages</a>
         </div>
     </div>
     </div>

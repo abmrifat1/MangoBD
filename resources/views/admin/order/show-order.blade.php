@@ -44,30 +44,31 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>S.L</th>
-                                <th>Order ID</th>
-                                <th>Customer Name</th>
-                                <th>Order Total</th>
-                                <th>Order Status</th>
-                                <th>Payment Type</th>
-                                <th>Payment Status</th>
-                                <th>Order Date</th>
-                                <th>Action</th>
+                                <th colspan="1">S.L</th>
+                                <th colspan="1">Order ID</th>
+                                <th colspan="2">Customer Name</th>
+                                <th colspan="1">Order Total</th>
+                                <th colspan="1">Order Status</th>
+                                <th colspan="1">Payment Type</th>
+                                <th colspan="1">Payment Status</th>
+                                <th colspan="2">Order Date</th>
+                                <th colspan="1">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @php($i=0)
                             @foreach($orders as $order)
+                                @if((Auth::user()->id) == $order->user_id || Auth::user()->type == 'Author' || Auth::user()->type == 'Admin')
                                 <tr>
-                                    <td>{{++$i}}</td>
-                                    <td>{{ $order->id }}</td>
-                                    <td>{{$order->first_name.' '.$order->last_name}}</td>
-                                    <td>TK.{{$order->order_total}}</td>
-                                    <td>{{$order->order_status}}</td>
-                                    <td>{{$order->payment_type}}</td>
-                                    <td>{{$order->payment_status}}</td>
-                                    <td>{{$order->created_at}}</td>
-                                    <td>
+                                    <td colspan="1">{{++$i}}</td>
+                                    <td colspan="1">{{ $order->id }}</td>
+                                    <td colspan="2">{{$order->first_name.' '.$order->last_name}}</td>
+                                    <td colspan="1">TK.{{$order->order_total}}</td>
+                                    <td colspan="1">{{$order->order_status}}</td>
+                                    <td colspan="1">{{$order->payment_type}}</td>
+                                    <td colspan="1">{{$order->payment_status}}</td>
+                                    <td colspan="2">{{$order->created_at}}</td>
+                                    <td colspan="1">
                                        <a href="{{ url('/view-order-details/'.$order->id) }}" class="btn btn-info btn-xs" title="View Order Details">
                                            <span class="glyphicon glyphicon-zoom-in"></span>
                                        </a>
@@ -85,6 +86,7 @@
                                         </a>
                                     </td>
                                 </tr>
+                                @endif
                             @endforeach
                             </tbody>
                         </table>

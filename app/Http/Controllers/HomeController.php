@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ContactInfo;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home.index');
+        $messageCounts = ContactInfo::count();
+        $messageContacts = ContactInfo::orderby('id','desc')->get();
+        //return $messageCounts;
+
+        return view('admin.home.index', ['messageCounts'=>$messageCounts, 'messageContacts'=>$messageContacts]);
     }
 
     public function error(){

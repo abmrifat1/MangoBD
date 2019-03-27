@@ -17,8 +17,8 @@
                     <figure class="effect-roxy">
                         <img src="{{asset('front/images/bottom1.jpg')}}" alt=" " class="img-responsive" />
                         <figcaption>
-                            <h3><span>F</span>all Ahead</h3>
-                            <p>New Arrivals</p>
+                           {{-- <h3><span></span>all Ahead</h3>
+                            <p>New Arrivals</p>--}}
                         </figcaption>
                     </figure>
                 </div>
@@ -26,8 +26,8 @@
                     <figure class="effect-roxy">
                         <img src="{{asset('front/images/bottom2.jpg')}}" alt=" " class="img-responsive" />
                         <figcaption>
-                            <h3><span>F</span>all Ahead</h3>
-                            <p>New Arrivals</p>
+                            {{--<h3><span>F</span>all Ahead</h3>
+                            <p>New Arrivals</p>--}}
                         </figcaption>
                     </figure>
                 </div>
@@ -46,12 +46,12 @@
                 <h3>Save up to <span>50%</span> in this week</h3>
                 <p>Suspendisse varius turpis efficitur erat laoreet dapibus.
                     Mauris sollicitudin scelerisque commodo.Nunc dapibus mauris sed metus finibus posuere.</p>
-                <div class="col-md-4 w3l_schedule_bottom_right_grid1">
+                <div class="col-md-12 w3l_schedule_bottom_right_grid1">
                     <i class="fa fa-user-o" aria-hidden="true"></i>
                     <h4>Customers</h4>
                     <h5 class="counter">653</h5>
                 </div>
-                <div class="col-md-4 w3l_schedule_bottom_right_grid1">
+                {{--<div class="col-md-4 w3l_schedule_bottom_right_grid1">
                     <i class="fa fa-calendar-o" aria-hidden="true"></i>
                     <h4>Events</h4>
                     <h5 class="counter">823</h5>
@@ -60,7 +60,7 @@
                     <i class="fa fa-shield" aria-hidden="true"></i>
                     <h4>Awards</h4>
                     <h5 class="counter">45</h5>
-                </div>
+                </div>--}}
                 <div class="clearfix"> </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
     <!-- banner-bootom-w3-agileits -->
     <div class="banner-bootom-w3-agileits">
         <div class="container">
-            <h3 class="wthree_text_info">What's <span>Trending</span></h3>
+            <h3 class="wthree_text_info">Pure <span>Mango</span></h3>
 
             <div class="col-md-5 bb-grids bb-left-agileits-w3layouts">
                 <a href="womens.html">
@@ -78,8 +78,8 @@
                         <figure class="effect-roxy">
                             <img src="{{asset('front/images/bb1.jpg')}}" alt=" " class="img-responsive" />
                             <figcaption>
-                                <h3><span>S</span>ale </h3>
-                                <p>Upto 55%</p>
+                                {{--<h3><span>S</span>ale </h3>
+                                <p>Upto 55%</p>--}}
                             </figcaption>
                         </figure>
                     </div>
@@ -91,8 +91,8 @@
                         <figure class="effect-roxy">
                             <img src="{{asset('front/images/bottom3.jpg')}}" alt=" " class="img-responsive" />
                             <figcaption>
-                                <h3><span>S</span>ale </h3>
-                                <p>Upto 55%</p>
+                                {{--<h3><span>S</span>ale </h3>
+                                <p>Upto 55%</p>--}}
                             </figcaption>
                         </figure>
                     </div>
@@ -102,8 +102,8 @@
                         <figure class="effect-roxy">
                             <img src="{{asset('front/images/bottom4.jpg')}}" alt=" " class="img-responsive">
                             <figcaption>
-                                <h3><span>S</span>ale </h3>
-                                <p>Upto 65%</p>
+                                {{--<h3><span>S</span>ale </h3>
+                                <p>Upto 65%</p>--}}
                             </figcaption>
                         </figure>
                     </div>
@@ -115,11 +115,11 @@
     <!--/grids-->
     <div class="agile_last_double_sectionw3ls">
         <div class="col-md-6 multi-gd-img multi-gd-text ">
-            <a href="womens.html"><img src="{{asset('front/images/bot_1.jpg')}}" alt=" "><h4>We Give You <span>50%</span> offer</h4></a>
+            <a href="{{ url('/shop') }}"><img src="{{asset('front/images/bot_1.jpg')}}" alt=" "><{{--h4>We Give You <span>50%</span> offer</h4>--}}</a>
 
         </div>
         <div class="col-md-6 multi-gd-img multi-gd-text ">
-            <a href="womens.html"><img src="{{asset('front/images/bot_2.jpg')}}" alt=" "><h4>We Give You <span>50%</span> offer</h4></a>
+            <a href="{{ url('/shop') }}"><img src="{{asset('front/images/bot_2.jpg')}}" alt=" "><h4>We Give You <span>50%</span> offer</h4></a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -156,7 +156,7 @@
                                 @endif
                             </h4>
                             <div class="info-product-price">
-                                <span class="item_price">{{ $product->sellPrice }}tk</span>
+                                <span class="item_price">{{ $product->sellPrice }}tk Per Kg</span>
                                 <del>{{ $product->regPrice }}tk</del>
                             </div>
 
@@ -219,7 +219,7 @@
                                 @endif
                             </h4>
                             <div class="info-product-price">
-                                <span class="item_price">{{ $mvProducts->sellPrice }}tk</span>
+                                <span class="item_price">{{ $mvProducts->sellPrice }}tk Per Kg</span>
                                 <del>{{ $mvProducts->regPrice }}tk</del>
                             </div>
 

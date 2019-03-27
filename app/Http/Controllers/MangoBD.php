@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\ContactInfo;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +18,7 @@ class MangoBD extends Controller
     public function index()
     {
         $categories = Category::orderby('id','desc')->get();
+
         return view('admin.category.manage',compact('categories'));
     }
 
@@ -114,21 +116,95 @@ class MangoBD extends Controller
 
     public function shop()
     {
-        $products = Product::orderby('view','desc')->paginate(12);
+       /* if ($request->ajax() && isset($request->start)){
+            $start = $request->start;
+            $end =$request->end;
+
+            $products = DB::table('products')
+                ->where ('sellPrice', '>=', $start)
+                ->where ('sellPrice', '<=', $end)
+                ->orderBy('sellPrice', 'ASC')
+                ->paginate(12);
+
+            response()->json($products);
+            return view('front.shop.shop', ['products'=>$products]);
+        }
+        elseif (isset($request->discountsId)){
+          echo  $discountsId = $request->discountsId;
+        }*/
+
+
+        $products = Product::orderby('view','desc')->paginate(9);
         $products1 = Product::orderby('view','desc')->take(9)->get();
-        //return $products;
-        $productsDiscounts = Product::where('discount', '>', '0')->orderby('discount', 'desc')->take(8)->get();
+        $productsMostSells = Product::orderby('sell','desc')->where('sell', '>', 0)->latest()->get();
+        //return $productsMostSells;
+        $productsDiscounts = Product::distinct('discount')->select('id','discount')->orderBy('discount', 'desc')->take(5)->get();
+
         //return $productsDiscounts;
 
-        return view('front.shop.shop',['products'=>$products],['products1'=>$products1, 'productsDiscounts'=>$productsDiscounts]);
+        return view('front.shop.shop',['products'=>$products,'products1'=>$products1, 'productsDiscounts'=>$productsDiscounts, 'productsMostSells'=>$productsMostSells]);
+}
+
+
+    public function filterProducts(Request $request){
+        //return $request;
+
+        $productsDiscounts = Product::distinct('discount')->select('id','discount')->orderBy('discount', 'desc')->take(5)->get();
+        //$products = Product::where('type',$request->mangoType)->orWhere('discount',$request->productDiscount)->paginate(10);
+        $range = explode('-',$request->priceRange);
+        $start = $range[0];
+        $end = $range[1];
+
+        //return $range[1];
+        if (!empty($request->priceRange) && empty($request->mangoType) && empty($request->productDiscount)){
+            $products = Product::where('sellPrice', '>=', $start)->orWhere('sellPrice', '<=', $end)->take(12)->get();
+            /*$products = DB::table('products')->whereBetween('sellPrice', [$start,$end])->get();
+            return $products;
+            $data = $start.' - '.$end;
+            return $data;*/
+        }
+        elseif (!empty($request->priceRange) && !empty($request->mangoType) && empty($request->productDiscount)){
+            $products = Product::where('type', $request->mangoType)->take(12)->get();
+            //return $products;
+        }
+        elseif (!empty($request->priceRange) && empty($request->mangoType) && !empty($request->productDiscount)){
+            $products = Product::where('discount', '>=', $request->productDiscount)->orWhere('discount', '<', 5)->take(12)->get();
+
+        }
+        elseif (!empty($request->priceRange) && !empty($request->mangoType) && !empty($request->productDiscount)){
+            $products = Product::where('sellPrice', '>=', $start)->orWhere('sellPrice', '<=', $end)->take(12)->get();
+            $products = Product::where('type', $request->mangoType)->take(12)->get();
+            $products = Product::where('discount', '>=', $request->productDiscount)->orWhere('discount', '<', 5)->take(12)->get();
+            //return $products;
+        }
+
+        return view('front.filter.filter',['products'=>$products, 'productsDiscounts'=>$productsDiscounts]);
+
     }
-    public function about()
-    {
+
+    public function about(){
         return view('front.about.about');
     }
-    public function contact()
-    {
+    public function contact(){
         return view('front.contact.contact');
     }
+
+    public function saveContactInfo(Request $request){
+        //return $request;
+        $this->validate($request,[
+            'name'=>'required|regex:/^[\pL\s\-]+$/u',
+            'email'=>'required|email',
+            'message'=>'required',
+        ]);
+        $contactinf=new ContactInfo();
+        $contactinf->name=$request->name;
+        $contactinf->email=$request->email;
+        $contactinf->subject=$request->subject;
+        $contactinf->message=$request->message;
+        $contactinf->save();
+
+        return redirect('/');
+    }
+
 
 }

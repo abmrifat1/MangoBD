@@ -46,15 +46,15 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>S.L</th>
-                                <th>User Name</th>
-                                <th>Email</th>
-                                <th>Phone Number</th>
-                                <th>Address</th>
-                                <th>Profile_image</th>
-                                <th>Role As</th>
-                                <th>Created at</th>
-                                <th>Action</th>
+                                <th colspan="1">S.L</th>
+                                <th colspan="2">User Name</th>
+                                <th colspan="2">Email</th>
+                                <th colspan="1">Phone Number</th>
+                                <th colspan="2">Address</th>
+                                <th colspan="1">Profile_image</th>
+                                <th colspan="1">Role As</th>
+                                <th colspan="1">Created at</th>
+                                <th colspan="1">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -62,16 +62,16 @@
                             @foreach($users as $user)
                                 @if((Auth::user()->id) == $user->id || Auth::user()->type == 'Author')
                                     <tr>
-                                    <td>{{++$i}}</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->phone}}</td>
-                                    <td>{{$user->address}}</td>
-                                    <td><img src="{{asset($user->image)}}" height="100" width="100"/></td>
-                                    <td>{{$user->type}}</td>
-                                    <td>{{$user->created_at}}</td>
+                                    <td colspan="1">{{++$i}}</td>
+                                    <td colspan="2">{{$user->name}}</td>
+                                    <td colspan="2">{{$user->email}}</td>
+                                    <td colspan="1">{{$user->phone}}</td>
+                                    <td colspan="2">{{$user->address}}</td>
+                                    <td colspan="1"><img src="{{asset($user->image)}}" height="100" width="100"/></td>
+                                    <td colspan="1">{{$user->type}}</td>
+                                    <td colspan="1">{{$user->created_at}}</td>
 
-                                    <td class="center">
+                                    <td class="center" colspan="1">
 
                                         <a href="{{ url('/admin/user/'.$user->unique_id.'/edit') }}" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 

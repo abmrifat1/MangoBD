@@ -40,18 +40,27 @@
                     </form>
                 @else
                     <li>
+                        <a href="{{ url('/customer-signin') }}">
+                        <span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In </a>
+                    </li>
+                    {{--<li>
                         <a href="#" data-toggle="modal" data-target="#myModal1">
                             <span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In </a>
-                    </li>
+                    </li>--}}
                 @endif
 
                 @if(Session::get('customerId'))
 
                 @else
-                <li>
+                {{--<li>
                     <a href="#" data-toggle="modal" data-target="#myModal2">
                         <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up </a>
-                </li>
+                </li>--}}
+
+                    <li>
+                        <a href="{{ url('/customer-signup') }}">
+                            <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up </a>
+                    </li>
                 @endif
             </ul>
             <!-- //header lists -->
@@ -323,20 +332,18 @@
                             </li>
 
                             <li class="">
-                                <a class="nav-stylehead" href="faqs.blade.php">FAQS</a>
-                            </li>
-                            <li class="">
                                     <a class="nav-stylehead" href="{{ url('/blog') }}">BLOGS</a>
                             </li>
                             <li class="">
                                 <a class="nav-stylehead" href="{{ url('/contact') }}">CONTACT</a>
+
                             </li>
 
                             <!-- Profile -->
                             @if(Session::get('customerId'))
                             <li class="">
                             <li class="dropdown">
-                                <a href="#" style="padding: 0px;" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/{{Session::get('image')}}" style="border-radius: 50%; padding-top: 5px;" height="50px"; width="50px"; alt="">
+                                <a href="{{ url('/user/home') }}" style="padding: 0px;" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/{{Session::get('image')}}" style="border-radius: 50%; padding-top: 5px;" height="50px"; width="50px"; alt="">
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -344,9 +351,17 @@
                                         <div class="col-sm-12 multi-gd-img">
                                             <ul class="multi-column-dropdown">
                                                 <li>
-                                                    <a href="shop1.blade.php">Profile</a>
+                                                    <a href="{{ url('/user/home')  }}">Profile</a>
                                                 </li>
-                                                <li>
+                                                @if(Session::get('customerId'))
+                                                    <li>
+                                                        <a href="#" onclick="event.preventDefault(); document.getElementById('customerLogoutForm').submit();"><span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign Out </a>
+                                                    </li>
+                                                    <form action="{{ url('/customer-sign-out') }}" method="POST" id="customerLogoutForm">
+                                                        {{ csrf_field() }}
+                                                    </form>
+                                                @endif
+                                               {{-- <li>
                                                     <a href="shop1.blade.php">Setting</a>
                                                 </li>
                                                 <li>
@@ -360,11 +375,7 @@
                                                 <li>
                                                     <a class="play-icon popup-with-zoom-anim" href="#add_post"><span aria-hidden="true"></span>Add_Post</a>
                                                 </li>
-                                                <!-- Add Post -->
-
-                                                <li>
-                                                    <a href="shop1.blade.php">Logout</a>
-                                                </li>
+                                                <!-- Add Post -->--}}
                                             </ul>
                                         </div>
                                         <div class="clearfix"></div>

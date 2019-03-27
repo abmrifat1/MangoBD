@@ -115,13 +115,14 @@
                             <thead>
                             <tr>
                                 <th>SL No</th>
-                                <th>Product Id</th>
+                                <th>Order Id</th>
                                 <th>Product Name</th>
                                 <th>Product Price</th>
                                 <th>Product Quantity</th>
                                 <th>Total Price</th>
                             </tr>
                             @php($i=1)
+                            @php($grandTotal=0)
                             @foreach($products as $product)
                             <tr>
                                 <th>{{ $i++ }}</th>
@@ -129,16 +130,21 @@
                                 <th>{{ $product->product_name }}</th>
                                 <th>Tk.{{ $product->product_price }}</th>
                                 <th>{{ $product->product_quantity}}</th>
-                                <th>Tk.{{ $product->product_price * $product->product_quantity }}</th>
+                                <th>Tk.{{ $total = $product->product_price * $product->product_quantity }}</th>
                             </tr>
+                            @php($grandTotal=$grandTotal+$total)
                             @endforeach
+
+                            <tr>
+                                <th colspan="6" style="margin-left: 200px; text-align: center;"><h3>Grand Total: Tk.{{ $grandTotal }}</h3></th>
+                            </tr>
                             </thead>
 
                             <tbody>
                             </tbody>
                         </table>
 
-                        <table class="table table-striped table-bordered">
+                       {{-- <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th style="text-align: center;">Total Discount</th>
@@ -155,7 +161,7 @@
 
                             <tbody>
                             </tbody>
-                        </table>
+                        </table>--}}
                     </div>
 
                 </div>

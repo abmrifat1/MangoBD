@@ -11,49 +11,49 @@
         <div class="item active">
             <div class="container">
                 <div class="carousel-caption">
-                    <h3>Big
+                    {{--<h3>Big
                         <span>Save</span>
                     </h3>
                     <p>Get flat
-                        <span>10%</span> Cashback</p>
-                    <a class="button2" href="{{ url('/shop') }}">Shop Now </a>
+                        <span>10%</span> Cashback</p>--}}
+                    <a class="button2" style="margin-top: 220px;" href="{{ url('/shop') }}">Shop Now </a>
                 </div>
             </div>
         </div>
         <div class="item item2">
             <div class="container">
                 <div class="carousel-caption">
-                    <h3>Healthy
+                    {{--<h3>Healthy
                         <span>Saving</span>
                     </h3>
                     <p>Get Upto
-                        <span>30%</span> Off</p>
-                    <a class="button2" href="{{ url('/shop') }}">Shop Now </a>
+                        <span>30%</span> Off</p>--}}
+                    <a class="button2" style="margin-top: 220px;" href="{{ url('/shop') }}">Shop Now </a>
                 </div>
             </div>
         </div>
         <div class="item item3">
             <div class="container">
                 <div class="carousel-caption">
-                    <h3>Big
+                    {{--<h3>Big
                         <span>Deal</span>
                     </h3>
                     <p>Get Best Offer Upto
                         <span>20%</span>
-                    </p>
-                    <a class="button2" href="{{ url('/shop') }}">Shop Now </a>
+                    </p>--}}
+                    <a class="button2" style="margin-top: 220px;" href="{{ url('/shop') }}">Shop Now </a>
                 </div>
             </div>
         </div>
         <div class="item item4">
             <div class="container">
                 <div class="carousel-caption">
-                    <h3>Today
+                   {{-- <h3>Today
                         <span>Discount</span>
                     </h3>
                     <p>Get Now
-                        <span>40%</span> Discount</p>
-                    <a class="button2" href="{{ url('/shop') }}">Shop Now </a>
+                        <span>40%</span> Discount</p>--}}
+                    <a class="button2" style="margin-top: 220px;" href="{{ url('/shop') }}">Shop Now </a>
                 </div>
             </div>
         </div>

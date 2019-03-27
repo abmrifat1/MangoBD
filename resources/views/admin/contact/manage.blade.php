@@ -44,27 +44,27 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>S.L</th>
-                                    <th>Sender Name</th>
-                                    <th>message</th>
-                                    <th>Time</th>
-                                    <th>Action</th>
+                                    <th colspan="1">S.L</th>
+                                    <th colspan="2">Sender Name</th>
+                                    <th colspan="5">message</th>
+                                    <th colspan="2">Time</th>
+                                    <th colspan="2">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @php($i=0)
-                            @foreach($contacts as $contact)
-                                <tr @if($contact->status==1)style="color: #fff;background-color: #333"@endif>
-                                    <td>{{++$i}}</td>
-                                    <td>{{$contact->name}}</td>
-                                    <td>{{substr($contact->message,0,40)."..."}}</td>
-                                    <td>{{$contact->created_at}}</td>
-                                    <td class="center">
+                            @foreach($messageContacts as $messageContact)
+                                <tr>
+                                    <td colspan="1">{{++$i}}</td>
+                                    <td colspan="2">{{$messageContact->name}}</td>
+                                    <td colspan="5">{{substr($messageContact->message,0,40)."..."}}</td>
+                                    <td colspan="2">{{$messageContact->created_at}}</td>
+                                    <td class="center" colspan="2">
 
-                                        <a href="{{ url('/dashboard/contact/view/'.$contact->unique_id) }}" title="View message" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        <a href="{{ url('/dashboard/contact/view/'.$messageContact->id) }}" title="View message" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></a>
 
                                        {{-- <a href="{{ url('/dashboard/contact/replay/'.$contact->unique_id) }}" title="Replay message" class="btn btn-primary"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>--}}
-                                            {!! Form::open(['url' => '/dashboard/contact/destroy/'.$contact->unique_id,'method'=>'DELETE','style'=>'display:inline']) !!}
+                                            {!! Form::open(['url' => '/dashboard/contact/destroy/'.$messageContact->id,'method'=>'DELETE','style'=>'display:inline']) !!}
                                             <button type="submit" class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></button>
                                             {!! Form::close() !!}
                                     </td>

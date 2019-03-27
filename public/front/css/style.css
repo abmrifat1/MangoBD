@@ -287,6 +287,7 @@ h3.agileinfo_sign span {
     min-height: inherit;
     margin: 0;
     float: right;
+
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     background: none;
@@ -368,10 +369,10 @@ ul.multi-column-dropdown li a:hover{
     float: right;
     width: 20%;
 }
-.box_1 {
+/*.box_1 {
     margin-top: 15px;
     margin-left: 84px;
-}
+}*/
 a.simpleCart_empty {
     color: #fff;
     font-size: 13px;
@@ -387,6 +388,7 @@ button.w3view-cart {
     height: 43px;
     font-size: 24px;
     color: #fff;
+    margin-top: 14px;
     /*margin-left: 9px;*/
 }
 /*-- //cart details--*/
@@ -406,7 +408,7 @@ button.w3view-cart {
 }
 .carousel-caption {
     position: inherit;
-    min-height:600px;
+    height: 600px;
     padding-top:8em;
 }
 /*-- carousel-slider --*/  
@@ -4523,10 +4525,11 @@ input[type="radio"], input[type="checkbox"] {
         width: 41px;
         height: 36px;
         font-size: 21px;
+        margin-top: 9px;
     }
-    .box_1 {
+    /*.box_1 {
         margin-top: 10px;
-    }
+    }*/
     .header-bot {
         padding: 3px 0 9px;
     }

@@ -31,12 +31,13 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        {!! Form::open(['url' => '/dashboard/contact/send','method'=>'POST','class'=>'form-horizontal form-label-left']) !!}
+                        {!! Form::open(['url' => '/admin/contact/send','method'=>'POST','class'=>'form-horizontal form-label-left']) !!}
+
                         {{--<form action="{{url('/skill/store')}}" method="POST" class="form-horizontal form-label-left">--}}
                         <div class="item form-group">
                             {!! Form::label('name','Name *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!! Form::text('name',$contact->name,['class'=>'form-control col-md-7 col-xs-12','id'=>'name','required'=>'required']) !!}
+                                {!! Form::text('name',$messageContacts->name,['class'=>'form-control col-md-7 col-xs-12','id'=>'name','required'=>'required']) !!}
                                 @if ($errors->has('name'))
                                     <span class="help-block error">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -47,7 +48,7 @@
                         <div class="item form-group">
                             {!! Form::label('email','To *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!! Form::text('email',$contact->email,['class'=>'form-control col-md-7 col-xs-12','id'=>'email','required'=>'required']) !!}
+                                {!! Form::text('email',$messageContacts->email,['class'=>'form-control col-md-7 col-xs-12','id'=>'email','required'=>'required']) !!}
                                 @if ($errors->has('email'))
                                     <span class="help-block error">
                                         <strong>{{ $errors->first('email') }}</strong>

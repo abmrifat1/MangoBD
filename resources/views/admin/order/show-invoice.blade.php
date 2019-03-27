@@ -176,13 +176,13 @@
             @foreach($products as $product)
             <tr class="item">
                 <td>{{ $product->product_name }}</td>
-                <td style="text-align: right;">Tk.{{ $product->product_price }}</td>
+                <td style="text-align: right;">Tk. {{ $product->product_price }}</td>
                 <td style="text-align: center;">{{ $product->product_quantity }}</td>
-                <td style="text-align: center;">Tk.{{ $total= $product->product_price * $product->product_quantity }}</td>
+                <td style="text-align: center;">Tk. {{ $total= $product->product_price * $product->product_quantity }}</td>
             </tr>
                 @php($grandTotal= $grandTotal + $total)
             @endforeach
-            <table class="table table-striped table-bordered">
+            {{--<table class="table table-striped table-bordered">
                 <thead>
                 <tr>
                     <th style="text-align: center;">Total Discount</th>
@@ -191,18 +191,18 @@
                 </tr>
 
                 <tr>
-                    <th style="text-align: center;">Tk.{{ Session::get('discount') }}</th>
-                    <th style="text-align: center;">Tk.{{ Session::get('tax') }}</th>
-                    <th style="text-align: center;">Tk.{{ Session::get('grant_total') }}</th>
+                    <th style="text-align: center;">Tk. {{ Session::get('discount') }}</th>
+                    <th style="text-align: center;">Tk. {{ Session::get('tax') }}</th>
+                    <th style="text-align: center;">Tk. {{ Session::get('grant_total') }}</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 </tbody>
-            </table>
+            </table>--}}
 
             <tr>
-                <th style="margin-left: 200px;"><h3>Grand Total: Tk.{{ Session::get('grant_total') }}</h3></th>
+                <th style="margin-left: 200px;"><h3>Grand Total: Tk.{{ $grandTotal }}</h3></th>
             </tr>
         </table>
     </div>

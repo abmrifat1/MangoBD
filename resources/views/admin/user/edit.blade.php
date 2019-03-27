@@ -101,7 +101,7 @@
                             </label>--}}
                             {!! Form::label('userRole','User Role ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!!  Form::select('userRole', ['Normal_User' => 'Normal_User', 'Admin' => 'Admin', 'Author' => 'Author', 'Editor' => 'Editor'], 0, ['class'=>'form-control','id'=>'isActive'])!!}
+                                {!!  Form::select('userRole', ['Normal_User' => 'Normal_User', 'Admin' => 'Admin', 'Author' => 'Author', 'Seller' => 'Seller'], 0, ['class'=>'form-control','id'=>'isActive'])!!}
                             </div>
                         </div>
 

@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>User Admin Panel</title>
+    <title>Customer Admin Panel</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -74,9 +74,13 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    <a><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                 </li>
-                <li class="menu-title">UI elements</li><!-- /.menu-title -->
+
+                <li>
+                    <a href="{{ url('/customer-order-info') }}"><i class="fa fa-bar-chart-o"></i> Orders</a>
+                </li>
+              {{--  <li class="menu-title">UI elements</li><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Components</a>
                     <ul class="sub-menu children dropdown-menu">                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Buttons</a></li>
@@ -106,16 +110,16 @@
                         <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
                     </ul>
                 </li>
+--}}
 
-
-                <li class="menu-title">Extras</li><!-- /.menu-title -->
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
-                    <ul class="sub-menu children dropdown-menu">
+                <li class="menu-title">Profile Info</li><!-- /.menu-title -->
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Profile</a>
+                    {{--<ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
                         <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
-                        <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
-                    </ul>
+                        --}}{{--<li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>--}}{{--
+                    </ul>--}}
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -129,7 +133,7 @@
     <header id="header" class="header">
         <div class="top-left">
             <div class="navbar-header">
-                <a class="navbar-brand" href="./"><img src="{{ asset('userAdmin/images/logo.png') }}" alt="Logo"></a>
+                <a class="navbar-brand" href="{{ url('/') }}">Visit Website{{--<img src="{{ asset('userAdmin/images/logo.png') }}" alt="Logo">--}}</a>
                 <a class="navbar-brand hidden" href="./"><img src="{{ asset('userAdmin/images/logo2.png') }}" alt="Logo"></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
             </div>
@@ -145,7 +149,7 @@
                         </form>
                     </div>
 
-                    <div class="dropdown for-notification">
+                   {{-- <div class="dropdown for-notification">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
                             <span class="count bg-danger">3</span>
@@ -165,9 +169,9 @@
                                 <p>Server #3 overloaded.</p>
                             </a>
                         </div>
-                    </div>
+                    </div>--}}
 
-                    <div class="dropdown for-message">
+                   {{-- <div class="dropdown for-message">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-envelope"></i>
                             <span class="count bg-primary">4</span>
@@ -193,36 +197,30 @@
                             <a class="dropdown-item media" href="#">
                                 <span class="photo media-left"><img alt="avatar" src="{{ asset('userAdmin/images/avatar/3.jpg') }}"></span>
                                 <div class="message media-body">
-                                    <span class="name float-left">Cheryl Wheeler</span>
-                                    <span class="time float-right">10 minutes ago</span>
+                                    <span class="name float-left">Md Emamul Murshalin</span>
                                     <p>Hello, this is an example msg</p>
                                 </div>
                             </a>
                             <a class="dropdown-item media" href="#">
                                 <span class="photo media-left"><img alt="avatar" src="{{ asset('userAdmin/images/avatar/4.jpg') }}"></span>
                                 <div class="message media-body">
-                                    <span class="name float-left">Rachel Santos</span>
-                                    <span class="time float-right">15 minutes ago</span>
+                                    <span class="name float-left">Md Emamul Murshalin</span>
                                     <p>Lorem ipsum dolor sit amet, consectetur</p>
                                 </div>
                             </a>
                         </div>
                     </div>
-                </div>
+                </div>--}}
 
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="user-avatar rounded-circle" src="{{ asset('userAdmin/images/admin.jpg') }}" alt="User Avatar">
+                        <img class="user-avatar rounded-circle" src="/{{ Session::get('image') }}" alt="User Avatar">
                     </a>
 
                     <div class="user-menu dropdown-menu">
-                        <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                        <a class="nav-link"><i class="fa fa- user"></i>My Profile</a>
 
-                        <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
-
-                        <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
-                        <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                        <a class="nav-link" href="{{ url('/customer-sign-out-dashboard') }}"><i class="fa fa-power -off"></i>Logout</a>
                     </div>
                 </div>
 

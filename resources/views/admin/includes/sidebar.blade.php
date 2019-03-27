@@ -2,7 +2,7 @@
     <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-                <a href="{{url('/admin-panel')}}" class="site_title"><i class="fa fa-paw"></i> <span>Emamul Murshalin</span></a>
+                <a href="{{url('/admin-panel')}}" class="site_title"><i class="fa fa-paw"></i> <span>{{ Auth::user()->name }}</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -10,7 +10,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
                 <div class="profile_pic">
-                    <img src="{{asset('/admin')}}/production/images/img.jpg" style="height: 70px; width: 70px" alt="..." class="img-circle profile_img">
+                    <img src="/{{ Auth::user()->image }}" style="height: 70px; width: 70px" alt="..." class="img-circle profile_img">
                 </div>
                 <div class="profile_info">
                     <span>Welcome,</span>
@@ -26,8 +26,8 @@
                     <h3>General</h3>
                     <ul class="nav side-menu">
 
-                        @if((Auth::user()->type) == 'Admin' || (Auth::user()->type) == 'Author')
-                        <li><a href="{{url('/home')}}"><i class="fa fa-home"></i> admin </a>
+
+                        <li><a href="{{url('/home')}}"><i class="fa fa-home"></i> Home </a>
                         </li>
                         <!--
                         <li><a><i class="fa fa-address-book"></i> Administrator  <span class="fa fa-chevron-down"></span></a>
@@ -61,15 +61,19 @@
                             </ul>
                         </li>-->
 
+                        @if((Auth::user()->type) == 'Admin' || (Auth::user()->type) == 'Author')
                         <li><a><i class="fa fa-bar-chart-o"></i> Category <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{url('/admin/category/')}}">Manage</a></li>
                                 <li><a href="{{url('/admin/category/create')}}">Add New</a></li>
                             </ul>
                         </li>
+                        @endif
+
                         <li>
                             <a href="{{ url('/order-info') }}"><i class="fa fa-bar-chart-o"></i> Orders</a>
                         </li>
+
                         <li><a><i class="fa fa-bar-chart-o"></i> Product <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{url('/admin/product/')}}">Manage</a></li>
@@ -102,7 +106,7 @@
                                 <li><a href="{{url('/admin/blog-post/create')}}">Add New</a></li>
                             </ul>
                         </li>-->
-
+                        @if((Auth::user()->type) == 'Admin' || (Auth::user()->type) == 'Author')
                         <li><a><i class="fa fa-industry" aria-hidden="true"></i> User <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{url('admin/user')}}">Manage-Administrator</a></li>
@@ -201,20 +205,20 @@
                     <li role="presentation" class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-envelope-o"></i>
-                            <span class="badge bg-green">@if(!empty($total_message)){{$total_messages}}@endif</span>
+                            <span class="badge bg-green">@if(!empty($messageCountss)){{$messageCountss}}@endif</span>
                         </a>
                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                            @if(!empty($messages))
-                           @foreach($messages as $message)
+                            @if(!empty($messageContacts))
+                           @foreach($messageContacts as $messageContact)
                             <li>
-                                <a href="{{url('/admin/contact/view/'.$message->unique_id)}}">
+                                <a href="{{url('/admin/contact/view/'.$messageContact->id)}}">
                                     {{--<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>--}}
                                     <span>
-                                      <span>{{$message->name}}</span>
+                                      <span>{{$messageContact->name}}</span>
                                       <span class="time">3 mins ago</span>
                                     </span>
                                     <span class="message">
-                                      {{substr($message->message,0,40)."..."}}
+                                      {{substr($messageContact->message,0,40)."..."}}
                                     </span>
                                 </a>
                             </li>

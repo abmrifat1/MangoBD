@@ -115,17 +115,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $("#slider-range").slider({
                 range: true,
                 min: 0,
-                max: 9000,
-                values: [50, 6000],
+                max: 1000,
+                values: [50, 500],
                 slide: function (event, ui) {
-                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                    $("#amount").val(ui.values[0] + "-" + ui.values[1]);
                 }
             });
-            $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+            $("#amount").val($("#slider-range").slider("values", 0) + "-" + $("#slider-range").slider("values", 1));
 
         }); //]]>
 	</script>
 	<!-- //price range (top products) -->
+
+
+@yield('script')
 
 	<!-- flexisel (for special offers) -->
 	<script src="{{asset('front/js/jquery.flexisel.js')}}"></script>
