@@ -43,9 +43,8 @@
         </div>
         <div class="col-md-6 agileits_schedule_bottom_right">
             <div class="w3ls_schedule_bottom_right_grid">
-                <h3>Save up to <span>50%</span> in this week</h3>
-                <p>Suspendisse varius turpis efficitur erat laoreet dapibus.
-                    Mauris sollicitudin scelerisque commodo.Nunc dapibus mauris sed metus finibus posuere.</p>
+                <h3 style="text-align: center;">Take Mango From Us <span></span> </h3>
+                <p style="text-align: center;">We ensure 100% pure products.</p>
                 <div class="col-md-12 w3l_schedule_bottom_right_grid1">
                     <i class="fa fa-user-o" aria-hidden="true"></i>
                     <h4>Customers</h4>
@@ -73,7 +72,7 @@
             <h3 class="wthree_text_info">Pure <span>Mango</span></h3>
 
             <div class="col-md-5 bb-grids bb-left-agileits-w3layouts">
-                <a href="womens.html">
+                <a href="{{ url('/shop') }}">
                     <div class="bb-left-agileits-w3layouts-inner grid">
                         <figure class="effect-roxy">
                             <img src="{{asset('front/images/bb1.jpg')}}" alt=" " class="img-responsive" />
@@ -86,7 +85,7 @@
                 </a>
             </div>
             <div class="col-md-7 bb-grids bb-middle-agileits-w3layouts">
-                <a href="mens.html">
+                <a href="{{ url('/shop') }}">
                     <div class="bb-middle-agileits-w3layouts grid">
                         <figure class="effect-roxy">
                             <img src="{{asset('front/images/bottom3.jpg')}}" alt=" " class="img-responsive" />
@@ -97,7 +96,7 @@
                         </figure>
                     </div>
                 </a>
-                <a href="mens.html">
+                <a href="{{ url('/shop') }}">
                     <div class="bb-middle-agileits-w3layouts forth grid">
                         <figure class="effect-roxy">
                             <img src="{{asset('front/images/bottom4.jpg')}}" alt=" " class="img-responsive">
@@ -119,7 +118,7 @@
 
         </div>
         <div class="col-md-6 multi-gd-img multi-gd-text ">
-            <a href="{{ url('/shop') }}"><img src="{{asset('front/images/bot_2.jpg')}}" alt=" "><h4>We Give You <span>50%</span> offer</h4></a>
+            <a href="{{ url('/shop') }}"><img src="{{asset('front/images/bot_2.jpg')}}" alt=" ">{{--<h4>We Give You <span>50%</span> offer</h4>--}}</a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -142,7 +141,7 @@
                                     <a href="{{ url('/products/'.$product->unique_id) }}" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
-                            <span class="product-new-top">Fresh</span>
+                            <a href="{{ url('/seller-info/'.$product->user_id) }}"><span class="product-new-top">Seller Info</span></a>
                         </div>
                         <div class="item-info-product ">
                             <h4 style="margin-bottom: 5px;">
@@ -205,7 +204,7 @@
                                     <a href="{{ url('/products/'.$mvProducts->unique_id) }}" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
-                            <span class="product-new-top">Fresh</span>
+                            <a href="{{ url('/seller-info/'.$mvProducts->user_id) }}"><span class="product-new-top">Seller Info</span></a>
                         </div>
                         <div class="item-info-product ">
                             <h4 style="margin-bottom: 5px;">

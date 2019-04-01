@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -151,7 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label>Quantity </label>
-                        <input type="number" name="qty" value="1" min="1" max="{{ $product->quantity }}"/>
+                        <input type="number" name="qty" value="1" min="1" max="{{ $product->quantity }}" required/>
                         <input type="hidden" name="id" value="{{ $product->id }}"/>
                         <label> KG</label>
                     </div>

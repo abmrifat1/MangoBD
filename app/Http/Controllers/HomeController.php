@@ -32,6 +32,7 @@ class HomeController extends Controller
     }
 
     public function error(){
+        return view('admin.error.error');
 
     }
 }

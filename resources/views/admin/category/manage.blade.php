@@ -45,26 +45,26 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>S.L</th>
-                                <th>Category Name</th>
-                                <th>Description</th>
-                                <th>image</th>
-                                <th>Status</th>
-                                <th>Created at</th>
-                                <th>Action</th>
+                                <th colspan="1">S.L</th>
+                                <th colspan="2">Category Name</th>
+                                <th colspan="3">Description</th>
+                                <th colspan="2">image</th>
+                                <th colspan="1">Status</th>
+                                <th colspan="2">Created at</th>
+                                <th colspan="2">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @php($i=0)
                                 @foreach($categories as $category)
                                     <tr>
-                                        <td>{{++$i}}</td>
-                                        <td>{{$category->name}}</td>
-                                        <td>{{$category->description}}</td>
-                                        <td><img src="{{asset($category->image)}}" height="100" width="100"/></td>
-                                        <td>{{$category->isActive}}</td>
-                                        <td>{{$category->created_at}}</td>
-                                        <td class="center">
+                                        <td colspan="1">{{++$i}}</td>
+                                        <td colspan="2">{{$category->name}}</td>
+                                        <td colspan="3">{{$category->description}}</td>
+                                        <td colspan="2"><img src="{{asset($category->image)}}" height="100" width="100"/></td>
+                                        <td colspan="1">{{$category->isActive}}</td>
+                                        <td colspan="2">{{$category->created_at}}</td>
+                                        <td class="center" colspan="2">
                                             @if($category->isActive=='Active')
                                                 <a href="{{ url('/admin/category/unpublish/'.$category->unique_id) }}" title="Un Publish" class="btn btn-success"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
                                             @else
@@ -74,7 +74,7 @@
                                             <form onsubmit="return myFunction(event)" action="{{ url('/admin/category/'.$category->unique_id) }}" method="post">
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                                <button type="submit" id="deleteFormSubmit" class="btn btn-danger"><i class="fa fa-trash" onclick="return checkDelete();"></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -105,6 +105,18 @@
                     swal("Your information is safe!");
                 }
             });
+        }
+    </script>
+
+    <script>
+        function  checkDelete() {
+            var check= confirm('Are you sure delete this!!');
+            if (check){
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     </script>
 @endsection

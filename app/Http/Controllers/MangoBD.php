@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\ContactInfo;
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -104,7 +105,7 @@ class MangoBD extends Controller
         $mostViewProducts = Product::orderby('view','desc')->take(8)->get();
 
         //return $mostViewProducts;
-        return view('front.home.home',['products'=>$products],['mostViewProducts'=>$mostViewProducts]);
+        return view('front.home.home',['products'=>$products, 'mostViewProducts'=>$mostViewProducts]);
     }
 
     public function categoryProducts($unique_id){
@@ -147,38 +148,34 @@ class MangoBD extends Controller
 
 
     public function filterProducts(Request $request){
-        //return $request;
-
-        $productsDiscounts = Product::distinct('discount')->select('id','discount')->orderBy('discount', 'desc')->take(5)->get();
-        //$products = Product::where('type',$request->mangoType)->orWhere('discount',$request->productDiscount)->paginate(10);
-        $range = explode('-',$request->priceRange);
+    //return $request;
+        /*return $request;
+        $productsDiscounts = Product::distinct('discount')->select('id','discount')->orderBy('discount', 'desc')->get();
+        $products = Product::where('type',$request->mangoType)->orWhere('discount',$request->productDiscount)->paginate(10);
+       $range = explode('-',$request->priceRange);
         $start = $range[0];
         $end = $range[1];
+        return $productsDiscounts;*/
 
-        //return $range[1];
-        if (!empty($request->priceRange) && empty($request->mangoType) && empty($request->productDiscount)){
-            $products = Product::where('sellPrice', '>=', $start)->orWhere('sellPrice', '<=', $end)->take(12)->get();
-            /*$products = DB::table('products')->whereBetween('sellPrice', [$start,$end])->get();
-            return $products;
-            $data = $start.' - '.$end;
-            return $data;*/
-        }
-        elseif (!empty($request->priceRange) && !empty($request->mangoType) && empty($request->productDiscount)){
+        if (!empty($request->mangoType) && empty($request->productDiscount)){
             $products = Product::where('type', $request->mangoType)->take(12)->get();
+           //return $products;
+        }
+        elseif (empty($request->mangoType) && !empty($request->productDiscount)){
+            $products = Product::where('discount', '>=', $request->productDiscount)->take(12)->get();
             //return $products;
         }
-        elseif (!empty($request->priceRange) && empty($request->mangoType) && !empty($request->productDiscount)){
-            $products = Product::where('discount', '>=', $request->productDiscount)->orWhere('discount', '<', 5)->take(12)->get();
-
-        }
-        elseif (!empty($request->priceRange) && !empty($request->mangoType) && !empty($request->productDiscount)){
-            $products = Product::where('sellPrice', '>=', $start)->orWhere('sellPrice', '<=', $end)->take(12)->get();
+        elseif (!empty($request->mangoType) && !empty($request->productDiscount)){
             $products = Product::where('type', $request->mangoType)->take(12)->get();
-            $products = Product::where('discount', '>=', $request->productDiscount)->orWhere('discount', '<', 5)->take(12)->get();
-            //return $products;
-        }
+            $products = Product::where('discount', '>=', $request->productDiscount)->take(12)->get();
 
-        return view('front.filter.filter',['products'=>$products, 'productsDiscounts'=>$productsDiscounts]);
+        }
+        else{
+                return redirect('/shop');
+            }
+            //return $products;
+
+        return view('front.filter.filter',['products'=>$products]);
 
     }
 
@@ -187,6 +184,12 @@ class MangoBD extends Controller
     }
     public function contact(){
         return view('front.contact.contact');
+    }
+    public function blog(){
+        return view('front.blog.blog-view');
+    }
+    public function singleBlogView(){
+        return view('front.blog.single-blog-view');
     }
 
     public function saveContactInfo(Request $request){
@@ -204,6 +207,17 @@ class MangoBD extends Controller
         $contactinf->save();
 
         return redirect('/');
+    }
+
+
+    public function sellerInfo($id){
+        //return $id;
+        $sellers= new Product();
+        $sellersInfo = User::where('id', $id)->first();
+
+        //return $sellersInfo;
+
+        return view('front.seller.seller-info', ['sellersInfo'=>$sellersInfo]);
     }
 
 

@@ -118,6 +118,18 @@
         });
     });
 </script>
+
+    <script>
+        function  checkDelete() {
+            var check= confirm('Are you sure delete this!!');
+            if (check){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
 @yield('script')
 
 

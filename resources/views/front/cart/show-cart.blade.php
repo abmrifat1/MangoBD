@@ -194,6 +194,8 @@
                         <a href="{{ url('/shop') }}">Continue Shopping
                             <span class="fa fa-hand-o-right" aria-hidden="true"></span>
                         </a>
+                        @if(Session::get('productId'))
+
                         @if(Session::get('customerId') && Session::get('shippingId'))
                             <a href="{{ url('/payment-info') }}">Make a Payment
                                 <span class="fa fa-hand-o-right" aria-hidden="true"></span>
@@ -206,6 +208,8 @@
                             <a href="{{ url('/checkout') }}">Make a Payment
                                 <span class="fa fa-hand-o-right" aria-hidden="true"></span>
                             </a>
+
+                            @endif
                          @endif
 
                     </div>

@@ -74,13 +74,17 @@
                                     <td class="center" colspan="1">
 
                                         <a href="{{ url('/admin/user/'.$user->unique_id.'/edit') }}" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <a href="{{ url('/admin/user/'.$user->unique_id.'/edit/type') }}" title="Edit Type" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
                                         {!! Form::open(['url' => '/admin/user/'.$user->unique_id,'method'=>'DELETE','style'=>'display:inline','id'=>'deleteForm']) !!}
                                         {!! Form::hidden('image',$user->picture_1) !!}
 
                                         {!! Form::close() !!}
 
-                                        <button class="btn btn-danger" title="Delete" id="deleteFormSubmit"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ url('/delete-user-info/'.$user->unique_id) }}" class="btn btn-danger btn-xs" title="Delete Order" onclick="return checkDelete();">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                        {{--<button class="btn btn-danger" title="Delete" id="deleteFormSubmit"><i class="fa fa-trash" --}}{{--onclick="return checkDelete();"--}}{{--></i></button>--}}
                                     </td>
                                 </tr>
                                     @endif

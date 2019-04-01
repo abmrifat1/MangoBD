@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use Cart;
+use Session;
 
 class CartController extends Controller
 {
@@ -31,6 +32,7 @@ class CartController extends Controller
         ]);
 
         //return $product->discount;
+        Session::put('productId', $product->id);
         return redirect('/show-cart');
     }
 

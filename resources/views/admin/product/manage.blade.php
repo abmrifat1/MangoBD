@@ -77,7 +77,15 @@
                                         {!! Form::hidden('image',$product->picture_1) !!}
 
                                         {!! Form::close() !!}
+
+                                            <a href="{{ url('/delete-product-info/'.$product->unique_id) }}" class="btn btn-danger btn-xs" title="Delete Product" onclick="return checkDelete();">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                            {{--<form onsubmit="return myFunction(event)" action="{{ url('/admin/category/'.$product->unique_id) }}" method="post">
+                                                {{csrf_field()}}
+                                                {{method_field('DELETE')}}
                                         <button class="btn btn-danger" title="Delete" id="deleteFormSubmit"><i class="fa fa-trash"></i></button>
+                                            </form>--}}
                                     </td>
                                 </tr>
                                 @endif

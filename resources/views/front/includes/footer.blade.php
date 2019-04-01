@@ -26,8 +26,8 @@
 <footer>
     <div class="container">
         <!-- footer first section -->
-        <p class="footer-main" style="background: #eeeeee;">
-            <span>"MangoBD"</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+        <p class="footer-main" style="background: #eeeeee; text-align: center; padding: 10px;">
+            <span style="text-align: center"></span> People like take fruits. Mango is one of them. Mango is one of the most popular fruit in our country. People want to take fresh mango but most of the time they don’t get best mango though pay much money. Now to overcome this problem we will make a mango based online shopping web application.  Through this site people can easily purchase best mango mango with legal price. MangoBD Ensure the pure fruit 100%.</p>
         <!-- //footer first section -->
         {{--<!-- footer second section -->
         <div class="w3l-grids-footer">

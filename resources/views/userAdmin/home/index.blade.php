@@ -6,7 +6,43 @@
         <!-- Animated -->
         <div class="animated fadeIn">
             <!-- Widgets  -->
+            @if(isset($success) && !empty($success))
             <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="card-body">
+                                    <span style="color: limegreen;font-weight: bold;text-align:center;font-size:18px;">{{$success}}</span>
+
+                                </div>
+                            </div>
+                        </div> <!-- /.row -->
+                    </div>
+                </div><!-- /# column -->
+            </div>
+            @endif
+            {{--@if(Session::get('email_verified_at') == '')
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="card-body">
+                                        <a href="/verify" style="color: red;font-weight: bold;text-align:center;font-size:18px;">Please verify your account given code that already we sent to your email</a>
+
+                                    </div>
+                                </div>
+                            </div> <!-- /.row -->
+                        </div>
+                    </div><!-- /# column -->
+                </div>
+            @endif--}}
+           {{-- <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body">
@@ -475,7 +511,7 @@
             <!-- /#add-category -->
         </div>
         <!-- .animated -->
-    </div>
+    </div>--}}
     <!-- /.content -->
 
    @endsection()

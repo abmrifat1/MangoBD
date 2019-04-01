@@ -19,19 +19,19 @@
         <div class="col-md-8 header">
             <!-- header lists -->
             <ul>
-                <li>
+                {{--<li>
                     <a class="play-icon popup-with-zoom-anim" href="#small-dialog1">
                         <span class="fa fa-map-marker" aria-hidden="true"></span> Shop Locator</a>
-                </li>
-                <li>
+                </li>--}}
+               {{-- <li>
                     <a href="#" data-toggle="modal" data-target="#myModal1">
                         <span class="fa fa-truck" aria-hidden="true"></span>Track Order</a>
-                </li>
+                </li>--}}
                 <li>
                     <span class="fa fa-phone" aria-hidden="true"></span> +01777-822162
                 </li>
 
-                @if(Session::get('customerId'))
+                @if(Session::get('customerId') || Session::get('userId'))
                 <li>
                     <a href="#" onclick="event.preventDefault(); document.getElementById('customerLogoutForm').submit();"><span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign Out </a>
                 </li>
@@ -49,7 +49,7 @@
                     </li>--}}
                 @endif
 
-                @if(Session::get('customerId'))
+                @if(Session::get('customerId') || Session::get('userId'))
 
                 @else
                 {{--<li>
@@ -59,8 +59,12 @@
 
                     <li>
                         <a href="{{ url('/customer-signup') }}">
-                            <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up </a>
+                            <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up</a>
                     </li>
+                    {{--<li>
+                        <a href="{{ url('/seller-signup') }}">
+                            <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up Seller</a>
+                    </li>--}}
                 @endif
             </ul>
             <!-- //header lists -->
@@ -331,16 +335,16 @@
                                 <a class="nav-stylehead" href="{{ url('/about') }}">ABOUT US</a>
                             </li>
 
-                            <li class="">
-                                    <a class="nav-stylehead" href="{{ url('/blog') }}">BLOGS</a>
-                            </li>
+                           {{-- <li class="">
+                                    <a class="nav-stylehead" href="{{ url('/blog-view') }}">BLOGS</a>
+                            </li>--}}
                             <li class="">
                                 <a class="nav-stylehead" href="{{ url('/contact') }}">CONTACT</a>
 
                             </li>
 
                             <!-- Profile -->
-                            @if(Session::get('customerId'))
+                            @if(Session::get('customerId') || Session::get('userId') && Session::get('verified'))
                             <li class="">
                             <li class="dropdown">
                                 <a href="{{ url('/user/home') }}" style="padding: 0px;" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/{{Session::get('image')}}" style="border-radius: 50%; padding-top: 5px;" height="50px"; width="50px"; alt="">
@@ -350,10 +354,27 @@
                                     <div class="agile_inner_drop_nav_info">
                                         <div class="col-sm-12 multi-gd-img">
                                             <ul class="multi-column-dropdown">
+                                                @if(Session::get('customerId'))
                                                 <li>
                                                     <a href="{{ url('/user/home')  }}">Profile</a>
                                                 </li>
+                                                @else
+                                                    <li>
+                                                        <a href="{{ url('/home')  }}">Profile</a>
+                                                    </li>
+                                                @endif
                                                 @if(Session::get('customerId'))
+                                                    <li>
+                                                        <a href="#" onclick="event.preventDefault(); document.getElementById('customerLogoutForm').submit();"><span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign Out </a>
+                                                    </li>
+                                                    <form action="{{ url('/customer-sign-out') }}" method="POST" id="customerLogoutForm">
+                                                        {{ csrf_field() }}
+                                                    </form>
+
+                                                    @elseif(Session::get('userId'))
+                                                    <li>
+                                                        <a href="{{ url('/add-product-seller') }}"><span class="fa fa-paragraph" aria-hidden="true"></span>Add Post</a>
+                                                    </li>
                                                     <li>
                                                         <a href="#" onclick="event.preventDefault(); document.getElementById('customerLogoutForm').submit();"><span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign Out </a>
                                                     </li>

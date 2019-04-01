@@ -29,7 +29,6 @@ class AppServiceProvider extends ServiceProvider
         View::composer('admin.product.create',function ($view){
             $view->with('users',User::orderby('name','asc')->get());
         });
-
         View::composer('admin.includes.sidebar',function ($view){
             $view->with('messageContacts',ContactInfo::orderby('id','desc')->get());
         });

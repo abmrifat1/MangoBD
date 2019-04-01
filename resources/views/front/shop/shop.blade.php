@@ -52,7 +52,7 @@
 
 				<form action="{{ url('/filter-products') }}" method="post">
 					{{ csrf_field()  }}
-				<!-- price range -->
+				{{--<!-- price range -->
 				<div class="range">
 					<h3 class="agileits-sear-head">Price range</h3>
 					<ul class="dropdown-menu6">
@@ -62,7 +62,7 @@
 						</li>
 					</ul>
 				</div>
-				<!-- //price range -->
+				<!-- //price range -->--}}
 				<!-- food preference -->
 				<div class="left-side">
 					<h3 class="agileits-sear-head">Mango | Type</h3>
@@ -265,7 +265,7 @@
                                                 <a href="{{ url('/products/'.$product->unique_id) }}" class="link-product-add-cart">Quick View</a>
                                             </div>
                                         </div>
-                                        <span class="product-new-top">Fresh</span>
+										<a href="{{ url('/seller-info/'.$product->user_id) }}"><span class="product-new-top">Seller Info</span></a>
                                     </div>
                                     <div class="item-info-product ">
                                         <h4 style="margin-bottom: 5px;">
@@ -404,7 +404,7 @@
 												<a href="{{ url('/products/'.$productsMostSell->unique_id) }}" class="link-product-add-cart">Quick View</a>
 											</div>
 										</div>
-										<span class="product-new-top">Fresh</span>
+										<a href="{{ url('/seller-info/'.$productsMostSell->user_id) }}"><span class="product-new-top">Seller Info</span></a>
 									</div>
 									<div class="item-info-product ">
 										<h4 style="margin-bottom: 5px;">

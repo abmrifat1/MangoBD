@@ -80,13 +80,22 @@ class OrderController extends Controller
         $customer = Customer::find($order->customer_id);
         $shipping = Shipping::find($order->shipping_id);
         $payment = Payment::find($order->id);
-        $products = OrderDetail::where('order_id', $id)->get();
+        $products = DB::table('order_details')
+            ->join('products', 'products.id', '=', 'order_details.product_id')
+            ->select('order_details.*', 'products.discount')->where('order_details.order_id', '=', $id)
+            ->orderBy('id', 'desc')
+            ->get();
+        //return $products;
+
+        //$products = OrderDetail::where('order_id', $id)->get();
+        //$products = Product::select('discount')->where('id',$id)->get();
+        //return $products;
         return view('admin.order.show-invoice',[
             'customer'=>$customer,
             'shipping'=>$shipping,
             'products'=>$products,
             'payments'=>$payment,
-            'order'=>$order
+            'order'=>$order,
         ]);
     }
 

@@ -2,7 +2,7 @@
 <html lang="zxx">
 
 <head>
-    <title>Checkout Page :: MangoBD</title>
+    <title>Registration Page :: MangoBD</title>
 {{ Session::put('page', 'checkout') }}
 <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,6 +71,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             position: relative;
             left: -35px;
             content: "✖";
+        }
+        .requiredDesign{
+            color: red;
         }
     </style>
     <!-- Form Design -->
@@ -143,7 +146,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <h1>
 
                 </h1>
-                <h2 style="text-align: center; padding-top: 15px; font-size: 20px; color: red;">You have to login to complete your valuable order. If you are not registerd then please register first.</h2>
+                <h2 style="text-align: center; padding-top: 15px; font-size: 20px; color: red;">You have to login to buy mango. If you are not registerd then please register first.</h2>
             </div>
 
             <div class="row">
@@ -159,37 +162,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <form class="form-horizontal" action="{{ url('/customer-signup-home') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label class="control-label col-sm-3">First Name</label>
+                                <label class="control-label col-sm-3">First Name<span class="requiredDesign">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="first_name" value="{{old('first_name')}}" class="form-control" required/>
+                                    <input type="text" name="first_name" value="{{old('first_name')}}" class="form-control"/>
                                     {{ $errors->has('first_name') ? $errors->first('first_name') : ' ' }}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-3">Last Name</label>
+                                <label class="control-label col-sm-3">Last Name<span class="requiredDesign">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="last_name" value="{{old('last_name')}}" class="form-control" required/>
+                                    <input type="text" name="last_name" value="{{old('last_name')}}" class="form-control"/>
                                     {{ $errors->has('last_name') ? $errors->first('last_name') : ' ' }}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-3">Email</label>
+                                <label class="control-label col-sm-3">Email<span class="requiredDesign">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="email" name="email" value="{{old('email')}}" class="form-control" required/>
+                                    <input type="email" name="email" value="{{old('email')}}" class="form-control"/>
                                     {{ $errors->has('email') ? $errors->first('email') : ' ' }}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-3">Mobile</label>
+                                <label class="control-label col-sm-3">Mobile<span class="requiredDesign">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="number" name="phone" value="{{old('phone')}}" class="form-control" required/>
+                                    <input type="number" name="phone" value="{{old('phone')}}" class="form-control"/>
                                     {{ $errors->has('phone') ? $errors->first('phone') : ' ' }}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-3">Address</label>
+                                <label class="control-label col-sm-3">Address<span class="requiredDesign">*</span></label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" name="address" style="resize: vertical;" required>{{old('address')}}</textarea>
+                                    <textarea class="form-control" name="address" style="resize: vertical;">{{old('address')}}</textarea>
                                     {{ $errors->has('address') ? $errors->first('address') : ' ' }}
                                 </div>
                             </div>
@@ -203,11 +206,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </span>
                             </div>
 
+                            <div class="item form-group">
+                                {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
+                                </label>--}}
+                                {!! Form::label('userRole','User Role*', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {!!  Form::select('userRole', ['Select One','Customer' => 'Customer','Seller' => 'Seller'], 0, ['class'=>'form-control','id'=>'isActive'])!!}
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="control-label col-sm-3">Password</label>
                                 <div class="col-sm-9">
                                     <input type="password" id="myInput1" name="password" value="{{old('password')}}" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
                                     {{ $errors->has('password') ? $errors->first('password') : ' ' }}
+                                    <span>at least one number and one uppercase and lowercase letter, and at least 8 or more characters (aA1bcdef)</span>
                                 </div>
                             </div>
 

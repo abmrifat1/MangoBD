@@ -8,6 +8,9 @@ use App\Order;
 use DB;
 use Session;
 use Cart;
+use App\Shipping;
+use App\Payment;
+use App\OrderDetail;
 
 class VendorController extends Controller
 {
@@ -44,11 +47,11 @@ class VendorController extends Controller
                 return view('userAdmin.home.index');
 
             } else {
-                return redirect('/user-dashboard-home')->with('message', 'Invalid password');
+                return redirect('/user/home')->with('loginmMessage', 'Invalid password');
             }
         }
         else{
-            return redirect('/user-dashboard-home')->with('message', 'Invalid email');
+            return redirect('/user/home')->with('loginMessage', 'Invalid email');
         }
     }
 
@@ -58,7 +61,7 @@ class VendorController extends Controller
         Session::forget('page');
 
         Cart::destroy();
-        return redirect('/user/home');
+        return redirect('/');
     }
 
     public function showCustomerOrderInfo(){
@@ -76,6 +79,63 @@ class VendorController extends Controller
 
 
         return view('userAdmin.order.show-customer-order', ['orders'=>$orders]);
+    }
+
+    public function viewCustomerOrderDetails($id){
+        $order = Order::find($id);
+        $customer = Customer::find($order->customer_id);
+        $shipping = Shipping::find($order->shipping_id);
+        $payment = Payment::find($order->id);
+        $products = OrderDetail::where('order_id', $id)->get();
+        $cartProducts = Cart::content();
+
+        //return $cartProducts;
+        /* Find Product Discount */
+        /*$orders = new Order();
+        $orders = DB::table('orders')
+            ->join('customers', 'orders.customer_id', '=', 'customers.id')
+            ->join('payments', 'orders.id', '=', 'payments.order_id')
+            ->join('order_details', 'order_details.order_id', '=', 'orders.id')
+            ->join('products', 'products.id', '=', 'order_details.product_id')
+            ->select('orders.*', 'customers.first_name', 'customers.last_name', 'payments.payment_type', 'payments.payment_status', 'products.user_id', 'products.discount')
+            ->orderBy('id', 'desc')
+            ->get();
+        return $orders;*/
+        /* Find Product Discount */
+
+        return view('userAdmin.order.view-order-detail',[
+            'customer'=>$customer,
+            'shipping'=>$shipping,
+            'products'=>$products,
+            'payments'=>$payment,
+        ]);
+
+
+    }
+
+    public function viewCustomerOrderInvoice($id){
+        //return $id;
+        $order = Order::find($id);
+        $customer = Customer::find($order->customer_id);
+        $shipping = Shipping::find($order->shipping_id);
+        $payment = Payment::find($order->id);
+        $products = DB::table('order_details')
+            ->join('products', 'products.id', '=', 'order_details.product_id')
+            ->select('order_details.*', 'products.discount')->where('order_details.order_id', '=', $id)
+            ->orderBy('id', 'desc')
+            ->get();
+        //return $products;
+
+        //$products = OrderDetail::where('order_id', $id)->get();
+        //$products = Product::select('discount')->where('id',$id)->get();
+        //return $products;
+        return view('userAdmin.order.show-invoice',[
+            'customer'=>$customer,
+            'shipping'=>$shipping,
+            'products'=>$products,
+            'payments'=>$payment,
+            'order'=>$order,
+        ]);
     }
 
     /**

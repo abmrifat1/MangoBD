@@ -54,12 +54,7 @@
             <div class="clearfix"> </div>
         </div>
         <div class="w3l-welcome-text">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since
-                the 1500s, when an unknown printer took a galley of type and scrambled
-                it to make a type specimen book. </p>
-            <p>libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus
-                omnis optio cumque nihil impedit </p>
+            <p style="text-align: center">People like take fruits. Mango is one of them. Mango is one of the most popular fruit in our country. People want to take fresh mango but most of the time they don’t get best mango though pay much money. Now to overcome this problem we will make a mango based online shopping web application. Through this site people can easily purchase best mango mango with legal price. MangoBD Ensure the pure fruit 100%.. </p>
         </div>
     </div>
 </div>

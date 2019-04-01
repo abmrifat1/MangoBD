@@ -143,7 +143,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <h1>
 
                 </h1>
-                <h2 style="text-align: center; padding-top: 15px; font-size: 20px; color: red;">You have to login to complete your valuable order. If you are not registerd then please register first.</h2>
+                <h2 style="text-align: center; padding-top: 15px; font-size: 20px; color: #0a0b1a;">You have to login to complete your valuable order. If you are not registerd then please register first.</h2>
+                {{--<h2 style="text-align: center; color: red;">{{ Session::get('message') }}</h2>--}}
             </div>
 
             <div class="row">

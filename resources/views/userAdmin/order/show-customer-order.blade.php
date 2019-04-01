@@ -3,9 +3,9 @@
     <div class="row" style="position:relative;right: 20px">
         <div class="col-lg-5 text-center">
             {{--@if(session()->has('message'))--}}
-            @if($message = Session::get('message'))
+           {{-- @if($message = Session::get('message'))
                 <p class="alert" style="font-weight: 500;font-size: 16px;background-color: #61d864;padding:12px;color:#fff;margin-top: 1px;position:fixed;right: 50px;z-index: 1">{{ $message }}</p>
-            @endif
+            @endif--}}
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -53,20 +53,14 @@
                                         <td colspan="1">{{$order->payment_status}}</td>
                                         <td colspan="2">{{$order->created_at}}</td>
                                         <td colspan="1">
-                                            <a href="{{ url('/view-order-details/'.$order->id) }}" class="btn btn-info btn-xs" title="View Order Details">
-                                                <span class="glyphicon glyphicon-zoom-in"></span>
+                                            <a href="{{ url('/view-customer-order-details/'.$order->id) }}" class="btn btn-info btn-xs" title="View Order Details">
+                                                <span class="fa fa-eye-slash"></span>
                                             </a>
-                                            <a href="{{ url('/view-order-invoice/'.$order->id) }}" class="btn btn-warning btn-xs" title="View Order Invoice">
-                                                <span class="glyphicon glyphicon-zoom-out"></span>
+                                            <a href="{{ url('/view-customer-order-invoice/'.$order->id) }}" class="btn btn-warning btn-xs" title="View Order Invoice">
+                                                <span class="fa fa-eye-slash"></span>
                                             </a>
-                                            <a href="{{ url('/download-invoice/'.$order->id) }}" class="btn btn-primary btn-xs" title="Download Invoice">
-                                                <span class="glyphicon glyphicon-download"></span>
-                                            </a>
-                                            <a href="{{ url('/edit-order-info/'.$order->id) }}" class="btn btn-success btn-xs" title="Edit Order">
-                                                <span class="glyphicon glyphicon-edit"></span>
-                                            </a>
-                                            <a href="{{ url('') }}" class="btn btn-danger btn-xs" title="Delete Order">
-                                                <span class="glyphicon glyphicon-trash"></span>
+                                            <a href="{{ url('/download-customer-invoice/'.$order->id) }}" class="btn btn-primary btn-xs" title="Download Invoice">
+                                                <span class="fa fa-download"></span>
                                             </a>
                                         </td>
                                     </tr>

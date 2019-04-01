@@ -52,7 +52,7 @@
 
                 <form action="{{ url('/filter-products') }}" method="post">
                 {{ csrf_field()  }}
-                <!-- price range -->
+               {{-- <!-- price range -->
                     <div class="range">
                         <h3 class="agileits-sear-head">Price range</h3>
                         <ul class="dropdown-menu6">
@@ -62,7 +62,7 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- //price range -->
+                    <!-- //price range -->--}}
                     <!-- food preference -->
                     <div class="left-side">
                         <h3 class="agileits-sear-head">Mango | Type</h3>

@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-        <!-- top tiles -->
+       {{-- <!-- top tiles -->
         <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
@@ -690,5 +690,11 @@
             </div>
         </div>
     </div>
-    <!-- /page content -->
+    <!-- /page content -->--}}
+
+
+
+    <div style=" height: 800px; background: #23a2c9">
+        <h1 style="color: white; text-align: center; padding-top: 400px;">Welcome MangoBD Admin Panel</h1>
+    </div>
     @endsection

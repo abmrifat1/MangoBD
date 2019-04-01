@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Mail\ConfirmOrder;
+use App\Mail\SendEmail;
 use App\Order;
 use App\OrderDetail;
 use App\Payment;
+use App\Product;
 use App\Shipping;
+use App\User;
+use Carbon\Carbon;
 use Cart;
 use Mail;
 use Illuminate\Http\Request;
 use Session;
+use Hash;
+use DB;
 
 
 class CheckoutController extends Controller
@@ -107,7 +114,8 @@ class CheckoutController extends Controller
         $bkash_numbers = $request->number;
         $transactionIds = $request->transactionId;
         //return $transactionIds;
-
+        $customer = Customer::findOrFail(Session::get('customerId'));
+        Mail::to($customer['email'])->send(new ConfirmOrder($customer));
         if ($paymentType == 'Cash On Delivery'){
             $order = new Order();
             $order->customer_id = Session::get('customerId');
@@ -170,6 +178,39 @@ class CheckoutController extends Controller
 
     }
 
+    public function deleteOrderInfo( Request $request){
+        $valu = $request->id;
+        //return $valu;
+
+
+        $orders = Order::where('id',$request->id)->first();
+
+
+        $orderDetails = OrderDetail::where('order_id',$request->id)->first();
+
+
+        $orderpayments = Payment::where('order_id',$request->id)->first();
+        $orders->delete();
+        $orderDetails->delete();
+        $orderpayments->delete();
+
+        return redirect()->back();
+
+
+    }
+
+    public function deleteProductInfo(Request $request){
+        $product = Product::where('unique_id',$request->id)->first();
+        $product->delete();
+        return redirect()->back();
+    }
+
+    public function deleteUserInfo(Request $request){
+        $user = User::where('unique_id',$request->id)->first();
+        $user->delete();
+        return redirect()->back();
+    }
+
     public function customerLogin(Request $request){
         $customer = Customer::where('email', $request->email)->first();
         //return $customer;
@@ -196,8 +237,11 @@ class CheckoutController extends Controller
     }
 
     public function customerSignInHome(Request $request){
+        $seller = DB::table('users')->select('*')->where('email', $request->email)->first();
+
         $customer = Customer::where('email', $request->email)->first();
         //return $customer;
+
 
         if ($customer) {
             if (password_verify($request->password, $customer->password)) {
@@ -208,11 +252,27 @@ class CheckoutController extends Controller
                 return redirect('/');
 
             } else {
-                return redirect()->back()->with('message', 'Invalid password');
+                Session::put('message', 'Invalid password');
+                return redirect()->back();
+            }
+        }
+        elseif ($seller){
+            //return $seller->password;
+            if (password_verify($request->password, $seller->password)) {
+                Session::put('image', $seller->image);
+                Session::put('sellerName', $seller->name);
+                Session::put('userId', $seller->id);
+
+                return redirect('/');
+
+            } else {
+                Session::put('message', 'Invalid password');
+                return redirect()->back();
             }
         }
         else{
-            return redirect()->back()->with('message', 'Invalid email');
+            Session::put('message', 'Invalid email');
+            return redirect()->back();
         }
     }
 
@@ -221,6 +281,8 @@ class CheckoutController extends Controller
     }
 
     public function customerSignUpHome(Request $request){
+        //return $request;
+        if ($request->userRole == 'Customer'){
         $this->validate($request,[
             'first_name'=>'required|regex:/^[\pL\s\-]+$/u',
             'last_name'=>'required|regex:/^[\pL\s\-]+$/u',
@@ -239,13 +301,20 @@ class CheckoutController extends Controller
             $imageUrl = $directory.$imageName;
             $imageFile->move($directory,$imageName);
         }
+        $verification_code = rand(100000,999999);
+        $data = array(
+            'name'=> $request['first_name'],
+            'verification_code'=>$verification_code
+        );
         //return $imageUrl;
+        Mail::to($request['email'])->send(new SendEmail($data));
 
         $customer=new Customer();
         $customer->first_name=$request->first_name;
         $customer->last_name=$request->last_name;
         $customer->email=$request->email;
         $customer->phone=$request->phone;
+        $customer->verification_code=$verification_code;
         $customer->address=$request->address;
         $customer->image=$imageUrl;
         $customer ->password= bcrypt($request->password);
@@ -253,21 +322,106 @@ class CheckoutController extends Controller
         $customerId = $customer->id;
         Session::put('customerId', $customerId);
         Session::put('image', $imageUrl);
-        Session::put('customerName', $request->first_name.' '.$request->last_name);
+        Session::put('userName', $request->first_name.' '.$request->last_name);
 
+            return redirect('/verify-customer');
+        }
 
-        /*$data = $customer->toArray();
-        Mail::send('mail.congratulation-mail', $data, function ($message) use ($data){
-        $message->to($data['email']);
-              $message->subject('Confirmation Mail');
-       });*/
+        else{
+            $this->validate($request,[
+                'first_name'=>'required|regex:/^[\pL\s\-]+$/u',
+                'last_name'=>'required|regex:/^[\pL\s\-]+$/u',
+                'email'=>'required|email|unique:users,email',
+                'phone'=>'required|size:11|regex:/(01)[0-9]{9}/',
+                'userRole'=>'required',
+                'image'=>'image',
+                'address'=>'required',
+                'password'=>'required|max:20|min:6|confirmed',
+            ]);
+            $name= $request->first_name.' '.$request->last_name;
+            //return $name;
+            $imageUrl = '';
+            if($request->hasFile('image')){
+                $imageFile = $request->file('image');
+                $directory = 'images/user-images/';
+                $imageName = substr(md5(time()),2, 10).rand(10000,999999).time().'.'.$imageFile->getClientOriginalExtension();
+                $imageUrl = $directory.$imageName;
+                $imageFile->move($directory,$imageName);
+            }
 
-        return redirect('/');
+            $verification_code = rand(100000,999999);
+            $data = array(
+                'name'=> $request['first_name'],
+                'verification_code'=>$verification_code
+            );
+            //return $imageUrl;
+            Mail::to($request['email'])->send(new SendEmail($data));
+
+            $unique_id = time().md5(rand(100000,10000000));
+            $user=new User();
+            $user->unique_id=$unique_id;
+            $user->name=$name;
+            $user->email=$request->email;
+            $user->verification_code=$verification_code;
+            $user->phone=$request->phone;
+            $user->address=$request->address;
+            $user->image=$imageUrl;
+            $user->type= $request->userRole;
+            $user ->password= bcrypt($request->password);
+            $user->save();
+            $userId = $user->id;
+            Session::put('userId', $userId);
+            Session::put('image', $imageUrl);
+            Session::put('sellerName', $request->first_name.' '.$request->last_name);
+
+            return redirect('/verify');
+        }
+
     }
-
+    public function verify()
+    {
+        return view('userAdmin.verification');
+    }
+    public function verifyCustomer()
+    {
+        return view('userAdmin.verificationCustomer');
+    }
+    public function Doverify(Request $request)
+    {
+        $user = User::findOrFail($request->userId);
+        if($user->verification_code == $request->verification_code){
+            $time = Carbon::now();
+            $user->email_verified_at=$time;
+            $user->save();
+            Session::put('verified', 'verified');
+            return view('userAdmin.home.index')->with('success','You are verified now');
+        }else{
+            Session::flash('message', 'Please enter correct verification code!');
+            Session::flash('alert-class', 'alert-danger');
+            return redirect('/verify');
+        }
+    }
+    public function DoCustomerverify(Request $request)
+    {
+        $customer = Customer::findOrFail($request->userId);
+        //return $customer;
+        if($customer->verification_code == $request->verification_code){
+            $time = Carbon::now();
+            $customer->email_verified_at=$time;
+            $customer->save();
+            Session::put('verified', 'verified');
+            return view('userAdmin.home.index')->with('success','You are verified now');
+        }else{
+            Session::flash('message', 'Please enter correct verification code!');
+            Session::flash('alert-class', 'alert-danger');
+            return redirect('/verify-customer');
+        }
+    }
     public function customerLogout(){
         Session::forget('customerId');
         Session::forget('customerName');
+        Session::forget('userId');
+        Session::forget('sellerName');
         Session::forget('shippingId');
         Session::forget('grant_total');
         Session::forget('page');

@@ -81,7 +81,7 @@
                                         <a href="{{ url('/edit-order-info/'.$order->id) }}" class="btn btn-success btn-xs" title="Edit Order">
                                             <span class="glyphicon glyphicon-edit"></span>
                                         </a>
-                                        <a href="{{ url('') }}" class="btn btn-danger btn-xs" title="Delete Order">
+                                        <a href="{{ url('/delete-order-info/'.$order->id) }}" class="btn btn-danger btn-xs" title="Delete Order" onclick="return checkDelete();">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </a>
                                     </td>
@@ -121,5 +121,17 @@
                 })
             });
         });
+    </script>
+
+    <script>
+        function  checkDelete() {
+            var check= confirm('Are you sure delete this!!');
+            if (check){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     </script>
 @endsection

@@ -61,7 +61,7 @@ class UserController extends Controller
             'phone'=>$request->phone,
             'address'=>$request->address,
             'image'=>$imageUrl,
-            'password' => Hash::make($request['password'])
+            'password' => bcrypt($request->password)
         ]);
         return redirect('/admin/user/')->with('message','New User information saved successfully!');
     }
@@ -87,6 +87,25 @@ class UserController extends Controller
     {
         $user = User::where('unique_id',$unique_id)->first();
         return view('admin.user.edit',compact('user'));
+    }
+
+    public function editTypeUser($unique_id){
+        $user = User::where('unique_id',$unique_id)->first();
+        return view('admin.user.editType',compact('user'));
+    }
+
+    public function updateTypeUser(Request $request, $unique_id){
+        $user = User::where('unique_id',$unique_id)->first();
+
+        //return $user;
+
+        DB::table('users')->
+        where('unique_id',$unique_id)
+            ->update([
+                'type'=>$request->userRole,
+            ]);
+        return redirect('/admin/user/')->with('message','Update User information saved successfully!');
+
     }
 
     /**
@@ -123,7 +142,7 @@ class UserController extends Controller
             'address'=>$request->address,
             'image'=>$imageUrl,
             'type'=>$request->userRole,
-            'password' => Hash::make($request['password'])
+            'password' => bcrypt($request->password)
         ]);
         return redirect('/admin/user/')->with('message','Update User information saved successfully!');
     }

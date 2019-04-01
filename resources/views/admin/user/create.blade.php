@@ -35,7 +35,7 @@
 
 
                         <div class="item form-group">
-                            {!! Form::label('name','User Name *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            {!! Form::label('name','Full Name *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 {!! Form::text('name',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'name','required'=>'required']) !!}
                                 @if ($errors->has('name'))
