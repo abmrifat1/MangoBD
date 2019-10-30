@@ -110,9 +110,9 @@ class MangoBD extends Controller
 
     public function categoryProducts($unique_id){
         $category = Category::where('unique_id',$unique_id)->first();
-            $products = Product::where('categoryId',$category->id)->latest()->paginate(10);
+            $products = Product::where('categoryId',$category->id)->paginate(9);
             //return $products;
-            return view('front.category.categoryView',['products'=>$products]);
+            return view('front.category.categoryView',['products'=>$products, 'unique_id'=>$unique_id]);
     }
 
     public function shop()
@@ -185,12 +185,7 @@ class MangoBD extends Controller
     public function contact(){
         return view('front.contact.contact');
     }
-    public function blog(){
-        return view('front.blog.blog-view');
-    }
-    public function singleBlogView(){
-        return view('front.blog.single-blog-view');
-    }
+
 
     public function saveContactInfo(Request $request){
         //return $request;

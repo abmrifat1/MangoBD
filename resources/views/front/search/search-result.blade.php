@@ -269,14 +269,21 @@
                                                 <a href="{{ url('/products/'.$product->unique_id) }}" class="link-product-add-cart">Quick View</a>
                                             </div>
                                         </div>
-                                        <span class="product-new-top">Fresh</span>
+                                        <a href="{{ url('/seller-info/'.$product->user_id) }}"><span class="product-new-top">Seller Info</span></a>
                                     </div>
                                     <div class="item-info-product ">
-                                        <h4>
+                                        <h4 style="margin-bottom: 5px;">
                                             <a href="{{ url('/products/'.$product->unique_id) }}">{{$product->name}}, {{ $product->quantity }}kg</a>
                                         </h4>
+                                        <h4>
+                                            @if($product->discount < 1)
+                                                <a href="{{ url('/products/'.$product->unique_id) }}" style="font-size: 14px; background-color: #ffffff; color: white; padding: 0 2px; border-radius: 2px;"></a>
+                                            @else
+                                                <a href="{{ url('/products/'.$product->unique_id) }}" style="font-size: 14px; background-color: #b2a50b; color: white; padding: 0 2px; border-radius: 2px;">{{$product->discount}}% Discount</a>
+                                            @endif
+                                        </h4>
                                         <div class="info-product-price">
-                                            <span class="item_price">{{ $product->sellPrice }}tk</span>
+                                            <span class="item_price">{{ $product->sellPrice }}tk Per Kg</span>
                                             <del>{{ $product->regPrice }}tk</del>
                                         </div>
 
@@ -398,7 +405,7 @@
                                             <a href="{{ url('/products/'.$productsMostSell->unique_id) }}" class="link-product-add-cart">Quick View</a>
                                         </div>
                                     </div>
-                                    <span class="product-new-top">Fresh</span>
+                                    <a href="{{ url('/seller-info/'.$product->user_id) }}"><span class="product-new-top">Seller Info</span></a>
                                 </div>
                                 <div class="item-info-product ">
                                     <h4 style="margin-bottom: 5px;">

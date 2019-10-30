@@ -31,12 +31,12 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        {!! Form::open(['url' => 'dashboard/blog-post-category/update/'.$blog_post_category->unique_id,'method'=>'PATCH','class'=>'form-horizontal form-label-left']) !!}
+                        {!! Form::open(['url' => '/admin/blog-post-category/update/'.$blogcategory->id,'method'=>'PATCH','class'=>'form-horizontal form-label-left']) !!}
 
                         <div class="item form-group">
                             {!! Form::label('name','Name *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!! Form::text('name',$blog_post_category->name,['class'=>'form-control col-md-7 col-xs-12','id'=>'name','required'=>'required']) !!}
+                                {!! Form::text('name',$blogcategory->name,['class'=>'form-control col-md-7 col-xs-12','id'=>'name','required'=>'required']) !!}
                                 @if ($errors->has('name'))
                                     <span class="help-block error">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -46,18 +46,18 @@
                         </div>
 
 
-                        <div class="item form-group">
+                       {{-- <div class="item form-group">
                             {!! Form::label('status','Publication Status ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 {!!  Form::select('status', ['1' => 'Publish', '0' => 'UnPublish'], $blog_post_category->status, ['class'=>'form-control','id'=>'status'])!!}
                             </div>
-                        </div>
+                        </div>--}}
 
 
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                {!! Form::submit('Submit',['class'=>'btn btn-success','id'=>'send']) !!}
+                                {!! Form::submit('Update',['class'=>'btn btn-success','id'=>'send']) !!}
                             </div>
                         </div>
                         </form>

@@ -3,7 +3,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Blog Post Registration Form</h3>
+                <h3>Blog Post Information</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -31,24 +31,34 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        {!! Form::open(['url' => 'dashboard/blog-post/store','method'=>'POST','files' => true,'class'=>'form-horizontal form-label-left']) !!}
-
-
+                        {!! Form::open(['url' => 'admin/blog-post/store','method'=>'POST','files' => true,'class'=>'form-horizontal form-label-left']) !!}
 
                         <div class="item form-group">
-                            {!! Form::label('post_title','Post Title *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            {!! Form::label('name','Post Name *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!! Form::text('post_title',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'post_title','required'=>'required']) !!}
-                                @if ($errors->has('post_title'))
+                                {!! Form::text('name',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'post_title','required'=>'required']) !!}
+                                @if ($errors->has('name'))
                                     <span class="help-block error">
-                                        <strong>{{ $errors->first('post_title') }}</strong>
+                                        <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="item form-group">
-                            {!! Form::label('image','Small Image *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            {!! Form::label('title','Post Title *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {!! Form::text('title',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'post_title','required'=>'required']) !!}
+                                @if ($errors->has('title'))
+                                    <span class="help-block error">
+                                        <strong>{{ $errors->first('title') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            {!! Form::label('image','Post Image *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 {!! Form::file('image',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image','required'=>'required']) !!}
                                 <span>Image will be 350x200</span>
@@ -60,14 +70,14 @@
                             </div>
                         </div>
 
+
                         <div class="item form-group">
-                            {!! Form::label('image_two','Big Image *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            {!! Form::label('description','Post Content *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!! Form::file('image_two',['accept'=>'image/*','class'=>'form-control col-md-7 col-xs-12','id'=>'image_two','required'=>'required']) !!}
-                                {{--<span>Image will be 750x400</span>--}}
-                                @if ($errors->has('image_two'))
+                                {!! Form::textarea('description',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'post_content','required'=>'required']) !!}
+                                @if ($errors->has('description'))
                                     <span class="help-block error">
-                                        <strong>{{ $errors->first('image_two') }}</strong>
+                                        <strong>{{ $errors->first('description') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -76,26 +86,12 @@
 
 
                         <div class="item form-group">
-                            {!! Form::label('post_content','Post Content *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!! Form::textarea('post_content',null,['class'=>'form-control col-md-7 col-xs-12','id'=>'post_content','required'=>'required']) !!}
-                                @if ($errors->has('post_content'))
-                                    <span class="help-block error">
-                                        <strong>{{ $errors->first('post_content') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-
-
-                        <div class="item form-group">
-                            {!! Form::label('category_id','Select Category *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            {!! Form::label('categoryId','Select Blog Category *',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
 
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select name="category_id" id="category_id" class="form-control col-md-7 col-xs-12">
+                                <select name="categoryId" id="" class="form-control col-md-7 col-xs-12">
                                     @foreach($blogPostCategories as $blogPostCategory)
-                                        <option value="{{$blogPostCategory->unique_id}}">{{$blogPostCategory->name}}</option>
+                                        <option value="{{$blogPostCategory->id}}">{{$blogPostCategory->postCategoryName}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -104,9 +100,13 @@
                         <div class="item form-group">
                             {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
                             </label>--}}
-                            {!! Form::label('status','Publication Status ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                            {!! Form::label('userId','Select User * ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {!!  Form::select('status', ['1' => 'Publish', '0' => 'UnPublish'], 1, ['class'=>'form-control','id'=>'status'])!!}
+                                <select name="usrId" id="" class="form-control">
+                                    @foreach($users as $user)
+                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
@@ -114,7 +114,7 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                {!! Form::submit('Submit',['class'=>'btn btn-success','id'=>'send']) !!}
+                                {!! Form::submit('Create',['class'=>'btn btn-success','id'=>'send']) !!}
 
                                 {{--<button id="send" type="submit" class="btn btn-success">Submit</button>--}}
                             </div>

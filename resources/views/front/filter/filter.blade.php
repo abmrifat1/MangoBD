@@ -17,7 +17,7 @@
                         <a href="{{ url('/') }}">Home</a>
                         <i>|</i>
                     </li>
-                    <li>Shop Page</li>
+                    <li>Filter Page</li>
                 </ul>
             </div>
         </div>
@@ -265,7 +265,7 @@
                                                 <a href="{{ url('/products/'.$product->unique_id) }}" class="link-product-add-cart">Quick View</a>
                                             </div>
                                         </div>
-                                        <span class="product-new-top">Fresh</span>
+                                        <a href="{{ url('/seller-info/'.$product->user_id) }}"><span class="product-new-top">Seller Info</span></a>
                                     </div>
                                     <div class="item-info-product ">
                                         <h4 style="margin-bottom: 5px;">

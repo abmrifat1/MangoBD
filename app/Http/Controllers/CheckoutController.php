@@ -237,26 +237,32 @@ class CheckoutController extends Controller
     }
 
     public function customerSignInHome(Request $request){
-        $seller = DB::table('users')->select('*')->where('email', $request->email)->first();
+        $seller = DB::table('users')->where('email', $request->email)->first();
 
         $customer = Customer::where('email', $request->email)->first();
         //return $customer;
 
 
         if ($customer) {
-            if (password_verify($request->password, $customer->password)) {
-                Session::put('image', $customer->image);
-                Session::put('customerName', $customer->first_name.' '.$customer->last_name);
-                Session::put('customerId', $customer->id);
+            //if($customer->email_verified_at != '') {
+                if (password_verify($request->password, $customer->password)) {
+                    Session::put('image', $customer->image);
+                    Session::put('customerName', $customer->first_name . ' ' . $customer->last_name);
+                    Session::put('customerId', $customer->id);
 
-                return redirect('/');
+                    return redirect('/');
+                } else {
+                    Session::flash('loginMessage', 'Invalid password');
+                    return redirect()->back();
+                }
 
-            } else {
-                Session::put('message', 'Invalid password');
+            /*}else{
+                Session::flash('loginMessage', 'We have not find match crediential in our database');
                 return redirect()->back();
-            }
+            }*/
         }
         elseif ($seller){
+            //if($seller->email_verified_at != '') {
             //return $seller->password;
             if (password_verify($request->password, $seller->password)) {
                 Session::put('image', $seller->image);
@@ -266,12 +272,16 @@ class CheckoutController extends Controller
                 return redirect('/');
 
             } else {
-                Session::put('message', 'Invalid password');
+                Session::flash('loginMessage', 'Invalid password');
                 return redirect()->back();
             }
+            /*}else{
+                Session::flash('loginMessage', 'We have not find match crediential in our database');
+                return redirect()->back();
+            }*/
         }
         else{
-            Session::put('message', 'Invalid email');
+            Session::flash('loginMessage', 'Invalid email');
             return redirect()->back();
         }
     }
@@ -281,51 +291,53 @@ class CheckoutController extends Controller
     }
 
     public function customerSignUpHome(Request $request){
-        //return $request;
         if ($request->userRole == 'Customer'){
-        $this->validate($request,[
-            'first_name'=>'required|regex:/^[\pL\s\-]+$/u',
-            'last_name'=>'required|regex:/^[\pL\s\-]+$/u',
-            'email'=>'required|email|unique:customers,email',
-            'phone'=>'required|size:11|regex:/(01)[0-9]{9}/',
-            'image'=>'image',
-            'address'=>'required',
-            'password'=>'required|max:20|min:6|confirmed',
+            $this->validate($request,[
+                'first_name'=>'required|regex:/^[\pL\s\-]+$/u',
+                'last_name'=>'required|regex:/^[\pL\s\-]+$/u',
+                'email'=>'required|email|unique:customers,email',
+                'phone'=>'required|size:11|regex:/(01)[0-9]{9}/',
+                'image'=>'image',
+                'address'=>'required',
+                'password'=>'required|max:20|min:6|confirmed',
 
-        ]);
-        $imageUrl = '';
-        if($request->hasFile('image')){
-            $imageFile = $request->file('image');
-            $directory = 'images/customer-profile-images/';
-            $imageName = substr(md5(time()),2, 10).rand(10000,999999).time().'.'.$imageFile->getClientOriginalExtension();
-            $imageUrl = $directory.$imageName;
-            $imageFile->move($directory,$imageName);
-        }
-        $verification_code = rand(100000,999999);
-        $data = array(
-            'name'=> $request['first_name'],
-            'verification_code'=>$verification_code
-        );
-        //return $imageUrl;
-        Mail::to($request['email'])->send(new SendEmail($data));
+            ]);
+            $imageUrl = '';
+            if($request->hasFile('image')){
+                $imageFile = $request->file('image');
+                $directory = 'images/customer-profile-images/';
+                $imageName = substr(md5(time()),2, 10).rand(10000,999999).time().'.'.$imageFile->getClientOriginalExtension();
+                $imageUrl = $directory.$imageName;
+                $imageFile->move($directory,$imageName);
+            }
+            $verification_code = rand(100000,999999);
+            $data = array(
+                'name'=> $request['first_name'],
+                'verification_code'=>$verification_code
+            );
+            //return $imageUrl;
+          /*  if(EmailValidator::verify('prosperotemuyiwa@gmail.com')->isValid()[0]){*/
 
-        $customer=new Customer();
-        $customer->first_name=$request->first_name;
-        $customer->last_name=$request->last_name;
-        $customer->email=$request->email;
-        $customer->phone=$request->phone;
-        $customer->verification_code=$verification_code;
-        $customer->address=$request->address;
-        $customer->image=$imageUrl;
-        $customer ->password= bcrypt($request->password);
-        $customer->save();
-        $customerId = $customer->id;
-        Session::put('customerId', $customerId);
-        Session::put('image', $imageUrl);
-        Session::put('userName', $request->first_name.' '.$request->last_name);
+                Mail::to($request['email'])->send(new SendEmail($data));
 
-            return redirect('/verify-customer');
-        }
+                $customer=new Customer();
+                $customer->first_name=$request->first_name;
+                $customer->last_name=$request->last_name;
+                $customer->email=$request->email;
+                $customer->phone=$request->phone;
+                $customer->verification_code=$verification_code;
+                $customer->address=$request->address;
+                $customer->image=$imageUrl;
+                $customer ->password= bcrypt($request->password);
+                $customer->save();
+                $customerId = $customer->id;
+                Session::put('customerId', $customerId);
+                Session::put('image', $imageUrl);
+                Session::put('userName', $request->first_name.' '.$request->last_name);
+
+                return redirect('/verify-customer');
+            }
+        /*}*/
 
         else{
             $this->validate($request,[
@@ -376,6 +388,7 @@ class CheckoutController extends Controller
 
             return redirect('/verify');
         }
+        //return $request;
 
     }
     public function verify()
@@ -414,7 +427,7 @@ class CheckoutController extends Controller
         }else{
             Session::flash('message', 'Please enter correct verification code!');
             Session::flash('alert-class', 'alert-danger');
-            return redirect('/verify-customer');
+            return redirect-back();
         }
     }
     public function customerLogout(){

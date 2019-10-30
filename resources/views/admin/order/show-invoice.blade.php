@@ -152,7 +152,7 @@
                                             <td>
                                                 Invoice #: 0000{{ $order->id }}<br>
                                                 Order Date: {{ $order->created_at }}<br>
-                                                Due: February 1, 2015
+                                                Due: May 5, 2019
                                             </td>
                                         </tr>
                                     </table>

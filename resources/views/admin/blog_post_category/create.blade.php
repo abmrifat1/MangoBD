@@ -3,7 +3,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Portfolio Category Registration Form</h3>
+                <h3>Blog Post Category Registration Form</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -12,7 +12,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Portfolio Category Information</h2>
+                        <h2>Blog Post Category Information</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -31,7 +31,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        {!! Form::open(['url' => 'dashboard/blog-post-category/store','method'=>'POST','class'=>'form-horizontal form-label-left']) !!}
+                        {!! Form::open(['url' => 'admin/blog-post-category/store','method'=>'POST','class'=>'form-horizontal form-label-left']) !!}
 
 
                         <div class="item form-group">
@@ -47,20 +47,20 @@
                         </div>
 
 
-                        <div class="item form-group">
-                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
-                            </label>--}}
+                        {{--<div class="item form-group">
+                            --}}{{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
+                            </label>--}}{{--
                             {!! Form::label('status','Publication Status ',['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 {!!  Form::select('status', ['1' => 'Publish', '0' => 'UnPublish'], 1, ['class'=>'form-control','id'=>'status'])!!}
                             </div>
                         </div>
-
+--}}
 
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                {!! Form::submit('Submit',['class'=>'btn btn-success','id'=>'send']) !!}
+                                {!! Form::submit('Create',['class'=>'btn btn-success','id'=>'send']) !!}
                             </div>
                         </div>
                         </form>

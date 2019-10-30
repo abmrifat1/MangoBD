@@ -22,7 +22,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <a href="{{url('/dashboard/blog-post-category/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New</a>
+                        <a href="{{url('/admin/blog-post-category/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New</a>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -44,30 +44,23 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>S.L</th>
-                                <th>Category Name</th>
-                                <th>Status</th>
-                                <th>Created at</th>
-                                <th>Action</th>
+                                <th colspan="4">S.L</th>
+                                <th colspan="8">Category Name</th>
+                                <th colspan="6">Created at</th>
+                                <th colspan="5">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @php($i=0)
-                                @foreach($blog_post_categories as $blog_post_category)
+                                @foreach($blogcategories as $blogcategorie)
                                     <tr>
-                                        <td>{{++$i}}</td>
-                                        <td>{{$blog_post_category->name}}</td>
-                                        <td>{{$blog_post_category->status==1?'Publish':'UnPublish'}}</td>
-                                        <td>{{$blog_post_category->created_at}}</td>
-                                        <td class="center">
-                                            @if($blog_post_category->status==1)
-                                                <a href="{{ url('/dashboard/blog-post-category/unpublish/'.$blog_post_category->unique_id) }}" title="Un Publish" class="btn btn-success"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
-                                            @else
-                                                <a href="{{ url('/dashboard/blog-post-category/publish/'.$blog_post_category->unique_id) }}" title="Publish" class="btn btn-warning"><i class="fa fa-long-arrow-down" aria-hidden="true"></i></a>
-                                            @endif
-                                            <a href="{{ url('/dashboard/blog-post-category/edit/'.$blog_post_category->unique_id) }}" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <td colspan="4">{{++$i}}</td>
+                                        <td colspan="8">{{$blogcategorie->postCategoryName}}</td>
+                                        <td colspan="6">{{$blogcategorie->created_at}}</td>
+                                        <td class="center" colspan="5">
+                                            <a href="{{ url('/admin/blog-post-category/edit/'.$blogcategorie->id) }}" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                             {{--<a href="#" title="Destroy" onclick="event.preventDefault(); document.getElementById('deleteForm').submit()" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>--}}
-                                            {!! Form::open(['url' => '/dashboard/blog-post-category/destroy/'.$blog_post_category->unique_id,'method'=>'DELETE','style'=>'display:inline']) !!}
+                                            {!! Form::open(['url' => '/admin/blog-post-category/destroy/'.$blogcategorie->id,'method'=>'DELETE','style'=>'display:inline']) !!}
                                             <button type="submit" class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></button>
                                             {!! Form::close() !!}
                                         </td>

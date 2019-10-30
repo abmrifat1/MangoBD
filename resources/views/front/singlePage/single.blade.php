@@ -160,7 +160,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <input type="submit" name="btn" value="Add To Cart" class="my-cart-btn item_add btn btn-success">
                     </div>
                 </form>
-            </div>
+                <a title="Seller Information" href="{{ url('/seller-info/'.$product->user_id) }}"><span class="product-new-top">Seller Info</span></a>
+                 </div>
 
            <!-- <div class="occasion-cart">
                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
@@ -200,40 +201,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- //tittle heading -->
         <div class="content-bottom-in">
             <ul id="flexiselDemo1">
-
                 @foreach($products as $product)
-                <li>
-                    <div class="w3l-specilamk">
-                        <div class="speioffer-agile">
-                            <a href="single.html">
-                                <img src="/{{ $product->picture_1 }}" alt="" style="height: 200px; width: 150px;">
-                            </a>
-                        </div>
-                        <div class="product-name-w3l">
-                            <h4>
-                                <a href="single.html">{{ $product->name }}, 5g</a>
-                            </h4>
-                            <div class="w3l-pricehkj">
-                                <h6>Price: {{ $product->sellPrice }}</h6>
-                                <p>Save {{ $product->regPrice - $product->sellPrice }}</p>
-                            </div>
-
-                            <div>
-                                <form action="{{ url('/add-to-cart') }}" method="post">
-                                    {{ csrf_field() }}
-                                    <div class="form-group">
-                                        <input type="hidden" name="qty" value="1" min="1">
-                                        <input type="hidden" name="id" value="{{ $product->id }}">
+                    <div class="col-md-3 product-men" >
+                        <div class="men-pro-item simpleCart_shelfItem" style="height: 350px; width: 250px;">
+                            <div class="men-thumb-item">
+                                <img src="/{{ $product->picture_1 }}" alt="" style="height: 150px; width: 150px;">
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        <a href="{{ url('/products/'.$product->unique_id) }}" class="link-product-add-cart">Quick View</a>
                                     </div>
-                                    <div class="text-center">
-                                        <input style="width: 120px;" type="submit" name="btn" value="Add To Cart" class="btn btn-success btn-large">
-                                    </div>
-                                </form>
+                                </div>
+                                <a href="{{ url('/seller-info/'.$product->user_id) }}"><span class="product-new-top">Seller Info</span></a>
                             </div>
+                            <div class="item-info-product ">
+                                <h4 style="margin-bottom: 5px;">
+                                    <a href="{{ url('/products/'.$product->unique_id) }}">{{$product->name}}, {{ $product->quantity }}kg</a>
+                                </h4>
+                                <h4>
+                                    @if($product->discount < 1)
+                                        <a href="{{ url('/products/'.$product->unique_id) }}" style="font-size: 14px; background-color: #ffffff; color: white; padding: 0 2px; border-radius: 2px;"></a>
+                                    @else
+                                        <a href="{{ url('/products/'.$product->unique_id) }}" style="font-size: 14px; background-color: #b2a50b; color: white; padding: 0 2px; border-radius: 2px;">{{$product->discount}}% Discount</a>
+                                    @endif
+                                </h4>
+                                <div class="info-product-price">
+                                    <span class="item_price">{{ $product->sellPrice }}tk Per Kg</span>
+                                    <del>{{ $product->regPrice }}tk</del>
+                                </div>
 
+                                <div>
+                                    <form action="{{ url('/add-to-cart') }}" method="post">
+                                        {{ csrf_field() }}
+                                        <div class="form-group">
+                                            <input type="hidden" name="qty" value="1" min="1">
+                                            <input type="hidden" name="id" value="{{ $product->id }}">
+                                        </div>
+                                        <div>
+                                            <input type="submit" name="btn" value="Add To Cart" class="my-cart-btn item_add button">
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </li>
                 @endforeach()
 
 

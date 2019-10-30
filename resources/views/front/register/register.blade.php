@@ -207,12 +207,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
 
                             <div class="item form-group">
-                                {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
-                                </label>--}}
-                                {!! Form::label('userRole','User Role*', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                                <label class="control-label col-sm-3" style="margin-right: 17px;">User Role<span class="requiredDesign">*</span></label>
+                                <select name="userRole" style="width: 375px; height: 40px;">
+                                    <option value="0">Select One</option>
+                                    <option value="Customer">Customer</option>
+                                    <option value="Seller">Seller</option>
+                                </select>
+                                {{--{!! Form::label('userRole','User Role*', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {!!  Form::select('userRole', ['Select One','Customer' => 'Customer','Seller' => 'Seller'], 0, ['class'=>'form-control','id'=>'isActive'])!!}
-                                </div>
+                                </div>--}}
                             </div>
 
                             <div class="form-group">

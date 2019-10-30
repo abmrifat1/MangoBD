@@ -101,8 +101,8 @@
                         <figure class="effect-roxy">
                             <img src="{{asset('front/images/bottom4.jpg')}}" alt=" " class="img-responsive">
                             <figcaption>
-                                {{--<h3><span>S</span>ale </h3>
-                                <p>Upto 65%</p>--}}
+                                <h3><span>S</span>ale </h3>
+                                <p>Upto 65%</p>
                             </figcaption>
                         </figure>
                     </div>
@@ -114,8 +114,7 @@
     <!--/grids-->
     <div class="agile_last_double_sectionw3ls">
         <div class="col-md-6 multi-gd-img multi-gd-text ">
-            <a href="{{ url('/shop') }}"><img src="{{asset('front/images/bot_1.jpg')}}" alt=" "><{{--h4>We Give You <span>50%</span> offer</h4>--}}</a>
-
+            <a href="{{ url('/shop') }}"><img src="{{asset('front/images/bot_1.jpg')}}" alt=" ">{{--<h4>We Give You <span>50%</span> offer</h4>--}}</a>
         </div>
         <div class="col-md-6 multi-gd-img multi-gd-text ">
             <a href="{{ url('/shop') }}"><img src="{{asset('front/images/bot_2.jpg')}}" alt=" ">{{--<h4>We Give You <span>50%</span> offer</h4>--}}</a>

@@ -72,6 +72,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             left: -35px;
             content: "✖";
         }
+
+        .requiredDesign{
+            color: red;
+        }
     </style>
     <!-- Form Design -->
 
@@ -188,35 +192,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <form class="form-horizontal" action="{{ url('/new-customer') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label class="control-label col-sm-3">First Name</label>
+                                <label class="control-label col-sm-3">First Name<span class="requiredDesign">*</span></label>
                                 <div class="col-sm-9">
                                     <input type="text" name="first_name" value="{{old('first_name')}}" class="form-control" required/>
                                     {{ $errors->has('first_name') ? $errors->first('first_name') : ' ' }}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-3">Last Name</label>
+                                <label class="control-label col-sm-3">Last Name<span class="requiredDesign">*</span></label>
                                 <div class="col-sm-9">
                                     <input type="text" name="last_name" value="{{old('last_name')}}" class="form-control" required/>
                                     {{ $errors->has('last_name') ? $errors->first('last_name') : ' ' }}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-3">Email</label>
+                                <label class="control-label col-sm-3">Email<span class="requiredDesign">*</span></label>
                                 <div class="col-sm-9">
                                     <input type="email" name="email" value="{{old('email')}}" class="form-control" required/>
                                     {{ $errors->has('email') ? $errors->first('email') : ' ' }}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-3">Mobile</label>
+                                <label class="control-label col-sm-3">Mobile<span class="requiredDesign">*</span></label>
                                 <div class="col-sm-9">
                                     <input type="number" name="phone" value="{{old('phone')}}" class="form-control" required/>
                                     {{ $errors->has('phone') ? $errors->first('phone') : ' ' }}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-3">Address</label>
+                                <label class="control-label col-sm-3">Address<span class="requiredDesign">*</span></label>
                                 <div class="col-sm-9">
                                     <textarea class="form-control" name="address" style="resize: vertical;" required>{{old('address')}}</textarea>
                                     {{ $errors->has('address') ? $errors->first('address') : ' ' }}
@@ -230,6 +234,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span class="error">
                                     <strong style="color: red;" id="nameErrorMsg"></strong>
                             </span>
+                            </div>
+
+                            <div class="item form-group">
+                                {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Publication Status <span class="required">*</span>
+                                </label>--}}
+                                {!! Form::label('userRole','User Role*', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {!!  Form::select('userRole', ['Select One','Customer' => 'Customer','Seller' => 'Seller'], 0, ['class'=>'form-control','id'=>'isActive'])!!}
+                                </div>
                             </div>
 
                             <div class="form-group">

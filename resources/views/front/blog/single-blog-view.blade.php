@@ -27,7 +27,7 @@
                         <a href="{{ url('/') }}">Home</a>
                         <i>|</i>
                     </li>
-                    <li>Single Page</li>
+                    <li>Single Blog View Page</li>
                 </ul>
             </div>
         </div>
@@ -39,21 +39,21 @@
             <div class="inner-sec-w3layouts py-lg-5 py-3">
                 <h3 class="tittle text-center"><span class="sub-tittle">Our Latest </span>Single Page</h3>
                 <div class="row mt-lg-5 mt-3">
-                    <div class="col-lg-8 blog-left-content">
+
+                    <div class="col-lg-12 blog-left-content">
+                        @foreach($blogPosts as $blogPost)
                         <div class="card">
-                            <img class="card-img-top" src="images/banner4.jpg" alt="Card image cap">
+                            <img class="card-img-top" src="/{{$blogPost->image }}" style="height: 650px;" alt="Card image cap">
                             <div class="card-body">
                                 <h6 class="date"><span>
-                                     By: Admin</span> Sep 20.2018</h6>
-                                <h5 class="card-title"><a class="b-post text-dark" href="#">Blog Post One</a></h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Maecenas interdum, metus vitae tincidunt porttitor, magna quam egestas sem, ac scelerisque nisl nibh vel lacus. Proin eget gravida odio.</p>
-                                <a class="btn btn-banner text-capitalize my-3" href="#">Read More</a>
-                            </div>
+                                     By: {{ $blogPost->name }}</span> {{ $blogPost->created_at }}</h6>
+                                <h5 class="card-title"><a class="b-post text-dark" href="#">{{ $blogPost->title }}</a></h5>
+                                <p class="card-text">{{ $blogPost->description }}</p></div>
                             <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
+                                {{--<small class="text-muted">Last updated 3 mins ago</small>--}}
                             </div>
                         </div>
-
+                        @endforeach
 
                         <div class="comment-top">
                             <h4>Comments</h4>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="comment-top contact">
                             <h4>Leave a Comment</h4>
-                            <form action="#" method="post">
+                            <form action="{{ url('/single-blog-view/') }}" method="post">
                                 <div class="row main">
                                     <div class="col-md-4 form-left">
                                         <input type="text" class="top-up" name="name" placeholder="Name" required="">
@@ -99,7 +99,7 @@
                         </div>
 
 
-                    </div>
+                   {{-- </div>
                     <aside class="col-lg-4 blog-sldebar-right">
                         <div class="single-gd">
                             <img src="images/banner1.jpg" class="img-fluid" alt="">
@@ -132,7 +132,7 @@
                                 <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
-                        <div class="single-gd tech-btm" data-aos="fade-down">
+                       <div class="single-gd tech-btm" data-aos="fade-down">
                             <h4>Top stories of the week </h4>
                             <div class="blog-grids">
                                 <div class="blog-grid-left">
@@ -179,7 +179,7 @@
 
                         </div>
                     </aside>
-                </div>
+                </div>--}}
             </div>
         </div>
     </section>

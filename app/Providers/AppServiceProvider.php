@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use App\BlogCategory;
 use App\ContactInfo;
 use App\Product;
 use App\User;
@@ -20,6 +21,12 @@ class AppServiceProvider extends ServiceProvider
         View::composer('front.includes.header',function ($view){
             $view->with('categories',Category::orderby('name','asc')->get());
         });
+        View::composer('admin.blog_post.create',function ($view){
+            $view->with('blogPostCategories',BlogCategory::orderby('postCategoryName','asc')->get());
+        });
+        View::composer('admin.blog_post.create',function ($view){
+            $view->with('users',User::orderby('name','asc')->get());
+        });
         View::composer('admin.product.create',function ($view){
             $view->with('categories',Category::orderby('name','asc')->get());
         });
@@ -35,10 +42,6 @@ class AppServiceProvider extends ServiceProvider
         View::composer('admin.includes.sidebar',function ($view){
             $view->with('$messageCountss',ContactInfo::count());
         });
-
-
-
-
     }
 
     /**

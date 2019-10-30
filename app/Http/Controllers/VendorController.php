@@ -11,6 +11,7 @@ use Cart;
 use App\Shipping;
 use App\Payment;
 use App\OrderDetail;
+use PDF;
 
 class VendorController extends Controller
 {
@@ -137,6 +138,25 @@ class VendorController extends Controller
             'order'=>$order,
         ]);
     }
+
+
+    public function downloadCustomerOrderInvoice($id){
+        $order = Order::find($id);
+        $customer = Customer::find($order->customer_id);
+        $shipping = Shipping::find($order->shipping_id);
+        $payment = Payment::find($order->id);
+        $products = OrderDetail::where('order_id', $id)->get();
+
+        $pdf = PDF::loadView('userAdmin.order.download-invoice',[
+            'customer'=>$customer,
+            'shipping'=>$shipping,
+            'products'=>$products,
+            'payments'=>$payment,
+            'order'=>$order
+        ]);
+        return $pdf->stream('0000'.$order->id.'.pdf');
+    }
+
 
     /**
      * Show the form for creating a new resource.

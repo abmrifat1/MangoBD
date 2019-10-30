@@ -29,6 +29,18 @@
 
                         <li><a href="{{url('/home')}}"><i class="fa fa-home"></i> Home </a>
                         </li>
+                        <li><a><i class="fa fa-windows"></i> Blog Post Category<span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('/admin/blog-post-category/manage')}}">Manage Skill</a></li>
+                                <li><a href="{{url('/admin/blog-post-category/create')}}">Add New</a></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-server" aria-hidden="true"></i> Blog <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('/admin/blog-post/manage')}}">Manage Skill</a></li>
+                                <li><a href="{{url('/admin/blog-post/create')}}">Add New</a></li>
+                            </ul>
+                        </li>
                         <!--
                         <li><a><i class="fa fa-address-book"></i> Administrator  <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
@@ -94,12 +106,7 @@
                                 <li><a href="{{url('/admin/skill/create')}}">Add New</a></li>
                             </ul>
                         </li>
-                        <li><a><i class="fa fa-windows"></i> Blog Post Category<span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="{{url('/admin/blog-post-category/manage')}}">Manage Skill</a></li>
-                                <li><a href="{{url('/admin/blog-post-category/create')}}">Add New</a></li>
-                            </ul>
-                        </li>
+
                         <li><a><i class="fa fa-server" aria-hidden="true"></i> Blog <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{url('/admin/blog-post/manage')}}">Manage Skill</a></li>

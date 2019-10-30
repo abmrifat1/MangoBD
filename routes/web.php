@@ -11,11 +11,19 @@
 |
 */
 
+Route::get('/email_available', 'EmailAvailable@index');
+
+Route::post('/email_available/check', 'EmailAvailable@check')->name('email_available.check');
+
+
 Route::get('/', 'MangoBD@homepage');
-Route::get('/shop', 'MangoBD@shop');
+Route::get('/', 'MangoBD@homepage');
 Route::get('/about', 'MangoBD@about');
-Route::get('/blog-view', 'MangoBD@blog');
-Route::get('/single-blog-view', 'MangoBD@singleBlogView');
+Route::get('/shop', 'MangoBD@shop');
+
+Route::get('/blog-view', 'BlogPostController@blogViewHomePage');
+Route::get('/single-blog-view/{id}', 'BlogPostController@singleBlogView');
+
 Route::get('/contact', 'MangoBD@contact');
 Route::post('/contact-info-save', 'MangoBD@saveContactInfo');
 
@@ -27,8 +35,21 @@ Route::get('category-products/{unique_id}', 'MangoBD@categoryProducts');
 /* Seller */
 Route::get('/add-product-seller', 'SellerController@productAddSeller');
 Route::post('/add-product-by-seller', 'SellerController@addProdcutBySeller');
-
 /* Seller */
+
+/* Blog Post */
+Route::get('/admin/blog-post-category/create', 'CategoryController@blogCategory');
+Route::post('/admin/blog-post-category/store', 'CategoryController@blogCategoryStore');
+Route::get('/admin/blog-post-category/manage', 'CategoryController@blogCategoryShow');
+Route::get('/admin/blog-post-category/edit/{id}', 'CategoryController@blogCategoryEdit');
+Route::post('/admin/blog-post-category/update/{id}', 'CategoryController@blogCategoryUpdate');
+Route::get('/admin/blog-post-category/destroy/{id}', 'CategoryController@blogCategoryDelete');
+
+Route::get('/admin/blog-post/create', 'BlogPostController@create');
+Route::post('/admin/blog-post/store', 'BlogPostController@store');
+Route::get('/admin/blog-post/manage', 'BlogPostController@index');
+
+/* Blog Post */
 
 Route::post('/add-to-cart', 'CartController@addToCart');
 Route::get('/show-cart', 'CartController@showCart');
@@ -58,6 +79,7 @@ Route::post('/customer-login-dashboard', 'VendorController@customerDashboardLogi
 Route::get('/customer-order-info','VendorController@showCustomerOrderInfo');
 Route::get('/view-customer-order-details/{id}','VendorController@viewCustomerOrderDetails');
 Route::get('/view-customer-order-invoice/{id}','VendorController@viewCustomerOrderInvoice');
+Route::get('/download-customer-invoice/{id}','VendorController@downloadCustomerOrderInvoice');
 
 Route::get('/customer-sign-out-dashboard','VendorController@customerDashboardLogout');
 /* Customer Dashboard Login */

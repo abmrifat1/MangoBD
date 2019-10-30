@@ -143,8 +143,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <h1>
 
                 </h1>
+
                 <h2 style="text-align: center; padding-top: 15px; font-size: 20px; color: #0a0b1a;">You have to login to complete your valuable order. If you are not registerd then please register first.</h2>
-                {{--<h2 style="text-align: center; color: red;">{{ Session::get('message') }}</h2>--}}
+                    {{--<h2 style="text-align: center; color: red;">{{ Session::get('message') }}</h2>--}}
             </div>
 
             <div class="row">
@@ -176,17 +177,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             <div class="form-group">
                                 <div class="col-sm-9 col-sm-offset-3">
-                                    <input type="submit" name="btn" class="btn btn-success btn-block" value="Login"/>
+                                    <input style="background: green;" type="submit" name="btn" class="btn btn-success btn-block" value="Login"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3" style="text-align: center;">
+                                    <a style="border-radius: 3px; background: green; padding: 8px; text-align: center; color: white;" class="nav-stylehead" href="{{ url('/customer-signup') }}">Create An Acount</a>
                                 </div>
                             </div>
 
                         </form>
 
-                        <div class="form-group">
-                            <div class="col-sm-9 col-sm-offset-3">
-                                <input type="submit" name="btn" class="btn btn-small" value="Create An Account"/>
-                            </div>
-                        </div>
+
+
                     </div>
                 </div>
 

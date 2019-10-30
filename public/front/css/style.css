@@ -3396,7 +3396,7 @@ input[type="radio"], input[type="checkbox"] {
         line-height: 2.5;
     }
     .multi-gd-img img {
-        width: 53%;
+        width: 100%;
     }
     .agileits-navi_search {
         float: left;

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\BlogCategory;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -152,5 +153,48 @@ class CategoryController extends Controller
                 'isActive'=>'Active'
             ]);
         return redirect('/admin/category')->with('message','Category information Published!');
+    }
+
+
+
+
+    public function blogCategory(){
+        return view('admin.blog_post_category.create');
+    }
+    public function blogCategoryStore(Request $request){
+        $this->validate($request,[
+            'name'=>'required|string'
+        ]);
+
+        DB::table('blog_categories')->insert([
+            'postCategoryName'=>$request->name,
+        ]);
+        return redirect('/admin/blog-post-category/manage/')->with('message','New Category information saved successfully!');
+
+    }
+    public function blogCategoryShow(){
+        $blogcategories = BlogCategory::orderby('id','desc')->get();
+        return view('admin.blog_post_category.manage', ['blogcategories'=>$blogcategories]);
+    }
+    public function blogCategoryEdit($id){
+        $blogcategory = BlogCategory::where('id',$id)->first();
+        return view('admin.blog_post_category.edit',compact('blogcategory'));
+    }
+    public function blogCategoryUpdate(Request $request, $id){
+        $this->validate($request,[
+            'name'=>'required',
+        ]);
+        DB::table('blog_categories')
+            ->where('id',$id)
+            ->update([
+                'postCategoryName'=>$request->name
+            ]);
+        return redirect('/admin/blog-post-category/manage')->with('message','Category information updated successfully!');
+
+    }
+    public function blogCategoryDelete($id){
+        BlogCategory::where('id',$id)
+            ->delete();
+        return redirect()->back();
     }
 }

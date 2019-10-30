@@ -335,9 +335,9 @@
                                 <a class="nav-stylehead" href="{{ url('/about') }}">ABOUT US</a>
                             </li>
 
-                           {{-- <li class="">
+                            <li class="">
                                     <a class="nav-stylehead" href="{{ url('/blog-view') }}">BLOGS</a>
-                            </li>--}}
+                            </li>
                             <li class="">
                                 <a class="nav-stylehead" href="{{ url('/contact') }}">CONTACT</a>
 

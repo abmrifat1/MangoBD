@@ -22,7 +22,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2><a href="{{url('/dashboard/blog-post/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New</a></h2>
+                        <h2><a href="{{url('/admin/blog-post/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New</a></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -44,37 +44,30 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>S.L</th>
-                                <th>Title</th>
-                                <th>Category Name</th>
-                                <th>Small Image</th>
-                                <th>Big Image</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th colspan="1">S.L</th>
+                                <th colspan="1">User ID</th>
+                                <th colspan="3">Post Name</th>
+                                <th colspan="4">Title</th>
+                                <th colspan="4">Post Image</th>
+                                <th colspan="6">Post Content</th>
+                                <th colspan="3">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @php($i=0)
-                                @foreach($blogPosts as $blogPost)
+                                @foreach($blogposts as $blogpost)
                                     <tr>
-                                        <td>{{++$i}}</td>
-                                        <td>{{$blogPost->post_title}}</td>
-                                        <td>{{$blogPost->name}}</td>
-                                        <td><img src="{{asset($blogPost->image)}}" height="100" width="100"/></td>
-                                        <td><img src="{{asset($blogPost->image_two)}}" height="100" width="100"/></td>
-                                        <td>{{$blogPost->status==1?'Publish':'UnPublish'}}</td>
-                                        <td class="center">
-                                            <a href="{{ url('/dashboard/blog-post/show/'.$blogPost->unique_id) }}" title="Un Publish" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                            @if($blogPost->status==1)
-                                                <a href="{{ url('/dashboard/blog-post/unpublish/'.$blogPost->unique_id) }}" title="Un Publish" class="btn btn-success"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
-                                            @else
-                                                <a href="{{ url('/dashboard/blog-post/publish/'.$blogPost->unique_id) }}" title="Publish" class="btn btn-warning"><i class="fa fa-long-arrow-down" aria-hidden="true"></i></a>
-                                            @endif
-                                            <a href="{{ url('/dashboard/blog-post/edit/'.$blogPost->unique_id) }}" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <td colspan="1">{{++$i}}</td>
+                                        <td colspan="1">{{$blogpost->user_id}}</td>
+                                        <td colspan="3">{{$blogpost->name}}</td>
+                                        <td colspan="4">{{$blogpost->title}}</td>
+                                        <td colspan="4"><img src="{{asset($blogpost->image)}}" height="100" width="100"/></td>
+                                        <td colspan="6">{{$blogpost->description}}</td>
+                                        <td class="center" colspan="3">
+                                            <a href="{{ url('/dashboard/blog-post/edit/'.$blogpost->id) }}" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                             {{--<a href="#" title="Destroy" onclick="event.preventDefault(); document.getElementById('deleteForm').submit()" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>--}}
-                                            {!! Form::open(['url' => '/dashboard/blog-post/destroy/'.$blogPost->unique_id,'method'=>'DELETE','style'=>'display:inline']) !!}
-                                            {!! Form::hidden('image',$blogPost->image) !!}
-                                            {!! Form::hidden('image',$blogPost->image_two) !!}
+                                            {!! Form::open(['url' => '/dashboard/blog-post/destroy/'.$blogpost->id,'method'=>'DELETE','style'=>'display:inline']) !!}
+                                            {!! Form::hidden('image',$blogpost->image) !!}
                                             <button type="submit" class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></button>
                                             {!! Form::close() !!}
                                         </td>
